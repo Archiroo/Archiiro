@@ -33,7 +33,7 @@
                     <input type="submit" value="Login">
                 </div>
             </form>
-            <div class="link">You don't have account?<a href="#"> Sign-up now</a></div>
+            <div class="link">You don't have account? <a href="register.php"> Sign-up now</a></div>
         </section>
     </div>
 
