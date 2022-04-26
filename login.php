@@ -22,7 +22,7 @@
                 </div>
                 <div class="field input">
                     <label>Password</label>
-                    <input type="password" placeholder="Enter new password password">
+                    <input type="password" placeholder="Enter your password">
                     <i class="fas fa-eye"></i>
                 </div>
                 <div class="checkbox">
@@ -37,7 +37,7 @@
         </section>
     </div>
 
-    <script src="js/loginRegister.js"></script>
+    <script src="js/showPass.js"></script>
     <!-- SCRIPT -->
 </body>
 

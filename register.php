@@ -29,6 +29,10 @@
                         <input type="text" placeholder="Enter your email">
                     </div>
                     <div class="field input">
+                        <label>Phone number</label>
+                        <input type="text" placeholder="Enter your phone">
+                    </div>
+                    <div class="field input">
                         <label>Password</label>
                         <input type="password" placeholder="Enter password">
                         <i class="fas fa-eye"></i>
@@ -38,10 +42,6 @@
                         <input type="password" placeholder="Confirm password">
                         <i class="fas fa-eye"></i>
                     </div>
-                    <div class="field image">
-                        <label>Select Image</label>
-                        <input type="file">
-                    </div>
                     <div class="field button">
                         <input type="submit" value="Register">
                     </div>
@@ -49,6 +49,6 @@
             <div class="link">You have account? <a href="login.php">Login now</a></div>
         </section>
     </div>
-    <script src="js/pass-show-hide.js"></script>
+    <script src="js/showPass.js"></script>
 </body>
 </html>
