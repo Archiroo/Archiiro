@@ -33,11 +33,11 @@
                     <input type="submit" value="Login">
                 </div>
             </form>
-            <div class="link">You don't have account? <a href="register.php"> Sign-up now</a></div>
+            <div class="link">You don't have account? <a href="signin.php"> Sign-up now</a></div>
         </section>
     </div>
 
-    <script src="js/showPass.js"></script>
+    <script src="javascript/showPass.js"></script>
     <!-- SCRIPT -->
 </body>
 
