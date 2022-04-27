@@ -13,7 +13,7 @@
 <body>
     <div class="wrapper">
         <section class="form login">
-            <header>SIGN UP</header>
+            <header>REGISTER</header>
             <form action="#">
                 <div class="error-txt">This is an error message!</div>
                 <div class="field input">
@@ -33,7 +33,7 @@
                     <input type="submit" value="Login">
                 </div>
             </form>
-            <div class="link">You don't have account? <a href="signin.php"> Sign-up now</a></div>
+            <div class="link">You don't have account? <a href="register.php"> Click here</a></div>
         </section>
     </div>
 
