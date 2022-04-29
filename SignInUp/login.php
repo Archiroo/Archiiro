@@ -14,14 +14,15 @@
     <div class="wrapper">
         <section class="form login">
             <header>REGISTER</header>
-                <div class="error-txt">This is an error message!</div>
+            <form action="#" autocomplete="off">
+                <div class="error-txt"></div>
                 <div class="field input">
                     <label>Email Address</label>
-                    <input type="text" placeholder="Enter your email">
+                    <input type="text" name="email" placeholder="Enter your email">
                 </div>
                 <div class="field input">
                     <label>Password</label>
-                    <input type="password" placeholder="Enter your password">
+                    <input type="password" name="password" placeholder="Enter your password">
                     <i class="fas fa-eye"></i>
                 </div>
                 <div class="checkbox">
@@ -37,6 +38,7 @@
     </div>
 
     <script src="javascript/showPass.js"></script>
+    <script src="javascript/login.js"></script>
 </body>
 
 </html>
