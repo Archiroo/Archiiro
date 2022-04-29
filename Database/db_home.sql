@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 26, 2022 lúc 04:53 AM
+-- Thời gian đã tạo: Th4 29, 2022 lúc 11:50 AM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.1
 
@@ -108,19 +108,34 @@ CREATE TABLE `tb_typehome` (
 
 CREATE TABLE `tb_user` (
   `user_id` int(11) NOT NULL,
-  `user_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_firstName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_lastName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_email` char(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_pass` char(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_phone` char(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_gender` tinyint(2) DEFAULT NULL,
   `user_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `user_birthday` datetime DEFAULT NULL,
   `user_image` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_resgisdate` datetime DEFAULT current_timestamp(),
   `user_level` int(11) DEFAULT 1,
   `user_status` int(11) DEFAULT 1,
   `user_code` char(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tb_user`
+--
+
+INSERT INTO `tb_user` (`user_id`, `user_firstName`, `user_lastName`, `user_email`, `user_pass`, `user_phone`, `user_gender`, `user_address`, `user_image`, `user_resgisdate`, `user_level`, `user_status`, `user_code`) VALUES
+(1, 'Nguyễn', 'Chiiro', 'archiiro@gmail.com', 'admin', '0965269082', 1, '175 Tây Sơn, Đống Đa, Hà Nội', 'admin.jpg', '2022-04-27 08:09:01', 2, 1, NULL),
+(9, 'Ar', 'GLD', 'abcasc@gmail.com', '123', '12344545', NULL, NULL, NULL, '2022-04-29 10:32:17', 1, 1, NULL),
+(10, 'a', 'b', 'asdasd@gmail.com', '12312312', '12321312', NULL, NULL, NULL, '2022-04-29 10:36:36', 1, 1, NULL),
+(11, 'a', 'b', 'asdaasd@gmail.com', '12312312', '12321312', NULL, NULL, NULL, '2022-04-29 10:37:10', 1, 1, NULL),
+(12, 'asx', 'asd', 'asdaassd@gmail.com', '123', 'asdasd', NULL, NULL, NULL, '2022-04-29 10:38:03', 1, 1, NULL),
+(13, 'sadas', 'asdasd', 'sdfsd@gmail.com', '12312', '12312312', NULL, NULL, NULL, '2022-04-29 10:39:46', 1, 1, NULL),
+(14, 'sadas', 'asdasd', 'sdfssadd@gmail.com', '12312', '12312312', NULL, NULL, NULL, '2022-04-29 10:40:20', 1, 1, NULL),
+(15, 'sadas', 'asdasd', 'sasdasdfssadd@gmail.com', '12312', '12312312', NULL, NULL, NULL, '2022-04-29 10:40:50', 1, 1, NULL),
+(16, 'asdas', 'asdasdas', 'asdasdaasd@gmail.com', '123', '12312312123', NULL, NULL, NULL, '2022-04-29 10:41:25', 1, 1, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -206,7 +221,7 @@ ALTER TABLE `tb_typehome`
 -- AUTO_INCREMENT cho bảng `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
