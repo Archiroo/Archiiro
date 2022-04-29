@@ -14,7 +14,6 @@
     <div class="wrapper">
         <section class="form login">
             <header>REGISTER</header>
-            <form action="#">
                 <div class="error-txt">This is an error message!</div>
                 <div class="field input">
                     <label>Email Address</label>
@@ -38,7 +37,6 @@
     </div>
 
     <script src="javascript/showPass.js"></script>
-    <!-- SCRIPT -->
 </body>
 
 </html>

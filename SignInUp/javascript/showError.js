@@ -15,7 +15,7 @@ signupBtn.onclick = () => {
             if(xhr.status === 200){
                 let data = xhr.response;
                 if(data == "success"){  
-                    location.href = "login.php";
+                    location.href = "../Customer/index.php";
                 }
                 else{
                     errorText.textContent = data;
