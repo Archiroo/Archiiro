@@ -1,5 +1,5 @@
 <?php 
-    $conn = mysqli_connect("localhost", "root", "", "db_home");
+    $conn = mysqli_connect("localhost", "root", "", "qlpm");
     if($conn){
         
     }
