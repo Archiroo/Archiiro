@@ -1,4 +1,4 @@
 <?php
-    include "headerLogin.php";
+    include "headerNoLogin.php";
     include "footer.php";
 ?>
