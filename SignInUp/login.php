@@ -18,11 +18,11 @@
                 <div class="error-txt"></div>
                 <div class="field input">
                     <label>Email Address</label>
-                    <input type="text" name="email" placeholder="Enter your email">
+                    <input type="text" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="field input">
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="Enter your password">
+                    <input type="password" name="password" placeholder="Enter your password" required>
                     <i class="fas fa-eye"></i>
                 </div>
                 <div class="checkbox">

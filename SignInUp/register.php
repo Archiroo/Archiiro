@@ -52,7 +52,7 @@
         </section>
     </div>
     <script src="javascript/showPass.js"></script>
-    <script src="javascript/register.js"></script>
+    <script src="javascript/showError.js"></script>
 </body>
 
 </html>
