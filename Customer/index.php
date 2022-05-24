@@ -6,4 +6,3 @@
     include "postNoLogin.php";
     include "footer.php";
 ?>
-<h1>Long</h1>
