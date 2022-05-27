@@ -18,7 +18,7 @@ $tranghientai = $_POST['current_page'];
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="property-item rounded overflow-hidden">
                         <div class="position-relative overflow-hidden">
-                            <a href=""><img class="img-fluid" src="img/property-1.jpg" alt=""></a>
+                            <a href=""><img class="img-fluid" src="<?=$row['home_image']?>.jpg" alt=""></a>
                             <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"><?php if ($row['home_status'] == 0) {
                                                                                                                             echo "Feature";
                                                                                                                         } else if ($row['home_status'] == 1) {
