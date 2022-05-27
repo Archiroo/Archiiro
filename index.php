@@ -154,10 +154,10 @@ include("SignInUp/php/connect.php")
                 </div>
                 <div class="row g-4">
                     <?php
-                    $sql = "Select tb_typehome.typeHome_name, Count(tb_home.home_id) AS number_Home From tb_home, tb_typeHome
-                    Where tb_home.home_id = tb_typeHome.typeHome_id Group By tb_typeHome.typeHome_id";
+                    $sql = "Select tb_typehome.name_typeHome, Count(tb_home.id_home) AS number_Home From tb_home, tb_typeHome
+                    Where tb_home.id_typeHome  = tb_typeHome.id_typeHome  Group By tb_typeHome.id_typeHome ";
                     $query = mysqli_query($conn, $sql);
-                    if (mysqli_num_rows($query) > 0) {
+                    if ($query) {
                         while ($row = mysqli_fetch_assoc($query)) {
                     ?>
                             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -166,7 +166,7 @@ include("SignInUp/php/connect.php")
                                         <div class="icon mb-3">
                                             <img class="img-fluid" src="img/icon-apartment.png" alt="Icon">
                                         </div>
-                                        <h6><?= $row['typeHome_name'] ?></h6>
+                                        <h6><?= $row['name_typeHome'] ?></h6>
                                         <span><?= $row['number_Home'] ?> Properties</span>
                                     </div>
                                 </a>
@@ -220,13 +220,13 @@ include("SignInUp/php/connect.php")
                     <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
                         <ul class="nav nav-pills d-inline-flex justify-content-end mb-5 ">
                             <?php
-                            $sql_status = "select home_status from tb_home group by home_status";
+                            $sql_status = "select status from tb_home group by status";
                             $query_status = mysqli_query($conn, $sql_status);
-                            if (mysqli_num_rows($query_status) > 0) {
+                            if ($query_status) {
                                 while ($row = mysqli_fetch_assoc($query_status)) {
                             ?>
                                     <li class="nav-item me-2">
-                                        <a class="btn btn-outline-primary st-house" status="<?= $row['home_status'] ?>" data-bs-toggle="pill" href="#tab-1"><?php if ($row['home_status'] == 0) {
+                                        <a class="btn btn-outline-primary st-house" status="<?= $row['status'] ?>" data-bs-toggle="pill" href="#tab-1"><?php if ($row['home_status'] == 0) {
                                                                                                                                                                 echo "Featured";
                                                                                                                                                             } else if ($row['home_status'] == 1) {
                                                                                                                                                                 echo "For Sell";

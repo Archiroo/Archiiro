@@ -9,10 +9,10 @@ $tranghientai = $_POST['current_page'];
         <?php
         $limit = 2 ; 
         $start = ($tranghientai-1)*2;
-        $sql_home = "select * from tb_home ,tb_typehome where tb_home.typeHome_id = tb_typehome.typeHome_id and home_status = $status_home limit $start,$limit ";
+        $sql_home = "select * from tb_home ,tb_typehome where tb_home.id_typeHome = tb_typehome.id_typeHome and status = $status_home limit $start,$limit ";
 
         $query_home = mysqli_query($conn, $sql_home);
-        if (mysqli_num_rows($query_home) > 0) {
+        if ($query_home) {
             while ($row = mysqli_fetch_assoc($query_home)) {
         ?>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -64,7 +64,7 @@ $tranghientai = $_POST['current_page'];
                     </li>
                     <?php
                   
-                    $sql_trang = "select Count(tb_home.home_id) AS number_Home from tb_home where home_status = $status_home ";
+                    $sql_trang = "select Count(tb_home.id_home ) AS number_Home from tb_home where status = $status_home ";
                     $query_trang = mysqli_query($conn, $sql_trang);
                     $tongsobanghi = mysqli_fetch_assoc($query_trang)['number_Home'];
                     $banghi1trang = 2;
