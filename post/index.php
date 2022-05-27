@@ -69,7 +69,7 @@ session_start();
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Nội dung bài viết</label>
-                    <input name="content" type="text" class="form-control" id="content_post1">
+                    <textarea name="content" type="text" class="form-control" id="content_post1"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Tên nhân viên đăng bài</label>
