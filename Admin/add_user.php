@@ -21,8 +21,8 @@
                         {
                             // $code = md5(uniqid(rand(), true));
                             // $pass_hash = password_hash($user_pass1, PASSWORD_DEFAULT);
-                            $sql2 = "INSERT INTO tb_user(firstName, lastName, email, user_pass, phoneNumber, levelUser)
-                                VALUES('$firstName', '$lastName', '$email', '$pass1', '$phone', 2)";
+                            $sql2 = "INSERT INTO tb_user(firstName, lastName, email, user_pass, phoneNumber, levelUser, status)
+                                VALUES('$firstName', '$lastName', '$email', '$pass1', '$phone', 2, 1)";
                             $res2 = mysqli_query($conn, $sql2);
                             if($res2==TRUE){
                                 header("Location:user.php");

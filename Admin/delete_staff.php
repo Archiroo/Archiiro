@@ -7,10 +7,10 @@
     $res = mysqli_query($conn, $sql);
     if($res==true){
         // Nếu dúng thì xóa 
-        header("Location:user.php");
+        header("Location:staff.php");
     }
     else{
         // Không xóa được thì chịu
-        header("Location:user.php");
+        header("Location:staff.php");
     }
 ?>

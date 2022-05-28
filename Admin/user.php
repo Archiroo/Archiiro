@@ -20,9 +20,9 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Birthday</th>
-                                    <th>Last update</th>
-                                    <th>Status</th>
+                                    <th>Last update</th>                                   
                                     <th>Level</th>
+                                    <th>Status</th>
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -30,7 +30,7 @@
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * FROM tb_user";
+                                    $sql = "SELECT * FROM tb_user where status != 3";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -85,29 +85,13 @@
                                                                     <?php
                                                                 }
                                                         ?>
-                                                    </td>                
-                                                    <td>
-                                                        <?php
-                                                            if($status==1)
-                                                            {
-                                                                ?>
-                                                                <span class="badge success">Success</span>
-                                                                <?php
-                                                            }
-                                                            else
-                                                            {
-                                                                ?>
-                                                                <span class="badge warning">Processing</span>
-                                                                <?php
-                                                            }
-                                                        ?>
-                                                    </td>
+                                                    </td>   
                                                     <td>
                                                         <?php
                                                             if($level== null)
                                                             {
                                                                 ?>
-                                                                <span class="badge warning">Processing</span>
+                                                                <span>Không có dữ liệu</span>
                                                                 <?php
                                                             }
                                                             if($level == 1)
@@ -129,7 +113,23 @@
                                                                 <?php
                                                             }
                                                         ?>
-                                                    </td>                                                                 
+                                                    </td>              
+                                                    <td>
+                                                        <?php
+                                                            if($status==2)
+                                                            {
+                                                                ?>
+                                                                <span class="badge success">Success</span>
+                                                                <?php
+                                                            }
+                                                            if($status == 1 || $status == null)
+                                                            {
+                                                                ?>
+                                                                <span class="badge warning">Processing</span>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </td>                                                                
                                                     <td>
                                                         <a href="update_user.php?id_user=<?php echo $id_user; ?>" class="update-icon">
                                                             <i class="fas fa-edit"></i>

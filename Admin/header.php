@@ -27,43 +27,43 @@
                 <li>
                     <a href="index.php">
                         <span class="fas fa-home"></span>
-                        <span>Home</span>
+                        <span>Trang chủ</span>
                     </a>
                 </li>
                 <li>
                     <a href="user.php">
                         <span class="fas fa-user"></span>
-                        <span>User</span>
+                        <span>Người dùng</span>
                     </a>
                 </li>
                 <li>
-                    <a href="user.php">
+                    <a href="staff.php">
                         <span class="fas fa-user"></span>
-                        <span>Employee</span>
+                        <span>Nhân viên</span>
                     </a>
                 </li>
                 <li>
                     <a href="student.php">
                         <span class="fas fa-user-friends"></span>
-                        <span>Apartment</span>
+                        <span>Khách hàng</span>
                     </a>
                 </li>
                 <li>
                     <a href="subject.php">
                         <span class="fas fa-folder"></span>
-                        <span>Posts</span>
+                        <span>Căn hộ</span>
                     </a>
                 </li>
                 <li>
                     <a href="homework.php">
                         <span class="fas fa-paste"></span>
-                        <span>Deposit</span>
+                        <span>Hợp đồng</span>
                     </a>
                 </li>
                 <li>
                     <a href="account.php">
                         <span class="fas fa-user-friends"></span>
-                        <span>Account</span>
+                        <span>Bài viết</span>
                     </a>
                 </li>
                 <li>
@@ -80,7 +80,7 @@
         <header>
             <div class="search-wrapper">
                 <span class="ti-search"></span>
-                <input type="text" placeholder="Search">
+                <input type="text" placeholder="Tìm kiếm">
             </div>
             <div class="social-icons">
                 <div>

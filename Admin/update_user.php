@@ -64,7 +64,14 @@
                             WHERE id_user= '$id_user'";
                     $res1 = mysqli_query($conn, $sql1);
                     if($res1 == TRUE){
-                        header("Location:user.php");
+                        $sql3 = "UPDATE tb_user SET status = 2 Where id_user = $id_user";
+                        $res3 = mysqli_query($conn, $sql3);
+                        if($res3 == true){
+                            header("Location:user.php");
+                        }
+                        else{
+                            header("Location:update_user.php");
+                        }
                     }
                     else{
                         header("Location:update_user.php");
