@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="student.php">
+                    <a href="customer.php">
                         <span class="fas fa-user-friends"></span>
                         <span>Khách hàng</span>
                     </a>
