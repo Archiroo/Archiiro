@@ -9,17 +9,20 @@
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>Recent activity</h3>
+                    <h3>User management</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>First name</th>
+                                    <th>Last name</th>
                                     <th>Email</th>
-                                    <th>Regisdate</th>
-                                    <th>Level</th>
+                                    <th>Phone</th>
+                                    <th>Birthday</th>
+                                    <th>Last update</th>
                                     <th>Status</th>
+                                    <th>Level</th>
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -36,21 +39,53 @@
                                         {
                                             while($row = mysqli_fetch_assoc($res))
                                             {
-                                                $user_id = $row['user_id'];
-                                                $user_name = $row['user_name'];
-                                                $user_pass = $row['user_pass'];
-                                                $email = $row['user_email'];
+                                                $id_user = $row['id_user'];
+                                                $firstName = $row['firstName'];
+                                                $lastName = $row['lastName'];
+                                                $email = $row['email'];
+                                                $phone = $row['phoneNumber'];
+                                                $birthday =  $row['birthday'];
                                                 $date = $row['regisdate'];
-                                                $level = $row['user_level'];
-                                                $status = $row['user_status'];
+                                                $level = $row['levelUser'];
+                                                $status = $row['status'];
                                                 
                                 ?>
                                                 <tr>
-                                                    <td><?php echo $user_id; ?></td>
-                                                    <td><?php echo $user_name; ?></td>                                                                
-                                                    <td><?php echo $email; ?></td>                                 
-                                                    <td><?php echo $date; ?></td> 
-                                                    <td class="status"><?php echo $level ?></td>                                
+                                                    <td><?php echo $id_user; ?></td>
+                                                    <td><?php echo $firstName; ?></td>            
+                                                    <td><?php echo $lastName; ?></td>                                                        
+                                                    <td><?php echo $email; ?></td> 
+                                                    <td><?php echo $phone; ?></td>       
+                                                    <td>
+                                                        <?php
+                                                            if($birthday== null)
+                                                            {
+                                                                 ?>
+                                                                <span>Không có dữ liệu</span>
+                                                                 <?php
+                                                                }  
+                                                                else{
+                                                                    ?>
+                                                                    <span> <?php echo $birthday = date("d-m-Y", strtotime($birthday));; ?> </span>
+                                                                    <?php
+                                                                }
+                                                        ?>
+                                                    </td>    
+                                                    <td>
+                                                        <?php
+                                                            if($date== null)
+                                                            {
+                                                                 ?>
+                                                                <span>Không có dữ liệu</span>
+                                                                 <?php
+                                                                }  
+                                                                else{
+                                                                    ?>
+                                                                    <span> <?php echo $date = date("d-m-Y", strtotime($date));; ?> </span>
+                                                                    <?php
+                                                                }
+                                                        ?>
+                                                    </td>                
                                                     <td>
                                                         <?php
                                                             if($status==1)
@@ -66,14 +101,42 @@
                                                                 <?php
                                                             }
                                                         ?>
-                                                    </td>                                                                  
+                                                    </td>
                                                     <td>
-                                                        <a href="update_user.php?user_id=<?php echo $user_id; ?>" class="update-icon">
+                                                        <?php
+                                                            if($level== null)
+                                                            {
+                                                                ?>
+                                                                <span class="badge warning">Processing</span>
+                                                                <?php
+                                                            }
+                                                            if($level == 1)
+                                                            {
+                                                                ?>
+                                                                <span>Admin</span>
+                                                                <?php
+                                                            }
+                                                            if($level== 2)
+                                                            {
+                                                                ?>
+                                                                <span>Nhân viên</span>
+                                                                <?php
+                                                            }
+                                                            if($level== 3)
+                                                            {
+                                                                ?>
+                                                                <span>Khách hàng</span>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </td>                                                                 
+                                                    <td>
+                                                        <a href="update_user.php?id_user=<?php echo $id_user; ?>" class="update-icon">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                            <a href="delete_user.php?user_id=<?php echo $user_id; ?>" class="delete-icon">
+                                                            <a href="delete_user.php?id_user=<?php echo $id_user; ?>" class="delete-icon">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </a>
                                                     </td>

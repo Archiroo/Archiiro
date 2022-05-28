@@ -1,7 +1,5 @@
 <?php
     include('connect_database/connect.php');
-
-
 ?>
 <head>
     <meta charset="UTF-8">
@@ -10,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="css/teacher.css">
-    <title>Education website</title>
+    <title>Archiiro Company</title>
 </head>
 
 <body>
@@ -18,8 +16,8 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <h3 class="brand">
-                <span class="fas fa-user-graduate"></span>
-                <span>Education</span>
+                <span class="fas fa-building"></span>
+                <span>Archiiro</span>
             </h3>
             <label for="sidebar-toggle" class="ti-menu-alt"></label>
             <!--nút 3 ghạch-->
@@ -39,27 +37,33 @@
                     </a>
                 </li>
                 <li>
+                    <a href="user.php">
+                        <span class="fas fa-user"></span>
+                        <span>Employee</span>
+                    </a>
+                </li>
+                <li>
                     <a href="student.php">
                         <span class="fas fa-user-friends"></span>
-                        <span>Student</span>
+                        <span>Apartment</span>
                     </a>
                 </li>
                 <li>
                     <a href="subject.php">
                         <span class="fas fa-folder"></span>
-                        <span>Subject</span>
+                        <span>Posts</span>
                     </a>
                 </li>
                 <li>
                     <a href="homework.php">
                         <span class="fas fa-paste"></span>
-                        <span>Homework</span>
+                        <span>Deposit</span>
                     </a>
                 </li>
                 <li>
-                    <a href="contact.php">
-                        <span class="fas fa-poll"></span>
-                        <span>Management</span>
+                    <a href="account.php">
+                        <span class="fas fa-user-friends"></span>
+                        <span>Account</span>
                     </a>
                 </li>
                 <li>
@@ -80,7 +84,7 @@
             </div>
             <div class="social-icons">
                 <div>
-                    <img src="../image/user_1.jpg" alt="">
+                    <img src="../image/admin.jpg" alt="">
                 </div>
             </div>
         </header> 
