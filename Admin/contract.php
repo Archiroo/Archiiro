@@ -63,20 +63,6 @@
 
                                                     <td>
                                                        <?php
-                                                            $sql3 = "SELECT * FROM tb_home where id_home = $id_home ";
-                                                            $res3 = mysqli_query($conn, $sql3);
-                                                            $count3 = mysqli_num_rows($res3);
-                                                            if($count3 == 1){
-                                                                $row3 = mysqli_fetch_assoc($res3);
-                                                                $nameHome = $row3['name_home'];
-                                                            }
-
-                                                            echo $nameHome;
-                                                       ?>
-                                                    </td>        
-                                                    
-                                                    <td>
-                                                       <?php
                                                             $sql3 = "SELECT * FROM tb_user where id_user = $id_staff ";
                                                             $res3 = mysqli_query($conn, $sql3);
                                                             $count3 = mysqli_num_rows($res3);
@@ -89,6 +75,22 @@
                                                             echo $firstName2. " " .$lastName2;
                                                        ?>
                                                     </td>  
+                                                    
+                                                    <td>
+                                                       <?php
+                                                            $sql3 = "SELECT * FROM tb_home where id_home = $id_home ";
+                                                            $res3 = mysqli_query($conn, $sql3);
+                                                            $count3 = mysqli_num_rows($res3);
+                                                            if($count3 == 1){
+                                                                $row3 = mysqli_fetch_assoc($res3);
+                                                                $nameHome = $row3['name_home'];
+                                                            }
+
+                                                            echo $nameHome;
+                                                       ?>
+                                                    </td>        
+                                                    
+                                                    
                                                     <td> <?php echo $lastDay = date("d-m-Y", strtotime($lastDay)); ?></td>
                                                     <td>
                                                         <?php

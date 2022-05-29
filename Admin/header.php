@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="account.php">
+                    <a href="post.php">
                         <span class="fas fa-user-friends"></span>
                         <span>Bài viết</span>
                     </a>
