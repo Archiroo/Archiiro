@@ -2,29 +2,28 @@
     include('header.php');
 ?>
     <main>
-        <a href="add_user.php" class="btn btn-add"><i class="fas fa-user-plus"></i> Add user</a>
+        <a href="add_user.php" class="btn btn-add"><i class="fas fa-user-plus"></i> Thêm người dùng</a>
         <div>
             <!-- <h2 style="font-weight: 400; color:green; margin-top: 2rem;">Thêm thành công!</h2> -->
         </div>
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>User management</h3>
+                    <h3>Quản lý tài khoản người dùng</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>First name</th>
-                                    <th>Last name</th>
+                                    <th>Họ & tên</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Birthday</th>
-                                    <th>Last update</th>                                   
-                                    <th>Level</th>
-                                    <th>Status</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Cập nhật cuối</th>                                   
+                                    <th>Chức vụ</th>
+                                    <th>Trạng thái</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa bỏ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,17 +42,20 @@
                                                 $firstName = $row['firstName'];
                                                 $lastName = $row['lastName'];
                                                 $email = $row['email'];
+                                                $user_pass = $row['user_pass'];
                                                 $phone = $row['phoneNumber'];
+                                                $gender = $row['gender'];
                                                 $birthday =  $row['birthday'];
                                                 $date = $row['regisdate'];
                                                 $level = $row['levelUser'];
                                                 $status = $row['status'];
+                                                $address = $row['address'];
+                                             
                                                 
                                 ?>
                                                 <tr>
                                                     <td><?php echo $id_user; ?></td>
-                                                    <td><?php echo $firstName; ?></td>            
-                                                    <td><?php echo $lastName; ?></td>                                                        
+                                                    <td><?php echo $firstName. " ".$lastName ?></td>                                                                
                                                     <td><?php echo $email; ?></td> 
                                                     <td><?php echo $phone; ?></td>       
                                                     <td>
@@ -116,16 +118,16 @@
                                                     </td>              
                                                     <td>
                                                         <?php
-                                                            if($status==2)
+                                                            if($status == 2)
                                                             {
                                                                 ?>
-                                                                <span class="badge success">Success</span>
+                                                                <span class="badge success">Active</span>
                                                                 <?php
                                                             }
                                                             if($status == 1 || $status == null)
                                                             {
                                                                 ?>
-                                                                <span class="badge warning">Processing</span>
+                                                                <span class="badge warning">Chưa đủ dữ liệu</span>
                                                                 <?php
                                                             }
                                                         ?>

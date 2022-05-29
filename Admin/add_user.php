@@ -39,11 +39,11 @@
                 }
             ?>
             <div class="form-group first-span">
-                <span>First name</span>
+                <span>Họ & tên đệm</span>
                 <input type="text" class="form-control" name="firstName">
             </div>
             <div class="form-group">
-                <span>Last name</span>
+                <span>Tên</span>
                 <input type="text" class="form-control" name="lastName">
             </div>
             <div class="form-group first-span">
@@ -51,15 +51,15 @@
                 <input type="email" class="form-control" name="email">
             </div>
             <div class="form-group">
-                <span>Password</span>
+                <span>Mật khẩu</span>
                 <input type="password" class="form-control" name="pass1">
             </div>
             <div class="form-group">
-                <span>Confirm password</span>
+                <span>Xác minh mật khẩu</span>
                 <input type="password" class="form-control" name="pass2">
             </div>
             <div class="form-group">
-                <span>Phone number</span>
+                <span>Số điện thoại</span>
                 <input type="tel" class="form-control" name="phoneNumber">
             </div>
             <input type="submit" name="submit" value="Add user" class="btn btn-add btn-add-connect">

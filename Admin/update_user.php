@@ -16,6 +16,7 @@
                 $firstName = $row['firstName'];
                 $lastName = $row['lastName'];
                 $email = $row['email'];
+                $pass = $row['user_pass'];
                 $phoneNumber = $row['phoneNumber'];
                 $gender = $row['gender'];
                 $address = $row['address'];
@@ -64,14 +65,25 @@
                             WHERE id_user= '$id_user'";
                     $res1 = mysqli_query($conn, $sql1);
                     if($res1 == TRUE){
-                        $sql3 = "UPDATE tb_user SET status = 2 Where id_user = $id_user";
-                        $res3 = mysqli_query($conn, $sql3);
-                        if($res3 == true){
-                            header("Location:user.php");
+                        if($firstName != null && $lastName != null && $email != null && $user_pass != null && $phoneNumber != null && $gender != null && $adress != null && $birthday != null && $image != null){
+                            $sql3 = "UPDATE tb_user SET status = 2 Where id_user = $id_user";
+                            $res3 = mysqli_query($conn, $sql3);
+                            if($res3 == true){
+                                header("Location:user.php");
+                            }
+                            else{
+                                header("Location:update_user.php");
+                            }
                         }
                         else{
-                            header("Location:update_user.php");
+                            $sql4 = "UPDATE tb_user SET status = 3 Where id_user = $id_user";
+                            $res4 = mysqli_query($conn, $sql4);
+                            if($res4==TRUE){
+                                header("Location:user.php");
+                            }
+                            
                         }
+                        
                     }
                     else{
                         header("Location:update_user.php");
