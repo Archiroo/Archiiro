@@ -51,17 +51,17 @@
                 <li>
                     <a href="typeHome.php">
                         <span class="fas fa-folder"></span>
-                        <span>Loại nhà</span>
+                        <span>Loại căn hộ</span>
                     </a>
                 </li>
                 <li>
                     <a href="home.php">
                         <span class="fas fa-folder"></span>
-                        <span>Loại nhà</span>
+                        <span>Căn hộ</span>
                     </a>
                 </li>
                 <li>
-                    <a href="homework.php">
+                    <a href="contract.php">
                         <span class="fas fa-paste"></span>
                         <span>Hợp đồng</span>
                     </a>
