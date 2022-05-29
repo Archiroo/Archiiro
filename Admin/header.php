@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <link rel="stylesheet" href="css/teacher.css">
+    <link rel="stylesheet" href="css/admin.css">
     <title>Archiiro Company</title>
 </head>
 
@@ -51,7 +51,13 @@
                 <li>
                     <a href="typeHome.php">
                         <span class="fas fa-folder"></span>
-                        <span>Căn hộ</span>
+                        <span>Loại nhà</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="home.php">
+                        <span class="fas fa-folder"></span>
+                        <span>Loại nhà</span>
                     </a>
                 </li>
                 <li>

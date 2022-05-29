@@ -2,30 +2,31 @@
     include('header.php');
 ?>
     <main>
+        <a href="add_home.php" class="btn btn-add"><i class="fas fa-user-plus"></i> Thêm mới căn hộ</a>
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>Thông tin khách hàng</h3>
+                    <h3>Thông tin căn hộ</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Họ & tên đệm</th>
-                                    <th>Tên</th>
-                                    <th>Số CCCD</th>
-                                    <th>Ngày cấp</th>
-                                    <th>Được cấp bởi</th>
-                                    <th>Mặt trước</th>                                   
-                                    <th>Mặt sau</th>
-                                    <th>Status</th>
-                                    <th>Delete</th>
+                                    <th>Loại nhà</th>
+                                    <th>Tên nhà</th>
+                                    <th>Giá</th>
+                                    <th>Diện tích</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Phòng khách</th>
+                                    <th>Phòng ngủ</th>
+                                    <th>Phòng tắm</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa bỏ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * FROM tb_user, tb_customer where tb_user.id_user = tb_customer.id_customer and levelUser = 3 and tb_user.status != 3 and tb_customer.status != 3";
+                                    $sql = "SELECT * FROM tb_typeHome, tb_home Where tb_typeHome.id_typeHome = tb_home.id_typeHome and tb_typeHome.status = 1 and tb_home.status = 1";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -34,66 +35,44 @@
                                         {
                                             while($row = mysqli_fetch_assoc($res))
                                             {
-                                                $id_user = $row['id_customer'];
-                                                $firstName = $row['firstName'];
-                                                $lastName = $row['lastName'];
-                                                $cardNumber = $row['cardNumber'];
-                                                $dateRange = $row['dateRange'];
-                                                $isuseBy =  $row['isuseBy'];
-                                                $imgFront = $row['imageFront'];
-                                                $imgBack = $row['imageBack'];
-                                                $status = $row['status'];
+                                                $id_home = $row['id_home'];
+                                                $name_typeHome = $row['name_typeHome'];
+                                                $name_home = $row['name_home'];
+                                                $price = $row['price'];
+                                                $area = $row['area_home'];
+                                                $address = $row['address_home'];
+                                                $numberRoom = $row['numberRoom'];
+                                                $numberBedRoom = $row['numberBedRoom'];
+                                                $numberBathRoom = $row['numberBathRoom'];    
                                                 
                                 ?>
                                                 <tr>
-                                                    <td><?php echo $id_user; ?></td>
-                                                    <td><?php echo $firstName; ?></td>            
-                                                    <td><?php echo $lastName; ?></td>                                                        
-                                                    <td><?php echo $cardNumber; ?></td>   
+                                                    <td><?php echo $name_typeHome; ?></td>
+                                                    <td><?php echo $name_home; ?></td>            
+                                                    <td><?php echo $price; ?> VND</td>                                                        
+                                                    <td><?php echo $area; ?> m2</td>   
+                                                    <td><?php echo $address; ?></td>   
+                                                    <td class = "center">
+                                                        <?php echo $numberRoom; ?>
+                                                    </td>   
+                                                    <td class = "center">
+                                                        <?php echo $numberBedRoom; ?>
+                                                    </td>   
+                                                    <td class = "center">
+                                                        <?php echo $numberBathRoom; ?>
+                                                    </td>  
                                                     <td>
-                                                        <?php
-                                                            if($dateRange== null)
-                                                            {
-                                                                 ?>
-                                                                <span>Không có dữ liệu</span>
-                                                                 <?php
-                                                                }  
-                                                                else{
-                                                                    ?>
-                                                                    <span> <?php echo $dateRange = date("d-m-Y", strtotime($dateRange));; ?> </span>
-                                                                    <?php
-                                                                }
-                                                        ?>
-                                                    </td>    
-                                                    <td><?php echo $isuseBy; ?></td>   
-                                                    <td>
-                                                        <img src="../image/<?php echo $imgFront; ?>" alt="" width="100px">
-                                                    </td>
-                                                    <td>
-                                                        <img src="../image/<?php echo $imgBack; ?>" alt="" width="100px">
-                                                    </td>           
-                                                    <td>
-                                                        <?php
-                                                            if($status==2)
-                                                            {
-                                                                ?>
-                                                                <span class="badge success">Success</span>
-                                                                <?php
-                                                            }
-                                                            if($status == 1 || $status == null)
-                                                            {
-                                                                ?>
-                                                                <span class="badge warning">Processing</span>
-                                                                <?php
-                                                            }
-                                                        ?>
-                                                    </td>                                                                
-                                                    <td>
-                                                            <a href="delete_customer.php?id_user=<?php echo $id_user; ?>" class="delete-icon">
-                                                            <i class="fas fa-trash-alt"></i>
+                                                        <a href="update_home.php?id_home=<?php echo $id_home; ?>" class="update-icon">
+                                                            <i class="fas fa-edit"></i>
                                                         </a>
                                                     </td>
+                                                    <td>
+                                                            <a href="delete_home.php?id_home=<?php echo $id_home; ?>" class="delete-icon">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </td> 
                                                 </tr>
+
                                 <?php
                                             }
                                         }

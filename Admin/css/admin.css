@@ -431,11 +431,9 @@ select{
 }
 
 
-
-
-
-
-
+.center{
+    text-align: center;
+}
 
 /* RESPONVSIVE */
 @media only screen and (max-width: 1200px) {
