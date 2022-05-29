@@ -82,20 +82,17 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Họ & tên</th>
-                                    <th>Email</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Giới tính</th>
-                                    <th>Lương /ngày</th>
-                                    <th>Làm từ ngày</th>
-                                    <th>Số hợp đồng</th>
-                                    <th>Hình ảnh</th>
+                                    <th>Khách hàng</th>
+                                    <th>Người xử lý</th>
+                                    <th>Tên căn hộ</th>
+                                    <th>Cập nhật lúc</th>
+                                    <th>Trạng thái</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * from tb_user, tb_staff WHERE tb_user.id_user = tb_staff.id_staff AND levelUser = 2 AND status = 2";
+                                    $sql = "SELECT * FROM tb_contract where status = 1";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -104,79 +101,85 @@
                                         {
                                             while($row = mysqli_fetch_assoc($res))
                                             {
-                                                $id_user = $row['id_user'];
-                                                $firstName = $row['firstName'];
-                                                $lastName = $row['lastName'];
-                                                $image = $row['image'];
-                                                $email = $row['email'];
-                                                $phone = $row['phoneNumber'];
-                                                $gender = $row['gender'];
-                                                $daySalary = $row['daySalary'];
-                                                $dayStart = $row['dayStart'];
-                                                $numberContract = $row['numberContract'];
+                                                $id_contract = $row['id_contract'];
+                                                $id_home = $row['id_home'];
+                                                $id_customer = $row['id_customer'];
+                                                $id_staff = $row['id_staff'];
+                                                $status = $row['status'];
+                                                $lastDay = $row['dateCreate']
                                                 
                                 ?>
                                                 <tr>
-                                                    <td><?php echo $id_user;?></td>
-                                                    <td><?php echo $firstName. " ".$lastName; ?></td>            
-                                                    <td><?php echo $email; ?></td>      
-                                                    <td><?php echo $phone; ?></td>      
+                                                    <td><?php echo $id_contract; ?></td>
                                                     <td>
                                                        <?php
-                                                            if($gender == null){
-                                                                ?>
-                                                                <span>Không có dữ liệu</span>
-                                                                <?php
+                                                            $sql2 = "SELECT * FROM tb_user where id_user = $id_customer ";
+                                                            $res2 = mysqli_query($conn, $sql2);
+                                                            $count2 = mysqli_num_rows($res2);
+                                                            if($count2 == 1){
+                                                                $row2 = mysqli_fetch_assoc($res2);
+                                                                $firstName1 = $row2['firstName'];
+                                                                $lastName1 = $row2['lastName'];
                                                             }
-                                                            if($gender == 1){
-                                                                ?>
-                                                                <span>Nam</span>
-                                                                <?php
-                                                            }
-                                                            if($gender == 2){
-                                                                ?>
-                                                                <span>Nữ</span>
-                                                                <?php
-                                                            }
+
+                                                            echo $firstName1. " " .$lastName1;
                                                        ?>
-                                                    </td>                                                      
-                                                    <td><?php echo $daySalary;?> VND</td>    
-                                                                    
-                                                    <td>
-                                                        <?php
-                                                            if($dayStart== null)
-                                                            {
-                                                                 ?>
-                                                                <span>Không có dữ liệu</span>
-                                                                 <?php
-                                                                }  
-                                                                else{
-                                                                    ?>
-                                                                    <span> <?php echo $dayStart = date("d-m-Y", strtotime($dayStart)); ?> </span>
-                                                                    <?php
-                                                                }
-                                                        ?>
-                                                    </td> 
-                                                    <td>
-                                                        <?php
-                                                        if($numberContract == null || $numberContract == 0){
-                                                            ?>
-                                                            <span>Không có dữ liệu</span>
-                                                            <?php
-                                                        }
-                                                        else{
-                                                            ?>
-                                                            <span><?php echo $numberContract?></span>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td class="td-team">
-                                                        <div class="img-1 img_alone">
-                                                            <img style = "margin-left: 10px;" src="../image/<?php echo $image?>" alt="">
-                                                        </div>
                                                     </td>   
-                                                                                                
+
+                                                    <td>
+                                                       <?php
+                                                            $sql3 = "SELECT * FROM tb_user where id_user = $id_staff ";
+                                                            $res3 = mysqli_query($conn, $sql3);
+                                                            $count3 = mysqli_num_rows($res3);
+                                                            if($count3 == 1){
+                                                                $row3 = mysqli_fetch_assoc($res3);
+                                                                $firstName2 = $row3['firstName'];
+                                                                $lastName2 = $row3['lastName'];
+                                                            }
+
+                                                            echo $firstName2. " " .$lastName2;
+                                                       ?>
+                                                    </td>  
+                                                    
+                                                    <td>
+                                                       <?php
+                                                            $sql3 = "SELECT * FROM tb_home where id_home = $id_home ";
+                                                            $res3 = mysqli_query($conn, $sql3);
+                                                            $count3 = mysqli_num_rows($res3);
+                                                            if($count3 == 1){
+                                                                $row3 = mysqli_fetch_assoc($res3);
+                                                                $nameHome = $row3['name_home'];
+                                                            }
+
+                                                            echo $nameHome;
+                                                       ?>
+                                                    </td>        
+                                                    
+                                                    
+                                                    <td> <?php echo $lastDay = date("d-m-Y", strtotime($lastDay)); ?></td>
+                                                    <td>
+                                                        <?php
+                                                            if($status==1)
+                                                            {
+                                                                ?>
+                                                                <span class="badge success">Thành công</span>
+                                                                <?php
+                                                            }
+                                                            if($status == 2)
+                                                            {
+                                                                ?>
+                                                                <span class="badge warning">Nhân viên xử lý</span>
+                                                                <?php
+                                                            }
+                                                            if($status == 3)
+                                                            {
+                                                                ?>
+                                                                <span class="badge warning">Khách hàng xử lý</span>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </td>                                                                
+                                
                                                 </tr>
                                 <?php
                                             }
