@@ -36,8 +36,93 @@
                         $image_name = "home_default.jpg";
                     }
 
-                    $sql1 = "INSERT INTO tb_home(id_typeHome, name_home, price, priceSale, area_home, address_home, numberRoom, numberBedRoom, numberBathRoom, description, image, status)
-                            VALUES($id_typeHome, '$nameHome', '$priceHome', '$priceSale', '$area','$address',  '$room', '$bed', '$bath', '$des', '$image_name', 1)";
+
+                    if(isset($_FILES['image2']['name']))
+                    {
+                        $image_name2 = $_FILES['image2']['name'];
+                        if($image_name2!="")
+                        {
+                            $source_path = $_FILES['image2']['tmp_name'];
+
+                            $dess_path = "../image/image_database/".$image_name2;
+
+                            $upload = move_uploaded_file($source_path, $dess_path);
+                            if($upload== FALSE)
+                            {
+                                die();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        $image_name2 = "home_default.jpg";
+                    }
+
+                    if(isset($_FILES['image3']['name']))
+                    {
+                        $image_name3 = $_FILES['image3']['name'];
+                        if($image_name3!="")
+                        {
+                            $source_path = $_FILES['image3']['tmp_name'];
+
+                            $dess_path = "../image/image_database/".$image_name3;
+
+                            $upload = move_uploaded_file($source_path, $dess_path);
+                            if($upload== FALSE)
+                            {
+                                die();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        $image_name3 = "home_default.jpg";
+                    }
+
+                    if(isset($_FILES['image4']['name']))
+                    {
+                        $image_name4 = $_FILES['image4']['name'];
+                        if($image_name4!="")
+                        {
+                            $source_path = $_FILES['image4']['tmp_name'];
+
+                            $dess_path = "../image/image_database/".$image_name4;
+
+                            $upload = move_uploaded_file($source_path, $dess_path);
+                            if($upload== FALSE)
+                            {
+                                die();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        $image_name4 = "home_default.jpg";
+                    }
+
+                    if(isset($_FILES['image3']['name']))
+                    {
+                        $image_name5 = $_FILES['image5']['name'];
+                        if($image_name5!="")
+                        {
+                            $source_path = $_FILES['image5']['tmp_name'];
+
+                            $dess_path = "../image/image_database/".$image_name5;
+
+                            $upload = move_uploaded_file($source_path, $dess_path);
+                            if($upload== FALSE)
+                            {
+                                die();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        $image_name5 = "home_default.jpg";
+                    }
+
+                    $sql1 = "INSERT INTO tb_home(id_typeHome, name_home, price, priceSale, area_home, address_home, numberRoom, numberBedRoom, numberBathRoom, description, image, image2, image3, image4, image5, status)
+                            VALUES($id_typeHome, '$nameHome', '$priceHome', '$priceSale', '$area','$address',  '$room', '$bed', '$bath', '$des', '$image_name', '$image_name2', '$image_name3', '$image_name4', '$image_name5', 1)";
 
                     $res1 = mysqli_query($conn, $sql1);
                     if($res1 == TRUE){
@@ -124,8 +209,36 @@
                 <input type="file" name="image" class="file">
             </div>
 
+            <div class="gender">
+                <span>Hình ảnh</span>
+                <br>
+                <input type="file" name="image2" class="file">
+            </div>
+
+
+            <div class="gender">
+                <span>Hình ảnh</span>
+                <br>
+                <input type="file" name="image3" class="file">
+            </div>
+
+
+            <div class="gender">
+                <span>Hình ảnh</span>
+                <br>
+                <input type="file" name="image4" class="file">
+            </div>
+
+
+            <div class="gender">
+                <span>Hình ảnh</span>
+                <br>
+                <input type="file" name="image5" class="file">
+            </div>
+
+
             <input type="submit" name="submit" value="Add user" class="btn btn-add btn-add-connect">
-            <a href="user.php" class="btn btn-add btn-cancel">Cancel</a>
+            <a href="user.php" class="btn btn-add btn-cancel" style="margin-bottom: 5rem;">Cancel</a>
         </form>      
 <?php
     include('footer.php');
