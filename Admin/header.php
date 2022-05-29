@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="subject.php">
+                    <a href="typeHome.php">
                         <span class="fas fa-folder"></span>
                         <span>Căn hộ</span>
                     </a>
