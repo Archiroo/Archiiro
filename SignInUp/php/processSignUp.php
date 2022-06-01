@@ -17,8 +17,8 @@
                 echo "$email - This email already exist!";
             } else {
                 if ($pass1 == $pass2) {
-                    $sql2 = "INSERT INTO tb_user(firstName, lastName, email, user_pass, phoneNumber)
-                            VALUES('$fname', '$lname', '$email','$pass1', '$phone')";
+                    $sql2 = "INSERT INTO tb_user(firstName, lastName, email, user_pass, phoneNumber, levelUser, status)
+                            VALUES('$fname', '$lname', '$email','$pass1', '$phone', 3, 2)";
                     $res2 = mysqli_query($conn, $sql2);
                     if ($res2 == TRUE) {
                         $sql3 = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '{$email}'");
