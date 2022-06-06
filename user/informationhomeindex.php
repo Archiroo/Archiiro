@@ -108,7 +108,7 @@ include('../config/config.php');
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                 </div>
-                <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
+                <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Đăng nhập</a>
             </div>
         </nav>
     </div>
@@ -203,7 +203,7 @@ include('../config/config.php');
                             </div>
                             <h6>Loại nhà: <?php echo $nametypehome ?></h1>
                             </h6>
-                            <label>Giá: 13.000.000</label></br>
+                            <labe><h5 style="color:#63d076;;"><?= $row1['price']?></h5></label>
                             <div id="gallery">
                                 <ul>
                                     <li><a href="../img/<?php echo $row1['image2'] ?>" data-lightbox="mygallery"><img src="../img/<?php echo $row1['image2'] ?>" /></a></li>
@@ -222,7 +222,7 @@ include('../config/config.php');
                             <p><?php echo $row1['description'] ?></p>
                         </div>
                         <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                            <h4>Căn hộ liên quan</h4>
+                            <h4>Căn hộ liên quan</h4></br>
                             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                                 <?php
                                 $sql = "SELECT * FROM `tb_home` WHERE  id_typeHome = '$idtypehome'";
@@ -235,8 +235,11 @@ include('../config/config.php');
                                                         <div class="d-flex align-items-center">
                                                             <img style="width:200px; height:200px;" class="img-fluid rounded" src="../img/<?= $row['image'] ?>" style="width: 45px; height: 45px;">
                                                             <div class="ps-3">
-                                                                <h6 class="fw-bold mb-1"><?= $row['name_home'] ?></h6>
-                                                                <a href="./informationhomeindex.php?id_home=<?= $row['id_home'] ?>">Chi tiết</a>
+                                                                <div style="transform: translateY(-3.5rem);">
+                                                                <h5  class="fw-bold mb-1"><?= $row['name_home']?></h5>
+                                                                <h5 class="fw-bold mb-1"><?=$row['price']?> VNĐ</h5>
+                                                                </div>
+                                                                <a style="transform: translateY(3.3rem);" class="btn btn-success" href="./informationhomeindex.php?id_home=<?= $row['id_home'] ?>">Xem nhà</a>
                                                                
                                                             </div>
                                                         </div>

@@ -217,7 +217,7 @@
                                         <a href="informationhomeindex.php?id_home=<?=$row['id_home']?>"><img style="height:230px;" class="img-fluid" src="../img/<?php echo $row['image'] ?>" alt=""></a>
                                     </div>
                                     <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">$<?php echo $row['price']?></h5>
+                                        <h5 class="text-primary mb-3"><span><?=$row['price']?> VNĐ</h5>
                                         <a  class="d-block h5 mb-2" href="informationhomeindex.php?id_home=<?=$row['id_home']?>"><?php echo $row['name_home']?></a>
                                         <p><i class="fa fa-map-marker-alt text-primary me-2"></i><?php echo $row['address_home']?></p>
                                     </div>
