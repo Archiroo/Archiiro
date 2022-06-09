@@ -5,11 +5,24 @@
      $pass = mysqli_real_escape_string($conn, $_POST['password']);
      
      if(!empty($email) && !empty($pass)){
-        $sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '{$email}' AND user_pass = '{$pass}'");
+        $sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '{$email}' AND user_pass = '{$pass}' AND STATUS in (1,2)");
         if(mysqli_num_rows($sql) > 0){
             $row = mysqli_fetch_assoc($sql);
+            $level = $row['levelUser'];
             $_SESSION['id_user'] = $row['id_user'];
-            echo "success";
+            if($level == 1){
+                echo "admin";
+            }
+            if($level == 2){
+                echo "staff";
+            }
+            if($level == 3){
+                echo "customer";
+            }
+            if($level == 4)
+            {
+                echo "success";
+            }
         }
         else{
             echo "Email or Password is incorrect!";

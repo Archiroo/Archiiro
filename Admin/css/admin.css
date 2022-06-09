@@ -2,9 +2,9 @@
 :root{
     --blue: #468acf;
     --drak-blue: #1c78d4;
-    --cancel:  #f75b72;
+    --cancel:  #f58092;
     --rose: #ff4e68;
-    --cancel-hover: #f7697e;
+    --cancel-hover: #f38c9c;
     --black: #444;
     --border: 0.1rem solid rgba(0,0,0,0.1);
     --border-hover: 0.1rem solid var(--black);
@@ -71,7 +71,7 @@ html{
     margin-right: 3rem;
 }
 .btn-cancel{
-    margin-top: 0;
+    margin-left: 2rem;
     padding: 0.9rem 2.5rem;
     background-color: var(--cancel);
 }

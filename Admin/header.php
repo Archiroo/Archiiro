@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/update.css">
     <title>Archiiro Company</title>
 </head>
 
@@ -28,12 +29,6 @@
                     <a href="index.php">
                         <span class="fas fa-home"></span>
                         <span>Trang chủ</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="user.php">
-                        <span class="fas fa-user"></span>
-                        <span>Người dùng</span>
                     </a>
                 </li>
                 <li>
@@ -70,6 +65,12 @@
                     <a href="post.php">
                         <span class="fas fa-user-friends"></span>
                         <span>Bài viết</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="account.php">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Tài khoản</span>
                     </a>
                 </li>
                 <li>

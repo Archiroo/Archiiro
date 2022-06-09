@@ -5,12 +5,11 @@
         <form action="" method="POST" class="register">
             <?php
                 if(isset($_POST['submit'])){
-                    $firstName = $_POST['firstName'];
-                    $lastName = $_POST['lastName'];
                     $email = $_POST['email'];
                     $pass1 = $_POST['pass1'];
                     $pass2 = $_POST['pass2'];
                     $phone = $_POST['phoneNumber'];
+                    $level = $_POST['level'];
 
                     // Kiểm tra email đã có chưa
                     $sql = "SELECT * FROM tb_user WHERE email ='$email' OR phoneNumber = '$phone'";
@@ -19,36 +18,30 @@
                     {
                         if($pass1 == $pass2)
                         {
-                            // $code = md5(uniqid(rand(), true));
-                            // $pass_hash = password_hash($user_pass1, PASSWORD_DEFAULT);
-                            $sql2 = "INSERT INTO tb_user(firstName, lastName, email, user_pass, phoneNumber, levelUser, status)
-                                VALUES('$firstName', '$lastName', '$email', '$pass1', '$phone', 2, 1)";
+                            $sql2 = "INSERT INTO tb_user(email, user_pass, phoneNumber, levelUser, status)
+                                VALUES('$email', '$pass1', '$phone', '$level', 1)";
                             $res2 = mysqli_query($conn, $sql2);
                             if($res2==TRUE){
-                                header("Location:user.php");
+                                header("Location:account.php");
                             }
                             else{
                                 
-                                header("Location:add_user.php");
+                                header("Location:add_account.php");
                             }
                         }
                         else{
-                            header("Location:add_user.php");
+                            header("Location:add_account.php");
                         }
                     }
                 }
             ?>
             <div class="form-group first-span">
-                <span>Họ & tên đệm</span>
-                <input type="text" class="form-control" name="firstName">
-            </div>
-            <div class="form-group">
-                <span>Tên</span>
-                <input type="text" class="form-control" name="lastName">
-            </div>
-            <div class="form-group first-span">
                 <span>Email</span>
                 <input type="email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <span>Số điện thoại</span>
+                <input type="tel" class="form-control" name="phoneNumber">
             </div>
             <div class="form-group">
                 <span>Mật khẩu</span>
@@ -58,12 +51,16 @@
                 <span>Xác minh mật khẩu</span>
                 <input type="password" class="form-control" name="pass2">
             </div>
-            <div class="form-group">
-                <span>Số điện thoại</span>
-                <input type="tel" class="form-control" name="phoneNumber">
-            </div>
-            <input type="submit" name="submit" value="Add user" class="btn btn-add btn-add-connect">
-            <a href="user.php" class="btn btn-add btn-cancel">Cancel</a>
+            <div class="form-group first-span">
+                <span>Loại tài khoản</span>
+                <select name="level" style="display:block;">
+                    <option value="1">Quản lý</option>
+                    <option value="2">Nhân viên</option>
+                    <option value="3">Khách hàng</option>
+                </select>
+            </div> 
+            <input type="submit" name="submit" value="Thêm tài khoản" class="btn btn-add btn-add-connect">
+            <a href="account.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
         </form>      
 <?php
     include('footer.php');
