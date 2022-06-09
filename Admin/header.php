@@ -1,5 +1,9 @@
 <?php
     include('connect_database/connect.php');
+    if(!isset($_SESSION['id_adminSession'])) //nếu chưa đăng nhập thì ra ngoài
+    {
+        header("Location:../SignInUp/login.php");
+    }
 ?>
 <head>
     <meta charset="UTF-8">
@@ -74,9 +78,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../sign-out.php">
+                    <a href="logout.php">
                         <span class="fas fa-power-off"></span>
-                        <span>Log out</span>
+                        <span>Đăng xuất</span>
                     </a>
                 </li>
             </ul>
