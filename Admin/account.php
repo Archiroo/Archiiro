@@ -8,7 +8,7 @@
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>Quản lý tài khoản</h3>
+                    <h3>Quản lý tài khoản người dùng</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>

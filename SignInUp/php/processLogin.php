@@ -9,6 +9,7 @@
         if(mysqli_num_rows($sql) > 0){
             $row = mysqli_fetch_assoc($sql);
             $level = $row['levelUser'];
+            $status = $row['status'];
             if($level == 1){
                 echo "admin";
                 $_SESSION['id_adminSession'] = $row['id_user'];
@@ -26,10 +27,10 @@
                 echo "success";
             }
         }
-        else{
-            echo "Email or Password is incorrect!";
+        else{            
+          echo "Tài khoản hoặc mật khẩu không chính xác.";
         }
      }
      else{
-         echo "All input fields are required!";
+         echo "Chưa nhập tài khoản hoặc mật khẩu.";
      }

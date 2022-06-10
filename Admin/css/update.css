@@ -57,6 +57,9 @@
 .gender{
     font-size: 1.6rem;
     margin: 1rem 0;
+    min-width:48%;
+    display: flex;
+    justify-content: space-between;
 }
 .gender div{
     margin: 1rem 0 1rem 0;
@@ -75,4 +78,7 @@
 
 .typeAccount{
     min-width: 100%;
+}
+.fileInput{
+    margin: 1rem 0;
 }

@@ -95,7 +95,20 @@
             </div>
             <div class="social-icons">
                 <div>
-                    <img src="../image/admin.jpg" alt="">
+                    <?php
+                        $id_admin = $_SESSION['id_adminSession'];
+                        $sql = "Select * from tb_user where id_user = '$id_admin'";
+                        $res = mysqli_query($conn,$sql);
+                        if($res == TRUE){
+                            $count = mysqli_num_rows($res);
+                            if($count>0){
+                                while($row = mysqli_fetch_assoc($res)){
+                                    $image_user = $row['image'];
+                                }
+                            }
+                        }
+                    ?>
+                    <img src="../image/<?php echo $image_user; ?>" alt="">
                 </div>
             </div>
         </header> 
