@@ -2,7 +2,7 @@
       include('../config/config.php');
 ?>
 <head>
-    <title>Makaan - Real Estate HTML Template</title>
+    <title>Trang chủ</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -28,6 +28,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/style1.css" rel="stylesheet">
 </head>
 
 
@@ -74,6 +75,7 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                     </div>
+                
                    <!-- information user -->
                    <?php
                     $sql2 = "SELECT * FROM `tb_user` WHERE 1";
@@ -110,76 +112,152 @@
                             </div>
                     </div>
                     <!-- End information user -->
+        
+                </div>
             </nav>
         </div>
         <!-- Navbar End -->
 
 
-        <!-- Header Start -->
-        <div class="container-fluid header bg-white p-0">
-            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-                <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">Property List</h1> 
-                </div>
-                <div class="col-md-6 animated fadeIn">
-                    <img class="img-fluid" src="img/header.jpg" alt="">
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
+        <!-- Update Information personl -->
+        <?php
+        if (isset($_POST['update'])) {
+           
+            $firstname = $_POST['firstName'];
+            $lastname = $_POST['lastName'];
+            $gender = $_POST['gender'];
+            $birthday = $_POST['birthday'];
+            $address = $_POST['address'];
+            $phonenumber = $_POST['phoneNumber'];
+            
 
+            // Bước 2 câu lệnh truy vấn
+            $sql1 = "UPDATE `tb_user` SET 
+                                `firstName`='$firstname',
+                                `lastName`='$lastname',                               
+                                `phoneNumber`='$phonenumber',
+                                `gender`='$gender',
+                                `address`='$address',
+                                `birthday`='$birthday'                          
+                                WHERE `id_user`= 1 ";
 
-        <!-- Search Start -->
-        
-        <!-- Search End -->
+            $res1 = mysqli_query($conn, $sql1);
 
+        }
+        ?>
+         <?php
 
-        <!-- Property List Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-0 gx-5 align-items-end">
-                    <div class="col-lg-6">
-                        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                            <h1 class="mb-3">Gửi yêu cầu đặt cọc</h1>
-                            <p>Ngôi nhà mà bạn mơ ước đang trong tầm tay. Hãy tận hưởng những đêm ấm cúng cùng gia đình bạn.</p>
+            if (isset($_POST['update-img'])) {
+                $image = $_FILES['image']['name'];
+                if ($image != null) {
+                    $path = "../img/";
+                    $tmp_name = $_FILES['image']['tmp_name'];
+                    move_uploaded_file($tmp_name, $path . $image);
+                }
+
+                $sql_img = "UPDATE `tb_user` SET 
+                                    `image`='$image'
+                                    WHERE `id_user`= 1 ";
+                $rs_img = mysqli_query($conn, $sql_img);
+            
+            }
+
+        ?>
+        <div class="main-content">
+
+        <div class="container">
+
+            <div class="view-account">
+                <section class="module">
+                    <div class="module-inner">
+                        <div class="side-bar">
+
+                            <div class="user-info">
+                                <img style="border-radius: 50%" class="img-profile img-circle img-responsive center-block" src="../img/<?php echo $row2['image'] ?>" alt="">
+                        
+                            </div>
+
+                        </div>
+
+                        <div class="content-panel">
+                            
+                            <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+                                <fieldset class="fieldset">
+                                    <h3 class="fieldset-title">Personal Info</h3>
+                                    <label class="col-md-2 col-sm-3 col-xs-12 control-label">Avatar</label>
+                                    <div class="form-group avatar">                                       
+                                        <figure class="figure col-md-2 col-sm-3 col-xs-12">
+                                            <img class="img-rounded img-responsive" src="../img/<?php echo  $row2['image'] ?>" alt="">
+                                        </figure>
+                                        <div class="form-inline col-md-10 col-sm-9 col-xs-12">
+                                            <input name="image" type="file" class="file-uploader pull-left">
+                                            <button name="update-img" type="submit" class="btn btn-sm btn-default-alt pull-left">Update Image</button>
+                                        </div>
+                                    </div>
+                                  
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Họ</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input name="firstName" type="text" class="form-control" value="<?php echo  $row2['firstName'] ?>">
+                                        </div>
+                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Tên</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input name="lastName" type="text" class="form-control" value="<?php echo  $row2['lastName'] ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Giới tính</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input <?php if ( $row2['gender']  == 1) {
+                                                        echo "checked";
+                                                    } ?> type="radio" name="gender" value="1">
+                                            <label>Nam</label>
+                                            <input <?php if ( $row2['image']  == 0) {
+                                                        echo "checked";
+                                                    } ?> type="radio" name="gender" value="2">
+                                            <label>Nữ</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Ngày sinh</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input name="birthday" type="date" class="form-control" value="<?php echo $row2['birthday']  ?>">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="fieldset">                    
+                                    <div class="form-group">
+                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Địa chỉ</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input name="address" type="text" class="form-control" value="<?php echo  $row2['address']?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Số điện thoại</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input name="phoneNumber" type="text" class="form-control" value="<?php echo $row2['phoneNumber'] ?>">
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                                        <button name="update" class="btn btn-primary" type="submit" >Lưu</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </div>
-                <div class="tab-content request">
-                <form action="" method="POST">
-                    <?php
-                    if (isset($_POST['add'])) {
-                        $idhome = $_GET['id_home'];              
-                        $content = $_POST['content'];
-                        $status = $_POST['status'];       
-                        $sql1 = "INSERT INTO `tb_contract`( `id_home`, `id_customer`, `id_staff`, `content`, `status`) 
-                        VALUES ('$idcontract','$idhome','1','1',N'$content','$status')";
-                        $res1 = mysqli_query($conn, $sql1); 
-                        $sql2 = "UPDATE `tb_home` SET `status`='2' WHERE id_home = '$idhome'";
-                        $res2 = mysqli_query($conn, $sql2);
-                    if ($res1 == true && $res2 == true) { 
-                        echo $_SESSION['error'] = '<h4 style="color: green;">Gửi yêu cầu đặt cọc thành công.<h4>';
-                        } else { 
-                        echo $_SESSION['error'] = '<h4 style="color: red;">Đặt cọc không thành công.<h4>';
-                         }
-                    }
-                    ?>    
-                    <h4>Thông tin khách hàng</h4></br>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Yêu cầu của khách hàng</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" id="deadlineBTL" placeholder="Enter deadlineBTL" name="status" value="2">
-                        </div>
-                    <div style="margin-top:25px;"><button name="add" type="submit" class="btn btn-primary" id="submit">Gửi yêu cầu</button></div>
-                    </form>
-                </div>
-            
+                </section>
             </div>
         </div>
-        <!-- Property List End -->
+        </div>
+        <!-- End Update Information personl -->
 
+       
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -203,7 +281,6 @@
                 </div>
             </div>
             <div class="container">
-                <form action="" method="POST">
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -222,7 +299,6 @@
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
         </div>
         <!-- Footer End -->
@@ -239,33 +315,7 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-    //    $(document).ready(function (){
-    //     $('.delete_btn_ajax').click(function (e){
-    //         e.preventDefault();
-    //         console.log("Đặt cọc hông");
-    //         // var $request = $(this).closest().find()
-    //     });
-    //    });
-   
-    </script>
-    <?php
-    if(isset($_SESSION['succses'])){
-    ?>
-        <script>
-                Swal({
-                icon: 'success',
-                title: '<?php echo $_SESSION['succses']?>',
-                showConfirmButton: false,
-                timer: 1500
-                });
-        </script>
-    <?php
-    }
-    ?>
+    

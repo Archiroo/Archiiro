@@ -2,7 +2,7 @@
       include('../config/config.php');
 ?>
 <head>
-    <title>Makaan - Real Estate HTML Template</title>
+    <title>Trang chủ</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -74,8 +74,8 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                     </div>
-                   <!-- information user -->
-                   <?php
+                    <!-- information user -->
+                    <?php
                     $sql2 = "SELECT * FROM `tb_user` WHERE 1";
                     $res2 = mysqli_query($conn,$sql2);
                     $row2 = mysqli_fetch_assoc($res2);
@@ -110,76 +110,113 @@
                             </div>
                     </div>
                     <!-- End information user -->
+                </div>
             </nav>
         </div>
         <!-- Navbar End -->
 
 
         <!-- Header Start -->
-        <div class="container-fluid header bg-white p-0">
-            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-                <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">Property List</h1> 
-                </div>
-                <div class="col-md-6 animated fadeIn">
-                    <img class="img-fluid" src="img/header.jpg" alt="">
-                </div>
-            </div>
-        </div>
         <!-- Header End -->
-
-
-        <!-- Search Start -->
-        
-        <!-- Search End -->
-
-
-        <!-- Property List Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-0 gx-5 align-items-end">
-                    <div class="col-lg-6">
-                        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                            <h1 class="mb-3">Gửi yêu cầu đặt cọc</h1>
-                            <p>Ngôi nhà mà bạn mơ ước đang trong tầm tay. Hãy tận hưởng những đêm ấm cúng cùng gia đình bạn.</p>
-                        </div>
-                    </div>
+        <!-- Information personl -->
+        <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img id="phongto" class="rounded-circle mt-5" src="../img/<?php echo $row2['image'] ?>" style="width :100px ;height :100px ;">
+                    <span class="font-weight-bold"></span>
+                    <span class="text-black-50"></span><br>
+                    <span><label for="image" class="btn btn-secondary"> Ảnh đại diện</label><input disabled id="image" type="file" name="image" style="display:none;"></span>
                 </div>
-                <div class="tab-content request">
-                <form action="" method="POST">
-                    <?php
-                    if (isset($_POST['add'])) {
-                        $idhome = $_GET['id_home'];              
-                        $content = $_POST['content'];
-                        $status = $_POST['status'];       
-                        $sql1 = "INSERT INTO `tb_contract`( `id_home`, `id_customer`, `id_staff`, `content`, `status`) 
-                        VALUES ('$idcontract','$idhome','1','1',N'$content','$status')";
-                        $res1 = mysqli_query($conn, $sql1); 
-                        $sql2 = "UPDATE `tb_home` SET `status`='2' WHERE id_home = '$idhome'";
-                        $res2 = mysqli_query($conn, $sql2);
-                    if ($res1 == true && $res2 == true) { 
-                        echo $_SESSION['error'] = '<h4 style="color: green;">Gửi yêu cầu đặt cọc thành công.<h4>';
-                        } else { 
-                        echo $_SESSION['error'] = '<h4 style="color: red;">Đặt cọc không thành công.<h4>';
-                         }
-                    }
-                    ?>    
-                    <h4>Thông tin khách hàng</h4></br>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Yêu cầu của khách hàng</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" id="deadlineBTL" placeholder="Enter deadlineBTL" name="status" value="2">
-                        </div>
-                    <div style="margin-top:25px;"><button name="add" type="submit" class="btn btn-primary" id="submit">Gửi yêu cầu</button></div>
-                    </form>
-                </div>
-            
             </div>
-        </div>
-        <!-- Property List End -->
+            <div class="col-md-7 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h4 style="margin-left:110px" class="text-right">Thông tin cá nhân</h4>
+                                                </div>
+                                                <div class="row mt-6">
+                                                    <div class="col-md-6"><label class="labels"> Fist Name</label>
+                                                        <input disabled name="user_name" type="text" class="form-control" placeholder="Full Name" value="<?php echo $row2['firstName']; ?>">
+                                                    </div>
+                                                    <div class="col-md-6"><label class="labels"> Last Name</label>
+                                                        <input disabled name="user_name" type="text" class="form-control" placeholder="Full Name" value="<?php echo $row2['lastName']; ?>">
+                                                    </div>
+                                                    <br>
+                                                    <div class="col-md-6"> <label class="labels">Giới tính</label>
+                                                        <div class="form-control">
+                                                            <input disabled <?php if ($row2['gender'] == 1) {
+                                                                                echo "checked";
+                                                                            } ?> type="radio" name="gender" value="1">
+                                                            <label>Nam</label>
+                                                            <input disabled <?php if ($row2['gender'] == 2) {
+                                                                                echo "checked";
+                                                                            } ?> type="radio" name="gender" value="0">
+                                                            <label>Nữ</label>
 
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6"> <label class="labels"> Birthday</label>
+                                                        <input disabled class="form-control" type="date" id="user_birthday" name="birthday" value="<?php echo $date = date("Y-m-d", strtotime($row2['birthday'])); ?>">
+                                                    </div>
+                                                    <div class="col-md-6"><label class="labels">Địa chỉ</label>
+                                                        <input disabled name="user_phone" type="text" class="form-control" placeholder="Nhập SDT" value="<?php echo $row2['address'] ?>">
+                                                    </div>
+                                                    <div class="col-md-6"><label class="labels">Số điện thoại</label>
+                                                        <input disabled name="user_phone" type="text" class="form-control" placeholder="Nhập SDT" value="<?php echo $row2['phoneNumber'] ?>">
+                                                    </div>
+
+                                                    <div class="col-md-6"><label class="labels">Email</label>
+                                                        <input disabled name="user_email" type="email" class="form-control" placeholder="nhập email" value="<?php echo $row2['email'] ?>">
+                                                    </div>                                 
+                                                </div>
+                                                <!-- <div class="row mt-3">
+                                                                                                                               
+                                                </div> -->
+                                                <div class="col-md-6"><label class="labels"> Trạng thái</label>
+                                                    <?php if($cc == 1 )
+                                                        {
+                                                            ?>
+                                                            <a  class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                                            <?php
+                                                        }else if($cc == 2)
+                                                        {
+                                                            ?>
+                                                            <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
+                                                            <?php
+                                                        }
+
+                                                        ?>
+                                                    </div>
+                                                <div class="mt-5 text-center">
+                                                    <a href="updateifuser.php?id_user=1"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            Sửa thông tin
+                                                        </button></a>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered ">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn lưu không ?</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                                                    <button type="submit" class="btn btn-primary" name="btn-luu">Lưu</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+        <!-- End Information personl -->
+
+       
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -203,7 +240,6 @@
                 </div>
             </div>
             <div class="container">
-                <form action="" method="POST">
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -222,7 +258,6 @@
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
         </div>
         <!-- Footer End -->
@@ -239,33 +274,6 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-    //    $(document).ready(function (){
-    //     $('.delete_btn_ajax').click(function (e){
-    //         e.preventDefault();
-    //         console.log("Đặt cọc hông");
-    //         // var $request = $(this).closest().find()
-    //     });
-    //    });
-   
-    </script>
-    <?php
-    if(isset($_SESSION['succses'])){
-    ?>
-        <script>
-                Swal({
-                icon: 'success',
-                title: '<?php echo $_SESSION['succses']?>',
-                showConfirmButton: false,
-                timer: 1500
-                });
-        </script>
-    <?php
-    }
-    ?>

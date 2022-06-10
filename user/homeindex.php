@@ -74,7 +74,42 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                     </div>
-                    <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Đăng nhập</a>
+                    <!-- information user -->
+                    <?php
+                    $sql2 = "SELECT * FROM `tb_user` WHERE 1";
+                    $res2 = mysqli_query($conn,$sql2);
+                    $row2 = mysqli_fetch_assoc($res2);
+                    $cc = $row2['status'];
+                    
+
+                    ?>
+                    <div class="nav-item dropdown">
+                        <div style="display:flex;" class="ifuser">
+                            <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
+                        </div>                        
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
+
+                                <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
+                               <?php if($cc == 1 )
+                                    {
+                                        ?>
+                                        <a  class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                        <?php
+                                    }else if($cc == 2)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
+                                        <?php
+                                    }
+
+                                    ?>
+                               
+                            </div>
+                    </div>
+                    <!-- End information user -->
                 </div>
             </nav>
         </div>
@@ -216,15 +251,15 @@
                                     <div class="position-relative overflow-hidden">
                                         <a href="informationhomeindex.php?id_home=<?=$row['id_home']?>"><img style="height:230px;" class="img-fluid" src="../img/<?php echo $row['image'] ?>" alt=""></a>
                                     </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3"><span><?=$row['price']?> VNĐ</h5>
-                                        <a  class="d-block h5 mb-2" href="informationhomeindex.php?id_home=<?=$row['id_home']?>"><?php echo $row['name_home']?></a>
-                                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i><?php echo $row['address_home']?></p>
+                                    <div class="p-2">
+                                        <a style="margin-top:30px; padding-bottom:10px;" class=" d-flex align-items-center  h5 mb-2" href="informationhomeindex.php?id_home=<?=$row['id_home']?>"><?php echo $row['name_home']?></a>
+                                        <h6 class="d-flex align-items-center text-primary mb-3"><span><?=$row['price']?> VNĐ</h5>
+                                        <p class="d-flex align-items-center"><i class="fa fa-map-marker-alt text-primary me-2"></i><?php echo $row['address_home']?></p>                                      
                                     </div>
                                     <div class="d-flex border-top">
                                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i><?php echo $row['area_home']?> m2</small>
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i><?php echo $row['numberBedRoom']?> Bed</small>
-                                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i><?php echo $row['numberBathRoom']?> Bath</small>
+                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i><?php echo $row['numberBedRoom']?> Phòng ngủ</small>
+                                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i><?php echo $row['numberBathRoom']?> Phòng tắm</small>
                                     </div>
                                 </div>
                             </div>
@@ -279,7 +314,7 @@
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
-                    <div class="col-lg-12 col-md-6">
+                    <div class="col-lg-6 col-md-6">
                         <h5 class="text-white mb-4">Liên lạc</h5>
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
@@ -290,6 +325,9 @@
                             <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-youtube"></i></a>
                             <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-linkedin-in"></i></a>
                         </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.636976405065!2d105.82263251481679!3d21.00718423601005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac8109765ba5%3A0xb3be79f8f64a59f9!2zMTc1IFAuIFTDonkgU8ahbiwgVHJ1bmcgTGnhu4d0LCDEkOG7kW5nIMSQYSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1654858272464!5m2!1svi!2s" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,3 @@
 <?php
-$conn = mysqli_connect('localhost','root','','home-v2');
+$conn = mysqli_connect('localhost','root','','db_archiiro');
 ?>
