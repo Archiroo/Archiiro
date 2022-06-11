@@ -107,7 +107,7 @@ include('header.php');
             </div>
             <div class="input">
                 <span>Địa chỉ</span>
-                <input class = "readOnly" name="address" placeholder="Nhập địa chỉ" value="<?php echo $address;?>">
+                <input name="address" placeholder="Nhập địa chỉ" value="<?php echo $address;?>">
             </div>
         </div>
        

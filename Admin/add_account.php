@@ -1,67 +1,95 @@
 <?php
-    include('header.php');
+include('header.php');
 ?>
-    <main>
-        <form action="" method="POST" class="register">
-            <?php
-                if(isset($_POST['submit'])){
-                    $email = $_POST['email'];
-                    $pass1 = $_POST['pass1'];
-                    $pass2 = $_POST['pass2'];
-                    $phone = $_POST['phoneNumber'];
-                    $level = $_POST['level'];
+<section class="view" id="order">
+    <section class="recent" style="margin: 8rem 0 0 1rem;">
+        <div class="activity-grid">
+            <div class="activity-card">
+                <h3>Thêm tài khoản</h3>
+            </div>
+        </div>
+    </section>
+    <form action="" method="POST" class="register" enctype="multipart/form-data">
+        <!-- INSERT -->
+        <?php
+            if(isset($_POST['submit'])){
+                $firstName = $_POST['firstName'];
+                $lastName = $_POST['lastName'];
+                $email = $_POST['email'];
+                $phone = $_POST['phoneNumber'];
+                $pass1 = $_POST['pass1'];
+                $pass2 = $_POST['pass2'];
+                $level = $_POST['level'];
+                $address = $_POST['address'];
 
-                    // Kiểm tra email đã có chưa
-                    $sql = "SELECT * FROM tb_user WHERE email ='$email' OR phoneNumber = '$phone'";
+                if($email != null && $phone != null && $pass1 == $pass2){
+                    $sql = "INSERT INTO tb_user(firstName, lastName, email, user_pass, address, levelUser, phoneNumber, status)
+                            VALUES('$firstName', '$lastName', '$email', '$pass1', '$address', '$level', '$phone', 1)";
+
                     $res = mysqli_query($conn, $sql);
-                    if(mysqli_num_rows($res) == 0)
-                    {
-                        if($pass1 == $pass2)
-                        {
-                            $sql2 = "INSERT INTO tb_user(email, user_pass, phoneNumber, levelUser, status)
-                                VALUES('$email', '$pass1', '$phone', '$level', 1)";
-                            $res2 = mysqli_query($conn, $sql2);
-                            if($res2==TRUE){
-                                header("Location:account.php");
-                            }
-                            else{
-                                
-                                header("Location:add_account.php");
-                            }
-                        }
-                        else{
-                            header("Location:add_account.php");
-                        }
+                    if($res == true){
+                        header("Location:account.php");
+                    }
+                    else{
+                        header("Location:add_account.php");
                     }
                 }
-            ?>
-            <div class="form-group first-span">
+            }
+        ?>
+        <div class="inputBox">
+            <div class="input">
+                <span>Họ & tên đệm</span>
+                <input type="text" name="firstName" placeholder="Nhập họ & tên đệm">
+            </div>
+            <div class="input">
+                <span>Tên</span>
+                <input type="text" name="lastName" placeholder="Nhập tên">
+            </div>
+        </div>
+        <div class="inputBox">
+            <div class="input">
                 <span>Email</span>
-                <input type="email" class="form-control" name="email">
+                <input type="email" name="email" placeholder="Nhập email">
             </div>
-            <div class="form-group">
+            <div class="input">
                 <span>Số điện thoại</span>
-                <input type="tel" class="form-control" name="phoneNumber">
+                <input type="tel" name="phoneNumber" placeholder="Nhập số điện thoại">
             </div>
-            <div class="form-group">
+        </div>
+
+        <div class="inputBox">
+            <div class="input">
                 <span>Mật khẩu</span>
-                <input type="password" class="form-control" name="pass1">
+                <input type="password" name = "pass1" placeholder="******">
             </div>
-            <div class="form-group">
+            <div class="input">
                 <span>Xác minh mật khẩu</span>
-                <input type="password" class="form-control" name="pass2">
+                <input type="password" name = "pass2" placeholder="*****">
             </div>
-            <div class="form-group first-span">
+        </div>
+
+        <div class="inputBox">
+            <div class="input">
                 <span>Loại tài khoản</span>
-                <select name="level" style="display:block;">
+                <select class = "typeAccount" name="level">
                     <option value="1">Quản lý</option>
                     <option value="2">Nhân viên</option>
                     <option value="3">Khách hàng</option>
                 </select>
-            </div> 
-            <input type="submit" name="submit" value="Thêm tài khoản" class="btn btn-add btn-add-connect">
-            <a href="account.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
-        </form>      
+            </div>
+            <div class="input">
+                <span>Địa chỉ</span>
+                <input name="address" placeholder="Nhập địa chỉ">
+            </div>
+        </div>
+       
+        
+
+        <input style="padding: 0.9rem 2rem;" type="submit" name="submit" value="Thêm tài khoản" class="btn">
+        <a href="account.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
+    </form>
+
+</section>
 <?php
-    include('footer.php');
+include('footer.php');
 ?>

@@ -25,7 +25,7 @@
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * FROM tb_user";
+                                    $sql = "SELECT * FROM tb_user ORDER BY levelUser";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
