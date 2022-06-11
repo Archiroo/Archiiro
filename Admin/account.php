@@ -62,7 +62,7 @@
                                                                 }  
                                                                 else{
                                                                     ?>
-                                                                    <span> <?php echo $regisdate = date("d-m-Y", strtotime($regisdate));; ?> </span>
+                                                                    <span> <?php echo $regisdate = date("d-m-Y", strtotime($regisdate)); ?> </span>
                                                                     <?php
                                                                 }
                                                         ?>

@@ -3,7 +3,7 @@
     if(isset($_GET['id_user'])){
         $id = $_GET['id_user'];
     }
-    $sql = "Update tb_user SET status = 2 Where id_user = '$id'";
+    $sql = "Update tb_user SET status = 1 Where id_user = '$id'";
     $res = mysqli_query($conn, $sql);
     if($res==true){
         // Nếu dúng thì xóa 

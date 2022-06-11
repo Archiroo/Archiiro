@@ -4,11 +4,11 @@ include('header.php');
 <section class="view" id="order">
 
     <?php
-        if(isset($_GET['id_user']))
+        if(isset($_GET['id_staff']))
         {
-            $id_user = $_GET['id_user'];
+            $id_staff = $_GET['id_staff'];
         }
-        $sql = "SELECT * FROM tb_user WHERE id_user = $id_user";
+        $sql = "SELECT * from tb_user u, tb_staff s WHERE u.id_user = s.id_staff and s.id_staff = '$id_staff'";
         $res = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($res);
         if($count==1)
@@ -23,6 +23,8 @@ include('header.php');
             $level = $row['levelUser'];
             $birthday = $row['birthday'];
             $image_user = $row['image'];
+            $daySalary = $row['daySalary'];
+            $dayStart = $row['dayStart'];
         }
             
     ?>
@@ -43,6 +45,8 @@ include('header.php');
                 $gender1 = $_POST['gender'];
                 $level1 = $_POST['level'];
                 $address1 = $_POST['address'];
+                $daySalary1 = $_POST['daySalary'];
+                $gender1 = $_POST['gender'];
                 if(isset($_FILES['image']['name']))
                     {
                         $image_name = $_FILES['image']['name'];
@@ -64,13 +68,16 @@ include('header.php');
                         $image_name = "user_default.jpg";
                     }
                 $sql1 = "UPDATE tb_user SET firstName = '$firstName1', lastName = '$lastName1',
-                         levelUser = $level1, gender = $gender1, address = '$address1', image = '$image_name' Where id_user = $id_user";
+                         levelUser = $level1, gender = $gender1, address = '$address1', image = '$image_name' Where id_user = $id_staff";
                 $res1 = mysqli_query($conn, $sql1);
-                if($res1 == true){
-                    header("Location:account.php");
+
+                $sql2 = "UPDATE tb_staff SET daySalary = '$daySalary1' WHERE id_staff = '$id_staff'";
+                $res2 = mysqli_query($conn, $sql2);
+                if($res1 == true && $res2 == true){
+                    header("Location:staff.php");
                 }
                 else{
-                    header("Location:view_account.php");
+                    header("Location:view_staff.php");
                 }
             }
 
@@ -124,7 +131,42 @@ include('header.php');
             </div>
         </div>
 
-        
+        <div class="inputBox">
+            <div class="input">
+                <span>Mức lương</span>
+                <select class = "typeAccount" name="daySalary">
+                    <option selected="selected" value="<?php echo $daySalary; ?>">
+                    <?php 
+                        if($daySalary == "300.000"){
+                            echo "300.000 VND";
+                        }
+                        if($daySalary == "400.000"){
+                            echo "400.000 VND";
+                        }
+                        if($daySalary == "500.000"){
+                            echo "500.000 VND";
+                        }
+                        if($daySalary == "1.000.000"){
+                            echo "1.000.000 VND";
+                        }
+                        if($daySalary == "2.000.000"){
+                            echo "2.000.000 VND";
+                        }
+                    ?>
+                    </option>
+                    <option value="300.000">300.000 VND</option>
+                    <option value="400.000">400.000 VND</option>
+                    <option value="500.000">500.000 VND</option>
+                    <option value="1.000.000">1.000.000 VND</option>
+                    <option value="2.000.000">2.000.000 VND</option>
+                </select>
+            </div>
+            <div class="input">
+                <span>Ngày bắt đầu làm</span>
+                <input type="text" readonly class = "readOnly" value="<?php echo date("d-m-Y", strtotime($dayStart)); ?>">
+            </div>
+        </div>
+
        
         <div class="inputBox gender">
             <div class="gender">

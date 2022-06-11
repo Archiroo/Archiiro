@@ -14,22 +14,20 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Họ & tên đệm</th>
-                                    <th>Tên</th>
+                                    <th>Họ & Tên</th>
                                     <th>Giới tính</th>
-                                    <th>Lương /ngày</th>
+                                    <th>Mức lương</th>
                                     <th>Làm từ ngày</th>
                                     <th>Số hợp đồng</th>
                                     <th>Hình ảnh</th>
-                                    <th>Cập nhật</th>
-                                    <th>Xóa bỏ</th>
+                                    <th>Xem chi tiết</th>
+                                    <th>Xóa nv</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * from tb_user, tb_staff WHERE tb_user.id_user = tb_staff.id_staff AND levelUser = 2 AND status = 2";
+                                    $sql = "SELECT * from tb_user u, tb_staff s WHERE u.id_user = s.id_staff and u.status = 2 Order by u.lastName";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -38,20 +36,17 @@
                                         {
                                             while($row = mysqli_fetch_assoc($res))
                                             {
-                                                $id_user = $row['id_user'];
+                                                $id_staff = $row['id_user'];
                                                 $firstName = $row['firstName'];
                                                 $lastName = $row['lastName'];
-                                                $image = $row['image'];
                                                 $gender = $row['gender'];
                                                 $daySalary = $row['daySalary'];
                                                 $dayStart = $row['dayStart'];
-                                                $numberContract = $row['numberContract'];
+                                                $image = $row['image'];
                                                 
                                 ?>
                                                 <tr>
-                                                    <td><?php echo $id_user;?></td>
-                                                    <td><?php echo $firstName; ?></td>            
-                                                    <td><?php echo $lastName; ?></td>      
+                                                    <td><?php echo $firstName.' '.$lastName;?></td>  
                                                     <td>
                                                        <?php
                                                             if($gender == null){
@@ -89,32 +84,31 @@
                                                         ?>
                                                     </td> 
                                                     <td>
-                                                        <?php
-                                                        if($numberContract == null || $numberContract == 0){
-                                                            ?>
-                                                            <span>Không có dữ liệu</span>
-                                                            <?php
-                                                        }
-                                                        else{
-                                                            ?>
-                                                            <span><?php echo $numberContract?></span>
-                                                            <?php
-                                                        }
-                                                        ?>
+                                                        
                                                     </td>
                                                     <td class="td-team">
                                                         <div class="img-1 img_alone">
-                                                            <img style = "margin-left: 10px;" src="../image/<?php echo $image?>" alt="">
+                                                            <?php 
+                                                            if($image != null)
+                                                            {
+                                                                ?>
+                                                                <img style = "margin-left: 10px;" src="../image/<?php echo $image?>" alt="">
+                                                                <?php
+                                                            }
+                                                            else{
+                                                                echo "Không có ảnh";
+                                                            }
+                                                            ?>
                                                         </div>
                                                     </td>   
                                                                                                 
                                                     <td>
-                                                        <a href="update_staff.php?id_user=<?php echo $id_user; ?>" class="update-icon">
-                                                            <i class="fas fa-edit"></i>
+                                                        <a href="view_staff.php?id_staff=<?php echo $id_staff; ?>" class="update-icon">
+                                                            <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                            <a href="delete_staff.php?id_user=<?php echo $id_user; ?>" class="delete-icon">
+                                                            <a href="delete_staff.php?id_staff=<?php echo $id_staff; ?>" class="delete-icon">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </a>
                                                     </td>
