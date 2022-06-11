@@ -1,33 +1,41 @@
 <?php
-    include('header.php');
+include('header.php');
 ?>
-    <main>
-        <form action="" method="POST" class="register" enctype="multipart/form-data">
-            <?php
-                if(isset($_POST['submit']))
-                {
-                    $name = $_POST['nameTypeHome'];
-                    $sql = "INSERT INTO tb_typeHome(name_typeHome) VALUES('$name')";
-                    $res = mysqli_query($conn, $sql);
-                    if($res == true){
-                        header("Location:typeHome.php");
-                    }
-                    else
-                    {
-                        header("Location:add_typeHome.php");
-                    }
+<section class="view" id="order">
+    <section class="recent" style="margin: 8rem 0 0 1rem;">
+        <div class="activity-grid">
+            <div class="activity-card">
+                <h3>Thêm loại căn hộ</h3>
+            </div>
+        </div>
+    </section>
+    <form action="" method="POST">
+        <?php
+            if (isset($_POST['submit'])) {
+                $name = $_POST['nameTypeHome'];
+                $sql = "INSERT INTO tb_typeHome(name_typeHome, status) VALUES('$name', 1)";
+                $res = mysqli_query($conn, $sql);
+                if ($res == true) {
+                    header("Location:typeHome.php");
+                } else {
+                    header("Location:add_typeHome.php");
                 }
-            
-            ?>
-            <div class="form-group first-span">
-                <span>Tên loại nhà</span>
-                <input type="text" class="form-control" name="nameTypeHome" value="">
+        }
+
+        ?>
+        <div class="inputBox">
+            <div class="input">
+                <span>Loại căn hộ</span>
+                <input type="text" name="nameTypeHome" placeholder="Nhập loại căn hộ">
             </div>
-            <input type="submit" name="submit" value="Update user" class="btn btn-add btn-add-connect">
-            <a href="user.php" class="btn btn-add btn-cancel">Cancel</a>
-            <div style="margin-bottom: 5rem;">
-            </div>
-        </form>
+        </div>
+
+
+        <input style="padding: 0.9rem 2rem;" type="submit" name="submit" value="Thêm mới" class="btn">
+        <a href="account.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
+    </form>
+
+</section>
 <?php
-    include('footer.php');
+include('footer.php');
 ?>

@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/update.css">
     <title>Archiiro Company</title>
@@ -21,7 +22,7 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <h3 class="brand">
-                <span class="fas fa-building"></span>
+                <span class="fa-brands fa-accusoft"></span>
                 <span>Archiiro</span>
             </h3>
             <label for="sidebar-toggle" class="ti-menu-alt"></label>
@@ -49,13 +50,13 @@
                 </li>
                 <li>
                     <a href="typeHome.php">
-                        <span class="fas fa-folder"></span>
+                        <span class="fa-solid fa-house-chimney"></span>
                         <span>Loại căn hộ</span>
                     </a>
                 </li>
                 <li>
                     <a href="home.php">
-                        <span class="fas fa-folder"></span>
+                        <span class="fa-solid fa-house-circle-check"></span>
                         <span>Căn hộ</span>
                     </a>
                 </li>

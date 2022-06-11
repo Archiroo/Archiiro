@@ -2,16 +2,15 @@
     include('header.php');
 ?>
     <main>
-        <a href="add_typeHome.php" class="btn btn-add"><i class="fas fa-user-plus"></i> Thêm loại nhà</a>
+        <a href="add_typeHome.php" class="btn btn-add"><i class="fa-solid fa-house-chimney"></i> Thêm loại nhà</a>
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>Thông tin loại nhà</h3>
+                    <h3>Quản lý loại nhà</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Loại nhà</th>
                                     <th>Tổng số căn</th>
                                     <th>Đã bán được</th>
@@ -22,7 +21,7 @@
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "select * from tb_typeHome Where status = 1";
+                                    $sql = "select * from tb_typeHome Where status = 1 Order by id_typeHome";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -36,12 +35,11 @@
                                                 
                                 ?>
                                                 <tr>
-                                                    <td><?php echo $id_typeHome ?></td>
                                                     <td><?php echo $name_typeHome; ?></td>   
                                                     <td></td>
                                                     <td></td>
                                                     <td>
-                                                        <a href="update_typeHome.php?id_typeHome=<?php echo $id_typeHome; ?>" class="delete-icon">
+                                                        <a href="view_typeHome.php?id_typeHome=<?php echo $id_typeHome; ?>" class="delete-icon">
                                                             <i class="fas fa-edit"></i>
                                                     </td>                                                           
                                                     <td>
