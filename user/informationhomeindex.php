@@ -130,7 +130,7 @@ include('../config/config.php');
                                <?php if($cc == 1 )
                                     {
                                         ?>
-                                        <a  class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
                                         <?php
                                     }else if($cc == 2)
                                     {
@@ -247,8 +247,23 @@ include('../config/config.php');
                                     <li><a href="../img/<?php echo $row1['image5'] ?>" data-lightbox="mygallery"><img src="../img/<?php echo $row1['image5'] ?>" /></a></li>
                                 </ul>
                             </div>
+                            <!-- condition request -->
+                            <?php if($cc == 1 )
+                                    {
+                            ?>
+                                        <div style="margin-top:205px; padding-left: 20px;"><a class="btn btn-danger" href="active.php?id_user=1">Xác thực tài khoản</a></div>
+                                        <span class="dropdown-item" style="color: red; font-style: italic;">Lưu ý: Xác thực tài khoản để có thể yêu cầu đặt cọc</span>       
+                            <?php
+                                    }else if($cc == 2)
+                                    {
+                            ?>
+                                       <div style="margin-top:205px; padding-left: 20px;"><a class="btn btn-primary" href="request.php?id_home=<?=$_GET['id_home'];?>">Yêu cầu đặt cọc</a></div>
+                            <?php
+                                    }
 
-                            <div style="margin-top:205px; padding-left: 20px;"><a class="btn btn-primary" href="request.php?id_home=<?=$_GET['id_home'];?>">Yêu cầu đặt cọc</a></div>
+                            ?>
+                            <!-- condition request -->
+                            
                         </div>
 
 
@@ -272,7 +287,7 @@ include('../config/config.php');
                                                             <div class="ps-3">
                                                                 <div style="transform: translateY(-3.5rem);">
                                                                 <h5  class="fw-bold mb-1"><?= $row['name_home']?></h5>
-                                                                <h5 class="fw-bold mb-1"><?=$row['price']?> VNĐ</h5>
+                                                                <h6 class="fw-bold mb-1"><?=$row['price']?> VNĐ</h6>
                                                                 </div>
                                                                 <a style="transform: translateY(3.3rem);" class="btn btn-success" href="./informationhomeindex.php?id_home=<?= $row['id_home'] ?>">Xem nhà</a>
                                                                

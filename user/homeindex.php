@@ -90,13 +90,14 @@
                         </div>                        
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="historycontact.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
                                 <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
 
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                <?php if($cc == 1 )
                                     {
                                         ?>
-                                        <a  class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
                                         <?php
                                     }else if($cc == 2)
                                     {
@@ -137,10 +138,7 @@
                     <div class="row g-2">
                         <div class="col-md-10">
                             <div class="row g-2">
-                                <div class="col-md-4">
-                                    <input type="text" name="name_home" id="name_home" class="form-control border-0 py-3" placeholder="Search Keyword">
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <select name="type_home" id="type_home" class="form-select border-0 py-3 ">
                                         <?php
                                         $sql_type = "select * from tb_typehome";
@@ -158,7 +156,7 @@
                                     <option value="2">List Type</option>
                                     <option value="3">List Agent</option>  -->
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <select name="area_home" id="area_home" class="form-select border-0 py-3 ">
                                         <?php
                                         $sql_home = "select * from tb_home group by area_home";
@@ -166,7 +164,7 @@
                                         if ($qr_home) {
                                             while ($row = mysqli_fetch_assoc($qr_home)) {
                                         ?>
-                                                <option value="<?= $row['id_home'] ?>"><?= $row['area_home'] ?></option>
+                                                <option value="<?= $row['area_home'] ?>"><?= $row['area_home'] ?></option>
                                         <?php
                                             }
                                         }
@@ -177,7 +175,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                        <button class="btn btn-dark border-0 w-100 py-3 search_house">Search</button>
+                        <button type="button" class="btn btn-dark border-0 w-100 py-3 search_house">Search</button>
                         </div>
                     </div>
                 </div>
@@ -232,6 +230,7 @@
                     </div>
                 </div>
                 <div class="tab-content">
+               
                     <?php
                     $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
                     $current_page = isset($_GET['page'])?$_GET['page']:1;
@@ -269,6 +268,9 @@
                         include "page.php";
                         ?>                
             </div>
+                <div class="tab-content search_house_page">
+    
+                </div>
         </div>
         <!-- Property List End -->
 
@@ -327,7 +329,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.636976405065!2d105.82263251481679!3d21.00718423601005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac8109765ba5%3A0xb3be79f8f64a59f9!2zMTc1IFAuIFTDonkgU8ahbiwgVHJ1bmcgTGnhu4d0LCDEkOG7kW5nIMSQYSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1654858272464!5m2!1svi!2s" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.636976405065!2d105.82263251481679!3d21.00718423601005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac8109765ba5%3A0xb3be79f8f64a59f9!2zMTc1IFAuIFTDonkgU8ahbiwgVHJ1bmcgTGnhu4d0LCDEkOG7kW5nIMSQYSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1654858272464!5m2!1svi!2s" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -354,9 +356,8 @@
         </div>
         <!-- Footer End -->
 
-
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <a href="tel:+84346785893" class="btn btn-lg btn-primary btn-lg-square back-to-top single"><i class="fa-solid fa-phone-flip"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
@@ -369,3 +370,36 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+            $(document).ready(function() {
+                action = "nothing"
+                search(action)
+                $(".search_house").on("click", function() {
+                    type_house = $("#type_home").val()
+                    area_house = $("#area_home").val()
+                    action = "search"
+                    search(type_house, area_house, action)
+                    $("search_house").on("submit", function() {
+                        return false
+                    })
+                    $('html, body').animate({
+                        scrollTop: $(".search_house_page").offset().top
+                    }, 1000);
+                })
+
+                function search(type_house, area_house, action) {
+                    $.ajax({
+                        url: "http://localhost/Archiiro/user/search_house.php",
+                        method: "post",
+                        data: {
+                            action: action,
+                            type_house: type_house,
+                            area_house: area_house,
+                        },
+                        success: function(dt) {
+                            $(".search_house_page").html(dt)
+                        }
+                    })
+                }
+            })
+        </script>

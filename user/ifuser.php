@@ -96,7 +96,7 @@
                                <?php if($cc == 1 )
                                     {
                                         ?>
-                                        <a  class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
                                         <?php
                                     }else if($cc == 2)
                                     {

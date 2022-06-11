@@ -98,7 +98,7 @@
                                <?php if($cc == 1 )
                                     {
                                         ?>
-                                        <a  class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
                                         <?php
                                     }else if($cc == 2)
                                     {
@@ -142,6 +142,17 @@
                                 WHERE `id_user`= 1 ";
 
             $res1 = mysqli_query($conn, $sql1);
+            if ($res1 == true) { 
+                
+                 $_SESSION['status'] = "Cập nhật thông tin thành công";
+                 $_SESSION['status_code'] = "success";
+                   
+                } else { 
+                    $_SESSION['status'] = "Cập nhật thông tin thất bại";
+                    $_SESSION['status_code'] = "error";                
+                 }
+            }
+            ?>    
 
         }
         ?>
@@ -183,19 +194,18 @@
                             
                             <form class="form-horizontal" method="POST" enctype="multipart/form-data">
                                 <fieldset class="fieldset">
-                                    <h3 class="fieldset-title">Personal Info</h3>
-                                    <label class="col-md-2 col-sm-3 col-xs-12 control-label">Avatar</label>
+                                    <h3 class="fieldset-title">Ảnh đại diện</h3>
                                     <div class="form-group avatar">                                       
                                         <figure class="figure col-md-2 col-sm-3 col-xs-12">
                                             <img class="img-rounded img-responsive" src="../img/<?php echo  $row2['image'] ?>" alt="">
                                         </figure>
                                         <div class="form-inline col-md-10 col-sm-9 col-xs-12">
                                             <input name="image" type="file" class="file-uploader pull-left">
-                                            <button name="update-img" type="submit" class="btn btn-sm btn-default-alt pull-left">Update Image</button>
+                                            <button name="update-img" type="submit" class="btn btn-sm btn-default-alt pull-left btn-warning">Cập nhật ảnh đại diện</button>
                                         </div>
                                     </div>
-                                  
-                                    <br>
+                                    </br></br>
+                                    <h3 class="fieldset-title">Thông tin cá nhân</h3>
                                     <div class="form-group">
                                         <label class="col-md-2 col-sm-3 col-xs-12 control-label">Họ</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
@@ -315,7 +325,25 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    
+    <?php
+        if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+        {
+            ?>
+        <script> 
+            // window.location.assign('homeindex.php'), 
+            Swal.fire({
+            icon: 'success',
+            title: "<?php echo $_SESSION['status'];?>" ,
+            footer: '<a class="btn btn-success" href="ifuser.php?id_user=1">Xong</a>',
+            showConfirmButton: false,
+            });     
+                
+        </script>
+        <?php 
+            unset($_SESSION['status']);
+         }
+    ?>

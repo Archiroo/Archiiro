@@ -2,7 +2,7 @@
       include('../config/config.php');
 ?>
 <head>
-    <title>Makaan - Real Estate HTML Template</title>
+    <title>Trang chủ</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -74,6 +74,7 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                     </div>
+                    <!-- information user -->
                    <!-- information user -->
                    <?php
                     $sql2 = "SELECT * FROM `tb_user` WHERE 1";
@@ -91,12 +92,11 @@
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
                                 <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
-
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                <?php if($cc == 1 )
                                     {
                                         ?>
-                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                        <a  class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
                                         <?php
                                     }else if($cc == 2)
                                     {
@@ -110,93 +110,105 @@
                             </div>
                     </div>
                     <!-- End information user -->
+                    <!-- End information user -->
+                </div>
             </nav>
         </div>
         <!-- Navbar End -->
 
 
         <!-- Header Start -->
-        <div class="container-fluid header bg-white p-0">
-            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-                <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">Property List</h1> 
-                </div>
-                <div class="col-md-6 animated fadeIn">
-                    <img class="img-fluid" src="img/header.jpg" alt="">
-                </div>
-            </div>
-        </div>
         <!-- Header End -->
-
-
-        <!-- Search Start -->
-        
-        <!-- Search End -->
-
-
-        <!-- Property List Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-0 gx-5 align-items-end">
-                    <div class="col-lg-6">
-                        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                            <h1 class="mb-3">Gửi yêu cầu đặt cọc</h1>
-                            <p>Ngôi nhà mà bạn mơ ước đang trong tầm tay. Hãy tận hưởng những đêm ấm cúng cùng gia đình bạn.</p>
-                        </div>
-                    </div>
+        <!-- Contact -->
+        <?php
+            $idcustomer = $_GET['id_user'];
+            $sql1 = "SELECT * FROM `tb_contract` WHERE  $idcustomer ";
+            $res1 = mysqli_query($conn, $sql1);
+           
+        ?>
+        <?php
+            $idcustomer = $_GET['id_user'];
+            $sql4 = "SELECT * FROM `tb_contract` WHERE  $idcustomer ";
+            $res5 = mysqli_query($conn, $sql1);
+            $row5 = mysqli_fetch_array($res5);
+            $idhome = $row5['id_home'];
+            $idstaff = $row5['id_staff'];
+            $statuscontract = $row5['status'];
+        ?>
+        <?php
+            $sql3 = "SELECT * FROM `tb_home` WHERE $idhome";
+            $res3 = mysqli_query($conn, $sql3);
+            $row3 = mysqli_fetch_array($res3);
+            $namehome = $row3['name_home'];
+            $image = $row3['image'];
+        ?>
+          <?php 
+            $idstaff = $_GET['id_user'];
+            $sql5 = "SELECT * FROM `tb_user` WHERE $idstaff";
+            $res5 = mysqli_query($conn, $sql5);
+            $row5 = mysqli_fetch_array($res5);
+            $fristname = $row5['firstName'];
+            $lastname = $row5['lastName'];
+        ?>
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-4 border-right">
+                
                 </div>
-                <div class="tab-content request">
-                <form action="" method="POST">
-                    <?php
-                    if (isset($_POST['add'])) {
-                        $idhome = $_GET['id_home'];              
-                        $content = $_POST['content'];
-                        $status = $_POST['status'];       
-                        $sql1 = "INSERT INTO `tb_contract`(`id_contract`, `id_home`, `id_customer`, `id_staff`,`content`, `status`) 
-                        VALUES (null,'$idhome',1,1,N'$content','$status')";
-                        $res1 = mysqli_query($conn, $sql1); 
-                        $sql2 = "UPDATE `tb_home` SET `status`='2' WHERE id_home = '$idhome'";
-                        $res2 = mysqli_query($conn, $sql2);
-                    if ($res1 == true && $res2 == true) { 
-                        // header("refresh: 2; url=active.php");
-                         $_SESSION['status'] = "Gửi yêu cầu đặt cọc thành công";
-                         $_SESSION['status_code'] = "success";
-                           
-                            // header('Location: http://localhost/ARCHIIRO/user/homeindex.php');
-                        } else { 
-                            $_SESSION['status'] = "Gửi yêu cầu đặt cọc thất bại";
-                            $_SESSION['status_code'] = "error";
-                            header('Location: homeindex.php?id_user=1');
-                         }
-                    }
-                    ?>    
-                    <h4>Thông tin khách hàng</h4></br>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Yêu cầu của khách hàng</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" id="deadlineBTL" placeholder="Enter deadlineBTL" name="status" value="2">
-                        </div>
-                    <div style="margin-top:25px;"><button name="add" type="submit" class="btn btn-primary" id="submit">Gửi yêu cầu</button></div>
-                    </form>
+                <div class="col-md-8 border-right">
+                   
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 style="margin-left:110px" class="text-right">Tất cả giao dịch</h4>
+                        </div>                                                                 
+                    
                 </div>
-            
             </div>
         </div>
-        <div class="modal fade" id="msg_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-         <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="background-color: #ee4d2d;color:#fff; border-radius: 25px;">
-            <br>
-            <div class="modal-body3" style="text-align: center;">
-                <h4 id="text_msg" style="color:#fff ;"></h4>
-            </div>
-            <br>
-        </div>
-    </div>
-</div>
-        <!-- Property List End -->
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Mã giao dịch</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tên nhà</th>
+                <th scope="col">Nhân viên phụ trách</th>
+                <th scope="col">Xác nhận</th>
+                <th scope="col">Hủy</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            <?php
+                while ($row1 =mysqli_fetch_array($res1)) { ?>                   
+                    <tr>
+                        <td><?php echo $row1['id_contract'] ?></td>
+                        <td><img class="img-fluid" alt="Ảnh nhà" style="width:auto; height:70px" src="../img/<?php echo $image?>"></td>                                      
+                        <td><?php echo $namehome ?></td>
+                        <td><?php echo $fristname?> <?php echo $lastname?></td>     
+                        <?php if($statuscontract == 3)
+                                    {
+                                        ?>
+                                       <td><a href=""><button type="button" class="btn btn-warning">Xác nhận</button></a></td>
+                                        <?php
+                                    }else if($statuscontract == 2)
+                                    {
+                                        ?>
+                                         <td><span style="color: green; font-style: italic;">Chờ phản hồi từ nhà cái</span></td>
+                                        <?php
+                                    }
 
+                        ?>
+                        
+                        <td><a href=""><button type="button" class="btn btn-danger text-white me-2">Hủy</button></a></td>
+
+                    </tr>
+            <?php
+                
+            }
+            ?>
+            </tbody>
+    </table>
+        <!-- End Contact -->
+
+       
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -220,7 +232,6 @@
                 </div>
             </div>
             <div class="container">
-                <form action="" method="POST">
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -239,7 +250,6 @@
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
         </div>
         <!-- Footer End -->
@@ -256,40 +266,6 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script>
-    //    $(document).ready(function (){
-    //     $('.delete_btn_ajax').click(function (e){
-    //         e.preventDefault();
-    //         console.log("Đặt cọc hông");
-    //         // var $request = $(this).closest().find()
-    //     });
-    //    });
-   
-    </script>
-    <?php
-        if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-        {
-            ?>
-        <script> 
-            // window.location.assign('homeindex.php'), 
-            Swal.fire({
-            icon: 'success',
-            title: "<?php echo $_SESSION['status'];?>" ,
-            footer: '<a class="btn btn-success" href="homeindex.php">Xong</a>',
-            showConfirmButton: false,
-            });     
-                
-        </script>
-        <?php 
-            unset($_SESSION['status']);
-         }
-    ?>
-       
-    <?php
-    
-    ?>
