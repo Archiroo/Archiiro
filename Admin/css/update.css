@@ -82,3 +82,19 @@
 .fileInput{
     margin: 1rem 0;
 }
+
+/* File input */
+.view form .inputBox .inputImage{
+    width:19%;
+    margin: 0 1.5rem;
+}
+.view form .inputBox .inputImage span{
+    display:block;
+    padding:.5rem 0;
+    font-size: 1.7rem;
+    color:var(--light-color);
+}
+
+.view form .inputBox .inputImage input{
+    width: 100%;
+}

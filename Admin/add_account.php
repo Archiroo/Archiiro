@@ -82,9 +82,17 @@ include('header.php');
                 <input name="address" placeholder="Nhập địa chỉ">
             </div>
         </div>
-       
-        
 
+        <div class="inputBox">
+            <div class="input">
+                <span>your address</span>
+                <textarea name="" placeholder="enter your address" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="input">
+                <span>your message</span>
+                <textarea name="" placeholder="enter your message" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
         <input style="padding: 0.9rem 2rem;" type="submit" name="submit" value="Thêm tài khoản" class="btn">
         <a href="account.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
     </form>
