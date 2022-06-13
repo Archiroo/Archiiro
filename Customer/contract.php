@@ -2,7 +2,7 @@
       include('../config/config.php');
 ?>
 <head>
-    <title>Trang chủ</title>
+    <title>Makaan - Real Estate HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -28,7 +28,6 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style1.css" rel="stylesheet">
 </head>
 
 
@@ -45,7 +44,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="homeindex.php" class="navbar-brand d-flex align-items-center text-center">
+                <a href="index_home.php" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
@@ -56,26 +55,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="homeindex.php" class="nav-item nav-link">Trang chủ</a>
-                        <a href="about.html" class="nav-item nav-link">Chúng tôi</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bất động sản</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item active">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Error</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                        <a href="index_home.php" class="nav-item nav-link">Trang chủ</a>
+                        <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
+                        <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>
                     </div>
-                
                    <!-- information user -->
                    <?php
                     $sql2 = "SELECT * FROM `tb_user` WHERE 1";
@@ -90,12 +73,12 @@
                             <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
-
+                        <div class="dropdown-menu rounded-0 m-0">
+                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
-                               <?php if($cc == 1 )
+                                <?php if($cc == 1 )
                                     {
                                         ?>
                                         <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
@@ -106,118 +89,105 @@
                                         <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
                                         <?php
                                     }
+                                    else if($cc == 4)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
+                                        <?php
+                                    }
 
                                     ?>
                                
                             </div>
                     </div>
                     <!-- End information user -->
-        
-                </div>
             </nav>
         </div>
         <!-- Navbar End -->
 
 
-        <!-- Update Information personl -->
-        <form method="POST" enctype="multipart/form-data">
-        <div class="main-content">
-
-        <div class="container">
-
-            <div class="view-account">
-                <section class="module">
-                    <div class="module-inner">
-                        <div class="side-bar">
-                        </div>
-
-                        <div class="content-panel">
-                            
-                                    <h3 class="fieldset-title">Thông tin cá nhân</h3>
-                                    <div class="form-group">
-                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Số ID</label>
-                                        <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="cardNumber" type="text" class="form-control" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Ngày cấp</label>
-                                        <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="dateRange" type="date" class="form-control" >
-                                        </div>
-                                    </div>
-                                </fieldset>
-                                <fieldset class="fieldset">                    
-                                    <div class="form-group">
-                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Nơi cấp</label>
-                                        <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="isuseBy" type="text" class="form-control" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Ảnh mặt trước</label>
-                                        <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="imageFront" type="file" class="form-control" >
-                                        </div>
-                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Ảnh mặt sau</label>
-                                        <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="imageBack" type="file" class="form-control" >
-                                        </div>
-                                    </div>
-
-                                </fieldset>
-                                <hr>
-                                <div class="form-group">
-                                    <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
-                                        <button name="update" class="btn btn-primary" type="submit" >Gửi thông tin xác thực</button>
-                                    </div>
-                                </div>                        
-                        </div>
-                    </div>
-                </section>
+        <!-- Header Start -->
+        <div class="container-fluid header bg-white p-0">
+            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+                <div class="col-md-6 p-5 mt-lg-5">
+                    <h1 class="display-5 animated fadeIn mb-4">Hợp đồng</h1> 
+                </div>
+                <div class="col-md-6 animated fadeIn">
+                    <img class="img-fluid" src="img/header.jpg" alt="">
+                </div>
             </div>
         </div>
-        </div>
-        <?php
-        if (isset($_POST['update'])) {
-           
-            $cardnumber = $_POST['cardNumber'];
-            $daterange = $_POST['dateRange'];
-            $isuseby = $_POST['isuseBy'];
-            $imagefront = $_FILES['imageFront']['name'];
-            if ($imagefront != null) {
-                $path = "../img/";
-                $tmp_name = $_FILES['imageFront']['tmp_name'];
-                move_uploaded_file($tmp_name,$path.$imagefront);
-            }
-            $imageback = $_FILES['imageBack']['name'];
-            if ($imageback != null) {
-                $path = "../img/";
-                $tmp_name = $_FILES['imageBack']['tmp_name'];
-                move_uploaded_file($tmp_name,$path.$imageback);
-            }
-    
-            // Bước 2 câu lệnh truy vấn
-            $sql1 = "INSERT INTO `tb_customer`(`id_customer`, `cardNumber`, `dateRange`, `isuseBy`, `imageFront`, `imageBack`) 
-            VALUES (1,'$cardnumber','$daterange',N'$isuseby','$imagefront','$imageback')";
-            $res1 = mysqli_query($conn, $sql1);
-            if ($res1 == true) { 
-               
-                 $_SESSION['status'] = "Gửi yêu cầu xác thực thành công";
-                 $_SESSION['status_code'] = "success";
-               
-                } else { 
-                    $_SESSION['status'] = "Gửi yêu xác thực thất bại";
-                    $_SESSION['status_code'] = "error";
-                 }
-            }
-            ?>    
-        }
-        ?>
-        </form>
-        <!-- End Update Information personl -->
+        <!-- Header End -->
 
-       
+
+        <!-- Search Start -->
+        
+        <!-- Search End -->
+
+
+        <!-- Property List Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-0 gx-5 align-items-end">
+                    <div class="col-lg-6">
+                        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                            <h1 class="mb-3">Gửi yêu cầu đặt cọc</h1>
+                            <p>Ngôi nhà mà bạn mơ ước đang trong tầm tay. Hãy tận hưởng những đêm ấm cúng cùng gia đình bạn.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content request">
+                <form action="" method="POST">
+                    <?php
+                    if (isset($_POST['add'])) {
+                        $idhome = $_GET['id_home'];              
+                        $content = $_POST['content'];
+                        $status = $_POST['status'];       
+                        $sql1 = "INSERT INTO `tb_contract`(`id_contract`, `id_home`, `id_customer`, `id_staff`,`content`, `status`) 
+                        VALUES (null,'$idhome',1,1,N'$content','$status')";
+                        $res1 = mysqli_query($conn, $sql1); 
+                        $sql2 = "UPDATE `tb_home` SET `status`='2' WHERE id_home = '$idhome'";
+                        $res2 = mysqli_query($conn, $sql2);
+                    if ($res1 == true && $res2 == true) { 
+                        // header("refresh: 2; url=active.php");
+                         $_SESSION['status'] = "Gửi yêu cầu đặt cọc thành công";
+                         $_SESSION['status_code'] = "success";
+                           
+                            // header('Location: http://localhost/ARCHIIRO/user/homeindex.php');
+                        } else { 
+                            $_SESSION['status'] = "Gửi yêu cầu đặt cọc thất bại";
+                            $_SESSION['status_code'] = "error";
+                            header('Location: homeindex.php?id_user=1');
+                         }
+                    }
+                    ?>    
+                    <h4>Thông tin khách hàng</h4></br>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Yêu cầu của khách hàng</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="deadlineBTL" placeholder="Enter deadlineBTL" name="status" value="2">
+                        </div>
+                    <div style="margin-top:25px;"><button name="add" type="submit" class="btn btn-primary" id="submit">Gửi yêu cầu</button></div>
+                    </form>
+                </div>
+            
+            </div>
+        </div>
+        <div class="modal fade" id="msg_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background-color: #ee4d2d;color:#fff; border-radius: 25px;">
+            <br>
+            <div class="modal-body3" style="text-align: center;">
+                <h4 id="text_msg" style="color:#fff ;"></h4>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+        <!-- Property List End -->
+
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -241,13 +211,13 @@
                 </div>
             </div>
             <div class="container">
+                <form action="" method="POST">
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
 							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
@@ -259,6 +229,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
         <!-- Footer End -->
@@ -275,12 +246,21 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="js/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-                        
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+    //    $(document).ready(function (){
+    //     $('.delete_btn_ajax').click(function (e){
+    //         e.preventDefault();
+    //         console.log("Đặt cọc hông");
+    //         // var $request = $(this).closest().find()
+    //     });
+    //    });
+   
+    </script>
     <?php
         if(isset($_SESSION['status']) && $_SESSION['status'] !='')
         {
@@ -290,7 +270,7 @@
             Swal.fire({
             icon: 'success',
             title: "<?php echo $_SESSION['status'];?>" ,
-            footer: '<a class="btn btn-success" href="homeindex.php?id_user=1">Xong</a>',
+            footer: '<a class="btn btn-success" href="index_home.php">Xong</a>',
             showConfirmButton: false,
             });     
                 
@@ -298,4 +278,8 @@
         <?php 
             unset($_SESSION['status']);
          }
+    ?>
+       
+    <?php
+    
     ?>

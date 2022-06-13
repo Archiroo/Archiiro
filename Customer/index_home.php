@@ -44,7 +44,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="homeindex.php" class="navbar-brand d-flex align-items-center text-center">
+                <a href="index_home.php" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
@@ -55,24 +55,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="homeindex.php" class="nav-item nav-link">Trang chủ</a>
-                        <a href="about.html" class="nav-item nav-link">Chúng tôi</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bất động sản</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item active">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Error</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                        <a href="index_home.php" class="nav-item nav-link">Trang chủ</a>
+                        <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
+                        <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>
                     </div>
                     <!-- information user -->
                     <?php
@@ -89,9 +74,9 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="historycontact.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
-                                <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
 
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                <?php if($cc == 1 )
@@ -103,6 +88,12 @@
                                     {
                                         ?>
                                         <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
+                                        <?php
+                                    }
+                                    else if($cc == 4)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
                                         <?php
                                     }
 
@@ -202,10 +193,10 @@
                                 <a class="cat-item d-block bg-light text-center rounded p-3" href="">
                                     <div class="rounded p-4">
                                         <div class="icon mb-3">
-                                            <img class="img-fluid" src="../img/icon-apartment.png" alt="Icon">
+                                            <img class="img-fluid" src="../img/icon-luxury.png" alt="Icon">
                                         </div>
                                         <h6><?= $row['name_typeHome'] ?></h6>
-                                        <span><?= $row['number_Home'] ?> Properties</span>
+                                        <span><?= $row['number_Home'] ?> căn hộ</span>
                                     </div>
                                 </a>
                             </div>
@@ -248,10 +239,10 @@
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <a href="informationhomeindex.php?id_home=<?=$row['id_home']?>"><img style="height:230px;" class="img-fluid" src="../img/<?php echo $row['image'] ?>" alt=""></a>
+                                        <a href="detail_home.php?id_home=<?=$row['id_home']?>"><img style="height:230px;" class="img-fluid" src="../img/<?php echo $row['image'] ?>" alt=""></a>
                                     </div>
                                     <div class="p-2">
-                                        <a style="margin-top:30px; padding-bottom:10px;" class=" d-flex align-items-center  h5 mb-2" href="informationhomeindex.php?id_home=<?=$row['id_home']?>"><?php echo $row['name_home']?></a>
+                                        <a style="margin-top:30px; padding-bottom:10px;" class=" d-flex align-items-center  h5 mb-2" href="detail_home.php?id_home=<?=$row['id_home']?>"><?php echo $row['name_home']?></a>
                                         <h6 class="d-flex align-items-center text-primary mb-3"><span><?=$row['price']?> VNĐ</h5>
                                         <p class="d-flex align-items-center"><i class="fa fa-map-marker-alt text-primary me-2"></i><?php echo $row['address_home']?></p>                                      
                                     </div>
@@ -268,9 +259,9 @@
                         include "page.php";
                         ?>                
             </div>
-                <div class="tab-content search_house_page">
-    
-                </div>
+            <div class="tab-content search_house_page">
+
+            </div>
         </div>
         <!-- Property List End -->
 
@@ -339,8 +330,6 @@
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
 							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
@@ -389,7 +378,7 @@
 
                 function search(type_house, area_house, action) {
                     $.ajax({
-                        url: "http://localhost/Archiiro/user/search_house.php",
+                        url: "http://localhost/Archiiro/Customer/search_house.php",
                         method: "post",
                         data: {
                             action: action,

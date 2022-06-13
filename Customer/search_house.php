@@ -15,7 +15,7 @@ if (isset($_POST['action'] )) {
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="property-item rounded overflow-hidden">
                         <div class="position-relative overflow-hidden">
-                            <a href="informationhomeindex.php?id_home=<?= $row_s['id_home'] ?>"><img style="height:230px;" class="img-fluid" src="../img/<?php echo $row_s['image'] ?>" alt=""></a>
+                            <a href="detail_home.php?id_home=<?= $row_s['id_home'] ?>"><img style="height:230px;" class="img-fluid" src="../img/<?php echo $row_s['image'] ?>" alt=""></a>
                         </div>
                         <div class="p-2">
                             <a style="margin-top:30px; padding-bottom:10px;" class=" d-flex align-items-center  h5 mb-2" href="informationhomeindex.php?id_home=<?= $row_s['id_home'] ?>"><?php echo $row_s['name_home'] ?></a>

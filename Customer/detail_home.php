@@ -78,7 +78,7 @@ include('../config/config.php');
     <!-- Navbar Start -->
     <div class="container-fluid nav-bar bg-transparent">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-            <a href="homeindex.php" class="navbar-brand d-flex align-items-center text-center">
+            <a href="index_home.php" class="navbar-brand d-flex align-items-center text-center">
                 <div class="icon p-2 me-2">
                     <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                 </div>
@@ -89,24 +89,9 @@ include('../config/config.php');
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
-                    <a href="homeindex.php" class="nav-item nav-link">Trang chủ</a>
-                    <a href="about.html" class="nav-item nav-link">Chúng tôi</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bất động sản</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="property-list.html" class="dropdown-item active">Property List</a>
-                            <a href="property-type.html" class="dropdown-item">Property Type</a>
-                            <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                    <a href="index_home.php" class="nav-item nav-link">Trang chủ</a>
+                    <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
+                    <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>
                 </div>
                <!-- information user -->
                <?php
@@ -123,11 +108,11 @@ include('../config/config.php');
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
-
+                            <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
-                               <?php if($cc == 1 )
+                                <?php if($cc == 1 )
                                     {
                                         ?>
                                         <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
@@ -136,6 +121,12 @@ include('../config/config.php');
                                     {
                                         ?>
                                         <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
+                                        <?php
+                                    }
+                                    else if($cc == 4)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
                                         <?php
                                     }
 
@@ -154,7 +145,7 @@ include('../config/config.php');
     <div class="container-fluid header bg-white p-0">
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
-                <h1 class="display-5 animated fadeIn mb-4">Property List</h1>
+                <h1 class="display-5 animated fadeIn mb-4">Thông tin</h1>
             </div>
             <div class="col-md-6 animated fadeIn">
                 <img class="img-fluid" src="img/header.jpg" alt="">
@@ -165,38 +156,8 @@ include('../config/config.php');
 
 
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
-        <div class="container">
-            <div class="row g-2">
-                <div class="col-md-10">
-                    <div class="row g-2">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select border-0 py-3">
-                                <option selected>Property Type</option>
-                                <option value="1">Property Type 1</option>
-                                <option value="2">Property Type 2</option>
-                                <option value="3">Property Type 3</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select border-0 py-3">
-                                <option selected>Location</option>
-                                <option value="1">Location 1</option>
-                                <option value="2">Location 2</option>
-                                <option value="3">Location 3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-dark border-0 w-100 py-3">Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                                </br>
+    <div style=" margin-left:15px; width:98%; height:12px; background-color:#5ad1b5; border-radius: 5px" class="lane"></div>
     <!-- Search End -->
 
 
@@ -257,11 +218,21 @@ include('../config/config.php');
                                     }else if($cc == 2)
                                     {
                             ?>
-                                       <div style="margin-top:205px; padding-left: 20px;"><a class="btn btn-primary" href="request.php?id_home=<?=$_GET['id_home'];?>">Yêu cầu đặt cọc</a></div>
+                                       <div style="margin-top:205px; padding-left: 20px;"><a class="btn btn-primary" href="contract.php?id_home=<?=$_GET['id_home'];?>">Yêu cầu đặt cọc</a></div>
                             <?php
+                                    }
+                                    else if($cc == 4)
+                                    {
+                                        ?>
+                                        <div style="margin-top:205px; padding-left: 20px;" ><span  style= "color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span></div>
+                                        <span class="dropdown-item" style="color: red; font-style: italic;">Lưu ý: Xác thực tài khoản để có thể yêu cầu đặt cọc</span>       
+                                        <?php
                                     }
 
                             ?>
+                           
+                                  
+
                             <!-- condition request -->
                             
                         </div>
@@ -283,13 +254,13 @@ include('../config/config.php');
                                                 <div class="testimonial-item bg-light rounded p-3">
                                                     <div class="bg-white border rounded p-4">                                                                   
                                                         <div class="d-flex align-items-center">
-                                                            <img style="width:200px; height:200px;" class="img-fluid rounded" src="../img/<?= $row['image'] ?>" style="width: 45px; height: 45px;">
+                                                           <a href="detail_home.php?id_home=<?= $row['id_home'] ?>"><img style="width:200px; height:200px;" class="img-fluid rounded" src="../img/<?= $row['image'] ?>" style="width: 45px; height: 45px;"></a>
                                                             <div class="ps-3">
                                                                 <div style="transform: translateY(-3.5rem);">
                                                                 <h5  class="fw-bold mb-1"><?= $row['name_home']?></h5>
                                                                 <h6 class="fw-bold mb-1"><?=$row['price']?> VNĐ</h6>
                                                                 </div>
-                                                                <a style="transform: translateY(3.3rem);" class="btn btn-success" href="./informationhomeindex.php?id_home=<?= $row['id_home'] ?>">Xem nhà</a>
+                                                                <a style="transform: translateY(3.3rem);" class="btn btn-success" href="./detail_home.php?id_home=<?= $row['id_home'] ?>">Xem nhà</a>
                                                                
                                                             </div>
                                                         </div>
@@ -337,8 +308,6 @@ include('../config/config.php');
                             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                                 &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
 
-                                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                             </div>
                             <div class="col-md-6 text-center text-md-end">
                                 <div class="footer-menu">

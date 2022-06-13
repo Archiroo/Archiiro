@@ -44,7 +44,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="homeindex.php" class="navbar-brand d-flex align-items-center text-center">
+                <a href="index_home.php" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
@@ -55,24 +55,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="homeindex.php" class="nav-item nav-link">Trang chủ</a>
-                        <a href="about.html" class="nav-item nav-link">Chúng tôi</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bất động sản</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item active">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Error</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                        <a href="index_home.php" class="nav-item nav-link">Trang chủ</a>
+                        <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
+                        <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>
                     </div>
                     <!-- information user -->
                     <?php
@@ -88,12 +73,12 @@
                             <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
-
+                        <div class="dropdown-menu rounded-0 m-0">
+                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
-                               <?php if($cc == 1 )
+                                <?php if($cc == 1 )
                                     {
                                         ?>
                                         <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
@@ -102,6 +87,12 @@
                                     {
                                         ?>
                                         <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
+                                        <?php
+                                    }
+                                    else if($cc == 4)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
                                         <?php
                                     }
 
@@ -184,28 +175,20 @@
                                                             <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
                                                             <?php
                                                         }
+                                                        else if($cc == 2)
+                                                        {
+                                                            ?>
+                                                            <span class="dropdown-item" style="color: green; font-style: italic;"> Đang chờ xác thực</span>
+                                                            <?php
+                                                        }
 
                                                         ?>
                                                     </div>
                                                 <div class="mt-5 text-center">
-                                                    <a href="updateifuser.php?id_user=1"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <a href="update_personal_information.php?id_user=1"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                             Sửa thông tin
                                                         </button></a>
                                                     <!-- Modal -->
-                                                    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered ">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn lưu không ?</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                                                    <button type="submit" class="btn btn-primary" name="btn-luu">Lưu</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
 
                                                 </div>
 
@@ -244,9 +227,7 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+						
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">

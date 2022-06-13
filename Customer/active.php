@@ -45,7 +45,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="homeindex.php" class="navbar-brand d-flex align-items-center text-center">
+                <a href="index_home.php" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
@@ -56,24 +56,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="homeindex.php" class="nav-item nav-link">Trang chủ</a>
-                        <a href="about.html" class="nav-item nav-link">Chúng tôi</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bất động sản</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item active">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Error</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                        <a href="index_home.php" class="nav-item nav-link">Trang chủ</a>
+                        <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
+                        <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>
                     </div>
                 
                    <!-- information user -->
@@ -91,11 +76,11 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
-
+                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
-                               <?php if($cc == 1 )
+                                <?php if($cc == 1 )
                                     {
                                         ?>
                                         <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
@@ -104,6 +89,12 @@
                                     {
                                         ?>
                                         <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
+                                        <?php
+                                    }
+                                    else if($cc == 4)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
                                         <?php
                                     }
 
@@ -120,60 +111,7 @@
 
 
         <!-- Update Information personl -->
-        <?php
-        if (isset($_POST['update'])) {
-           
-            $firstname = $_POST['firstName'];
-            $lastname = $_POST['lastName'];
-            $gender = $_POST['gender'];
-            $birthday = $_POST['birthday'];
-            $address = $_POST['address'];
-            $phonenumber = $_POST['phoneNumber'];
-            
-
-            // Bước 2 câu lệnh truy vấn
-            $sql1 = "UPDATE `tb_user` SET 
-                                `firstName`='$firstname',
-                                `lastName`='$lastname',                               
-                                `phoneNumber`='$phonenumber',
-                                `gender`='$gender',
-                                `address`='$address',
-                                `birthday`='$birthday'                          
-                                WHERE `id_user`= 1 ";
-
-            $res1 = mysqli_query($conn, $sql1);
-            if ($res1 == true) { 
-                
-                 $_SESSION['status'] = "Cập nhật thông tin thành công";
-                 $_SESSION['status_code'] = "success";
-                   
-                } else { 
-                    $_SESSION['status'] = "Cập nhật thông tin thất bại";
-                    $_SESSION['status_code'] = "error";                
-                 }
-            }
-            ?>    
-
-        }
-        ?>
-         <?php
-
-            if (isset($_POST['update-img'])) {
-                $image = $_FILES['image']['name'];
-                if ($image != null) {
-                    $path = "../img/";
-                    $tmp_name = $_FILES['image']['tmp_name'];
-                    move_uploaded_file($tmp_name, $path . $image);
-                }
-
-                $sql_img = "UPDATE `tb_user` SET 
-                                    `image`='$image'
-                                    WHERE `id_user`= 1 ";
-                $rs_img = mysqli_query($conn, $sql_img);
-            
-            }
-
-        ?>
+        <form method="POST" enctype="multipart/form-data">
         <div class="main-content">
 
         <div class="container">
@@ -182,72 +120,39 @@
                 <section class="module">
                     <div class="module-inner">
                         <div class="side-bar">
-
-                            <div class="user-info">
-                                <img style="border-radius: 50%" class="img-profile img-circle img-responsive center-block" src="../img/<?php echo $row2['image'] ?>" alt="">
-                        
-                            </div>
-
                         </div>
 
                         <div class="content-panel">
                             
-                            <form class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                <fieldset class="fieldset">
-                                    <h3 class="fieldset-title">Ảnh đại diện</h3>
-                                    <div class="form-group avatar">                                       
-                                        <figure class="figure col-md-2 col-sm-3 col-xs-12">
-                                            <img class="img-rounded img-responsive" src="../img/<?php echo  $row2['image'] ?>" alt="">
-                                        </figure>
-                                        <div class="form-inline col-md-10 col-sm-9 col-xs-12">
-                                            <input name="image" type="file" class="file-uploader pull-left">
-                                            <button name="update-img" type="submit" class="btn btn-sm btn-default-alt pull-left btn-warning">Cập nhật ảnh đại diện</button>
-                                        </div>
-                                    </div>
-                                    </br></br>
                                     <h3 class="fieldset-title">Thông tin cá nhân</h3>
                                     <div class="form-group">
-                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Họ</label>
+                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Số ID</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="firstName" type="text" class="form-control" value="<?php echo  $row2['firstName'] ?>">
-                                        </div>
-                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Tên</label>
-                                        <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="lastName" type="text" class="form-control" value="<?php echo  $row2['lastName'] ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Giới tính</label>
-                                        <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input <?php if ( $row2['gender']  == 1) {
-                                                        echo "checked";
-                                                    } ?> type="radio" name="gender" value="1">
-                                            <label>Nam</label>
-                                            <input <?php if ( $row2['image']  == 0) {
-                                                        echo "checked";
-                                                    } ?> type="radio" name="gender" value="2">
-                                            <label>Nữ</label>
+                                            <input name="cardNumber" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Ngày sinh</label>
+                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Ngày cấp</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="birthday" type="date" class="form-control" value="<?php echo $row2['birthday']  ?>">
+                                            <input name="dateRange" type="date" class="form-control" >
                                         </div>
                                     </div>
                                 </fieldset>
                                 <fieldset class="fieldset">                    
                                     <div class="form-group">
-                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Địa chỉ</label>
+                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Nơi cấp</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="address" type="text" class="form-control" value="<?php echo  $row2['address']?>">
+                                            <input name="isuseBy" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Số điện thoại</label>
+                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Ảnh mặt trước</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input name="phoneNumber" type="text" class="form-control" value="<?php echo $row2['phoneNumber'] ?>">
+                                            <input name="imageFront" type="file" class="form-control" >
+                                        </div>
+                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Ảnh mặt sau</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input name="imageBack" type="file" class="form-control" >
                                         </div>
                                     </div>
 
@@ -255,16 +160,52 @@
                                 <hr>
                                 <div class="form-group">
                                     <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
-                                        <button name="update" class="btn btn-primary" type="submit" >Lưu</button>
+                                        <button name="update" class="btn btn-primary" type="submit" >Gửi thông tin xác thực</button>
                                     </div>
-                                </div>
-                            </form>
+                                </div>                        
                         </div>
                     </div>
                 </section>
             </div>
         </div>
         </div>
+        <?php
+        if (isset($_POST['update'])) {
+           
+            $cardnumber = $_POST['cardNumber'];
+            $daterange = $_POST['dateRange'];
+            $isuseby = $_POST['isuseBy'];
+            $imagefront = $_FILES['imageFront']['name'];
+            if ($imagefront != null) {
+                $path = "../img/";
+                $tmp_name = $_FILES['imageFront']['tmp_name'];
+                move_uploaded_file($tmp_name,$path.$imagefront);
+            }
+            $imageback = $_FILES['imageBack']['name'];
+            if ($imageback != null) {
+                $path = "../img/";
+                $tmp_name = $_FILES['imageBack']['tmp_name'];
+                move_uploaded_file($tmp_name,$path.$imageback);
+            }
+    
+            // Bước 2 câu lệnh truy vấn
+            $sql1 = "INSERT INTO `tb_customer`(`id_customer`, `cardNumber`, `dateRange`, `isuseBy`, `imageFront`, `imageBack`) 
+            VALUES (1,'$cardnumber','$daterange',N'$isuseby','$imagefront','$imageback')";
+            $res1 = mysqli_query($conn, $sql1);
+            if ($res1 == true) { 
+               
+                 $_SESSION['status'] = "Gửi yêu cầu xác thực thành công";
+                 $_SESSION['status_code'] = "success";
+               
+                } else { 
+                    $_SESSION['status'] = "Gửi yêu xác thực thất bại";
+                    $_SESSION['status_code'] = "error";
+                 }
+            }
+            ?>    
+        }
+        ?>
+        </form>
         <!-- End Update Information personl -->
 
        
@@ -295,9 +236,7 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+						
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
@@ -325,8 +264,10 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+                        
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <?php
@@ -338,7 +279,7 @@
             Swal.fire({
             icon: 'success',
             title: "<?php echo $_SESSION['status'];?>" ,
-            footer: '<a class="btn btn-success" href="ifuser.php?id_user=1">Xong</a>',
+            footer: '<a class="btn btn-success" href="index_home.php?id_user=1">Xong</a>',
             showConfirmButton: false,
             });     
                 

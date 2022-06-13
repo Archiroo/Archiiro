@@ -44,7 +44,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="homeindex.php" class="navbar-brand d-flex align-items-center text-center">
+                <a href="index_home.php" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
@@ -55,24 +55,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="homeindex.php" class="nav-item nav-link">Trang chủ</a>
-                        <a href="about.html" class="nav-item nav-link">Chúng tôi</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bất động sản</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item active">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Error</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                        <a href="index_home.php" class="nav-item nav-link">Trang chủ</a>
+                        <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
+                        <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>
+                        
                     </div>
                     <!-- information user -->
                    <!-- information user -->
@@ -89,20 +75,26 @@
                             <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="ifuser.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="changepassword.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
-
+                        <div class="dropdown-menu rounded-0 m-0">
+                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
-                               <?php if($cc == 1 )
+                                <?php if($cc == 1 )
                                     {
                                         ?>
-                                        <a  class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
                                         <?php
                                     }else if($cc == 2)
                                     {
                                         ?>
                                         <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
+                                        <?php
+                                    }
+                                    else if($cc == 4)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
                                         <?php
                                     }
 
@@ -120,57 +112,94 @@
 
         <!-- Header Start -->
         <!-- Header End -->
-        <!-- Information personl -->
+        <!-- Contact -->
+        <?php
+            $idcustomer = $_GET['id_user'];
+            $sql1 = "SELECT * FROM `tb_contract` WHERE  $idcustomer ";
+            $res1 = mysqli_query($conn, $sql1);
+           
+        ?>
+        <?php
+            $idcustomer = $_GET['id_user'];
+            $sql4 = "SELECT * FROM `tb_contract` WHERE  $idcustomer ";
+            $res5 = mysqli_query($conn, $sql1);
+            $row5 = mysqli_fetch_array($res5);
+            $idhome = $row5['id_home'];
+            $idstaff = $row5['id_staff'];
+            $statuscontract = $row5['status'];
+        ?>
+        <?php
+            $sql3 = "SELECT * FROM `tb_home` WHERE $idhome";
+            $res3 = mysqli_query($conn, $sql3);
+            $row3 = mysqli_fetch_array($res3);
+            $namehome = $row3['name_home'];
+            $image = $row3['image'];
+        ?>
+          <?php 
+            $idstaff = $_GET['id_user'];
+            $sql5 = "SELECT * FROM `tb_user` WHERE $idstaff";
+            $res5 = mysqli_query($conn, $sql5);
+            $row5 = mysqli_fetch_array($res5);
+            $fristname = $row5['firstName'];
+            $lastname = $row5['lastName'];
+        ?>
         <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-4 border-right">
+            <div class="row">
+                <div class="col-md-4 border-right">
                 
+                </div>
+                <div class="col-md-8 border-right">
+                   
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 style="margin-left:110px" class="text-right">Tất cả giao dịch</h4>
+                        </div>                                                                 
+                    
+                </div>
             </div>
-            <div class="col-md-8 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                                    <h4 style="margin-left:110px" class="text-right">Đổi mật khẩu</h4>
-                                                </div>                                              
-                                                    <div class="col-md-6"><label class="labels"> Nhập mật khẩu cũ</label>
-                                                        <input  name="user_name" type="password" class="form-control" placeholder="Full Name" value="<?php echo $row2['firstName']; ?>">
-                                                    </div>                                                                                
-                                                <!-- <div class="row mt-3">
-                                                                                                                               
-                                                </div> -->
-                                                <div class="col-md-6"><label class="labels"> Mật khẩu mới</label>
-                                                    <input  name="user_phone" type="password" class="form-control" placeholder="Nhập SDT" value="<?php echo $row2['address'] ?>">                                                   
-                                                </div>
-                                                <div class="col-md-6"><label class="labels"> Nhập lại mật khẩu mới</label>
-                                                    <input  name="user_phone" type="password" class="form-control" placeholder="Nhập SDT" value="<?php echo $row2['address'] ?>">                                                   
-                                                </div>
-                                                <div class="mt-5 text-center">
-                                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                           Đổi mật khẩu
-                                                        </button></a>
-                                                    <!-- Modal -->
-                                                    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered ">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn đổi mật khẩu không?</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                                                    <button type="submit" class="btn btn-primary" name="btn-luu">Lưu</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Mã giao dịch</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tên nhà</th>
+                <th scope="col">Nhân viên phụ trách</th>
+                <th scope="col">Xác nhận</th>
+                <th scope="col">Hủy</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            <?php
+                while ($row1 =mysqli_fetch_array($res1)) { ?>                   
+                    <tr>
+                        <td><?php echo $row1['id_contract'] ?></td>
+                        <td><img class="img-fluid" alt="Ảnh nhà" style="width:auto; height:70px" src="../img/<?php echo $image?>"></td>                                      
+                        <td><?php echo $namehome ?></td>
+                        <td><?php echo $fristname?> <?php echo $lastname?></td>     
+                        <?php if($statuscontract == 3)
+                                    {
+                                        ?>
+                                       <td><a href=""><button type="button" class="btn btn-warning">Xác nhận</button></a></td>
+                                        <?php
+                                    }else if($statuscontract == 2)
+                                    {
+                                        ?>
+                                         <td><span style="color: green; font-style: italic;">Chờ phản hồi từ nhà cái</span></td>
+                                        <?php
+                                    }
 
-                                                </div>
+                        ?>
+                        
+                        <td><a href=""><button type="button" class="btn btn-danger text-white me-2">Hủy</button></a></td>
 
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-        <!-- End Information personl -->
+                    </tr>
+            <?php
+                
+            }
+            ?>
+            </tbody>
+    </table>
+        <!-- End Contact -->
 
        
 
@@ -201,8 +230,6 @@
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
 							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">

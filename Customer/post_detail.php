@@ -31,7 +31,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <title>Archiiro Website</title>
+    <title>Bài viết</title>
 </head>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
@@ -46,7 +46,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="#" class="navbar-brand d-flex align-items-center text-center">
+                <a href="index_home.php" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="./img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
@@ -57,19 +57,53 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="http://localhost/achiro/Customer/" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="#" class="nav-item nav-link">Chúng tôi</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Bất động sản</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="#" class="dropdown-item">List Home</a>
-                                <a href="#" class="dropdown-item">List Type</a>
-                                <a href="#" class="dropdown-item">List Agent</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                        <a href="index_home.php" class="nav-item nav-link">Trang chủ</a>
+                        <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
+                        <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>                        
                     </div>
-                    <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Đăng nhập</a>
+                      <!-- information user -->
+                      <?php
+                    $sql2 = "SELECT * FROM `tb_user` WHERE 1";
+                    $res2 = mysqli_query($conn,$sql2);
+                    $row2 = mysqli_fetch_assoc($res2);
+                    $cc = $row2['status'];
+                    
+
+                    ?>
+                    <div class="nav-item dropdown">
+                        <div style="display:flex;" class="ifuser">
+                            <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
+                        </div>                        
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
+
+                                <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
+                               <?php if($cc == 1 )
+                                    {
+                                        ?>
+                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
+                                        <?php
+                                    }else if($cc == 2)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
+                                        <?php
+                                    }
+                                    else if($cc == 4)
+                                    {
+                                        ?>
+                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
+                                        <?php
+                                    }
+
+                                    ?>
+                               
+                            </div>
+                    </div>
+                    <!-- End information user -->
                 </div>
             </nav>
         </div>
