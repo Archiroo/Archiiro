@@ -277,7 +277,7 @@
         <script> 
             // window.location.assign('homeindex.php'), 
             Swal.fire({
-            icon: 'success',
+            icon: "<?php echo $_SESSION['status_code'];?>",
             title: "<?php echo $_SESSION['status'];?>" ,
             footer: '<a class="btn btn-success" href="index_home.php?id_user=1">Xong</a>',
             showConfirmButton: false,
