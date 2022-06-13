@@ -6,7 +6,7 @@
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>Thông tin nhà</h3>
+                    <h3>Quản lý thông tin nhà</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>
@@ -14,7 +14,7 @@
                                     <th>Loại nhà</th>
                                     <th>Tên nhà</th>
                                     <th>Giá bán</th>
-                                    <th>Giá sale</th>
+                                    <th>Sale</th>
                                     <th>Diện tích</th>
                                     <th>Chi tiết</th>
                                     <th>Xóa bỏ</th>
@@ -47,12 +47,12 @@
                                                 <tr>
                                                     <td><?php echo $name_typeHome; ?></td>
                                                     <td><?php echo $name_home; ?></td>            
-                                                    <td><?php echo $price; ?> VND</td>                                                        
-                                                    <td><?php echo $priceSale; ?> VND</td>                                                        
-                                                    <td><?php echo $area; ?> m2</td>  
+                                                    <td><?php echo number_format($price, 0, '.', '.'); ?> VND</td>                                                        
+                                                    <td><?php echo $priceSale; ?> %</td>                                                        
+                                                    <td><?php echo $area; ?> m²</td>  
                                                     <td>
                                                         <a href="view_home.php?id_home=<?php echo $id_home; ?>" class="update-icon">
-                                                            <i class="fas fa-edit"></i>
+                                                            <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                     </td>
                                                     <td>

@@ -24,10 +24,10 @@ include('header.php');
                 $bed = $_POST['numberBedRoom'];
                 $bath = $_POST['numberBathRoom'];
                 $des =  $_POST['description'];
-                if (isset($_FILES['image']['name'])) {
-                    $image_name = $_FILES['image']['name'];
+                if (isset($_FILES['image1']['name'])) {
+                    $image_name = $_FILES['image1']['name'];
                     if ($image_name != "") {
-                        $source_path = $_FILES['image']['tmp_name'];
+                        $source_path = $_FILES['image1']['tmp_name'];
 
                         $dess_path = "../image/image_database/" . $image_name;
 
@@ -89,7 +89,7 @@ include('header.php');
                     $image_name4 = "home_default.jpg";
                 }
 
-                if (isset($_FILES['image3']['name'])) {
+                if (isset($_FILES['image5']['name'])) {
                     $image_name5 = $_FILES['image5']['name'];
                     if ($image_name5 != "") {
                         $source_path = $_FILES['image5']['tmp_name'];

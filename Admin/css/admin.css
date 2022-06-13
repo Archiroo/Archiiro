@@ -420,12 +420,11 @@ tbody tr:nth-child(even) { /*xen kẽ*/
     cursor: pointer;
 }
 select{
-    font-size: 1.6rem;
-    padding: 0.5rem;
+    font-size: 1.7rem;
+    padding: 1rem;
     min-width: 60rem;
     border-radius: 0.5rem;
-    margin: 1rem 0 2rem 0;
-    background: #fff;
+    background: #eee;
     border: var(--border);
 }
 
