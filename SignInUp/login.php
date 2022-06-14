@@ -13,27 +13,27 @@
 <body>
     <div class="wrapper">
         <section class="form login">
-            <header>REGISTER</header>
+            <header>ĐĂNG NHẬP</header>
             <form action="#" autocomplete="off">
                 <div class="error-txt"></div>
                 <div class="field input">
-                    <label>Email Address</label>
-                    <input type="text" name="email" placeholder="Enter your email" required>
+                    <label>Địa chỉ email</label>
+                    <input type="text" name="email" placeholder="Nhập email" required>
                 </div>
                 <div class="field input">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="Enter your password" required>
+                    <label>Mật khẩu</label>
+                    <input type="password" name="password" placeholder="Nhập mật khẩu" required>
                     <i class="fas fa-eye"></i>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" name="" class="remember-me">
-                    <label for="remember-me">Remember-me</label>
+                    <label for="remember-me">Lưu thông tin</label>
                 </div>
                 <div class="field button">
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Đăng nhập">
                 </div>
             </form>
-            <div class="link">You don't have account? <a href="register.php"> Click here</a></div>
+            <div class="link">Bạn chưa có tài khoản? <a href="register.php"> Đăng ký</a></div>
         </section>
     </div>
 

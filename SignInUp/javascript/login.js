@@ -15,9 +15,19 @@ loginBtn.onclick = () => {
             if(xhr.status === 200){
                 let data = xhr.response;
                 console.log(data);
+                if(data == "admin"){  
+                    location.href = "../Admin/index.php";
+                }
+                if(data == "staff"){  
+                    location.href = "../Staff/index.php";
+                }
+                if(data == "customer"){  
+                    location.href = "../Customer/index.php";
+                }
                 if(data == "success"){  
                     location.href = "../Customer/index.php";
                 }
+                
                 else{
                     errorText.textContent = data;
                     errorText.style.display = "block";

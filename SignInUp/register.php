@@ -13,42 +13,42 @@
 <body>
     <div class="wrapper">
         <section class="form signup">
-            <header>REGISTER</header>
+            <header>ĐĂNG KÝ</header>
             <form action="">
                 <div class="error-txt"></div>
                 <div class="name-details">
                     <div class="field input">
-                        <label>First Name</label>
-                        <input type="text" name="fname" placeholder="First Name" required>
+                        <label>Họ & tên đệm</label>
+                        <input type="text" name="fname" placeholder="Họ & tên đệm" required>
                     </div>
                     <div class="field input">
-                        <label>Last Name</label>
-                        <input type="text" name="lname" placeholder="Last Name" required>
+                        <label>Tên</label>
+                        <input type="text" name="lname" placeholder="Nhập Tên" required>
                     </div>
                 </div>
                 <div class="field input">
-                    <label>Email Address</label>
-                    <input type="text" name="email" placeholder="Enter your email" required>
+                    <label>Địa chỉ email</label>
+                    <input type="text" name="email" placeholder="Nhập email" required>
                 </div>
                 <div class="field input">
-                    <label>Phone number</label>
-                    <input type="text" name="phone" placeholder="Enter your phone" required>
+                    <label>Số điện thoại</label>
+                    <input type="text" name="phone" placeholder="Nhập số điện thoại" required>
                 </div>
                 <div class="field input">
-                    <label>Password</label>
-                    <input type="password" name="pass1" placeholder="Enter password" required>
+                    <label>Mật khẩu</label>
+                    <input type="password" name="pass1" placeholder="Nhập mật khẩu" required>
                     <i class="fas fa-eye"></i>
                 </div>
                 <div class="field input">
-                    <label>Password</label>
-                    <input type="password" name="pass2" placeholder="Confirm password" required>
+                    <label>Xác minh mật khẩu</label>
+                    <input type="password" name="pass2" placeholder="Nhập mật khẩu" required>
                     <i class="fas fa-eye"></i>
                 </div>
                 <div class="field button">
-                    <input type="submit" value="Register">
+                    <input type="submit" value="Đăng ký">
                 </div>
             </form>
-            <div class="link">You have account? <a href="login.php">Login now</a></div>
+            <div class="link">Bạn đã có tài khoản? <a href="login.php">Đăng nhập</a></div>
         </section>
     </div>
     <script src="javascript/showPass.js"></script>

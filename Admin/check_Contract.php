@@ -3,14 +3,16 @@
     if(isset($_GET['id_contract'])){
         $id = $_GET['id_contract'];
     }
-    $sql = "Update tb_contract SET status = 1 Where id_contract = '$id'";
+    if(isset($_SESSION['id_adminSession']))
+    {
+        $id_admin = $_SESSION['id_adminSession'];
+    }
+    $sql = "Update tb_contract SET status = 1, id_staff = $id_admin Where id_contract = '$id'";
     $res = mysqli_query($conn, $sql);
     if($res==true){
-        // Nếu dúng thì xóa 
-        header("Location:index_checkContract.php");
+        header("Location:contract.php");
     }
     else{
-        // Không xóa được thì chịu
-        header("Location:index_checkContract.php");
+        header("Location:view_checkContract.php");
     }
 ?>

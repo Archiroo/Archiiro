@@ -2,8 +2,7 @@
     include('header.php');
 ?>
     <main>
-        <a href="add_user.php" class="btn btn-add"><i class="fas fa-user-plus"></i> Thêm người dùng</a>
-        <div>
+        <a href="add_account.php" class="btn btn-add"><i class="fa-solid fa-plus"></i> Thêm tài khoản</a>        <div>
             <!-- <h2 style="font-weight: 400; color:green; margin-top: 2rem;">Thêm thành công!</h2> -->
         </div>
         <section class="recent">
@@ -14,22 +13,19 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Họ & tên</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Ngày sinh</th>
-                                    <th>Cập nhật cuối</th>                                   
-                                    <th>Chức vụ</th>
+                                    <th>Ngày đăng ký</th>                                   
+                                    <th>Loại tài khoản</th>
                                     <th>Trạng thái</th>
-                                    <th>Cập nhật</th>
-                                    <th>Xóa bỏ</th>
+                                    <th>Xem chi tiết</th>
+                                    <th>Khóa / Mở</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * FROM tb_user where status != 3";
+                                    $sql = "SELECT * FROM tb_user ORDER BY levelUser";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -46,21 +42,19 @@
                                                 $phone = $row['phoneNumber'];
                                                 $gender = $row['gender'];
                                                 $birthday =  $row['birthday'];
-                                                $date = $row['regisdate'];
+                                                $regisdate = $row['regisdate'];
                                                 $level = $row['levelUser'];
                                                 $status = $row['status'];
                                                 $address = $row['address'];
                                              
                                                 
                                 ?>
-                                                <tr>
-                                                    <td><?php echo $id_user; ?></td>
-                                                    <td><?php echo $firstName. " ".$lastName ?></td>                                                                
+                                                <tr>                                                        
                                                     <td><?php echo $email; ?></td> 
-                                                    <td><?php echo $phone; ?></td>       
+                                                    <td><?php echo $phone; ?></td>     
                                                     <td>
                                                         <?php
-                                                            if($birthday== null)
+                                                            if($regisdate== null)
                                                             {
                                                                  ?>
                                                                 <span>Không có dữ liệu</span>
@@ -68,22 +62,7 @@
                                                                 }  
                                                                 else{
                                                                     ?>
-                                                                    <span> <?php echo $birthday = date("d-m-Y", strtotime($birthday));; ?> </span>
-                                                                    <?php
-                                                                }
-                                                        ?>
-                                                    </td>    
-                                                    <td>
-                                                        <?php
-                                                            if($date== null)
-                                                            {
-                                                                 ?>
-                                                                <span>Không có dữ liệu</span>
-                                                                 <?php
-                                                                }  
-                                                                else{
-                                                                    ?>
-                                                                    <span> <?php echo $date = date("d-m-Y", strtotime($date));; ?> </span>
+                                                                    <span> <?php echo $regisdate = date("d-m-Y", strtotime($regisdate)); ?> </span>
                                                                     <?php
                                                                 }
                                                         ?>
@@ -118,13 +97,13 @@
                                                     </td>              
                                                     <td>
                                                         <?php
-                                                            if($status == 2)
+                                                            if($firstName != null && $lastName != null && $gender != null && $address != null && $email != null && $phone != null)
                                                             {
                                                                 ?>
                                                                 <span class="badge success">Active</span>
                                                                 <?php
                                                             }
-                                                            if($status == 1 || $status == null)
+                                                            if($firstName == null || $lastName == null || $gender == null || $address == null || $email == null || $phone == null)
                                                             {
                                                                 ?>
                                                                 <span class="badge warning">Chưa đủ dữ liệu</span>
@@ -133,13 +112,29 @@
                                                         ?>
                                                     </td>                                                                
                                                     <td>
-                                                        <a href="update_user.php?id_user=<?php echo $id_user; ?>" class="update-icon">
-                                                            <i class="fas fa-edit"></i>
+                                                        <a href="view_account.php?id_user=<?php echo $id_user; ?>" class="update-icon">
+                                                            <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                            <a href="delete_user.php?id_user=<?php echo $id_user; ?>" class="delete-icon">
-                                                            <i class="fas fa-trash-alt"></i>
+                                                        <?php
+                                                            if($status == 1 || $status == 2)
+                                                            {
+                                                                ?>
+                                                                    <a href="lock_account.php?id_user=<?php echo $id_user; ?>" class="delete-icon">
+                                                                    <i class="fa-solid fa-lock-open"></i>
+                                                                <?php
+                                                            }
+                                                            if($status ==3)
+                                                            {
+                                                                ?>
+                                                                    <a href="unlock_account.php?id_user=<?php echo $id_user; ?>" class="delete-icon">
+                                                                    <i class="fa-solid fa-lock"></i>
+                                                                <?php
+                                                            }
+                                                        ?>
+
+                                                        
                                                         </a>
                                                     </td>
                                                 </tr>

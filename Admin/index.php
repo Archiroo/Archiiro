@@ -2,12 +2,11 @@
     include('header.php');
 ?>
     <main>
-        <h2 class="dash-title">Overiew</h2>
         <div class="dash-cards">
             <div class="card-single">
                 <div class="card-body">
-                    <span class="fas fa-user-graduate"></span>
-                    <div>
+                    <span class="fas fa-user"></span>
+                    <div style="margin-left: 1rem;">
                         <?php
                             $sql = "SELECT * FROM tb_user, tb_staff where tb_user.id_user = tb_staff.id_staff and levelUser = 2 and status = 2";
                             $res = mysqli_query($conn, $sql);
@@ -15,7 +14,7 @@
                         ?>
                         <h5>Nhân viên</h5>
                         <h4><?php echo $count; ?></h4>
-                        <a href="index.php">
+                        <a href="staff.php">
                             View all
                         </a>
                     </div>
@@ -23,16 +22,16 @@
             </div>
             <div class="card-single">
                 <div class="card-body">
-                    <span class="fas fa-book-open"></span>
-                    <div>
+                    <span class="fas fa-home"></span>
+                    <div style="margin-left: 1rem;">
                         <?php
                             $sql1 = "SELECT * FROM tb_home where status =1";
                             $res1 = mysqli_query($conn, $sql1);
                             $count1 = mysqli_num_rows($res1);
                         ?>
                         <h5>Số căn hộ</h5>
-                        <h4><?php echo $count1; ?></h4>
-                        <a href="indexHome.php">
+                        <h4><?php echo $count1;?></h4>
+                        <a href="home.php">
                             View all
                         </a>
                     </div>
@@ -40,8 +39,8 @@
             </div>
             <div class="card-single">
                 <div class="card-body">
-                    <span class="fas fa-folder"></span>
-                    <div>
+                    <span class="fa-solid fa-file-contract"></span>
+                    <div style="margin-left: 1rem;">
                         <?php
                             $sql3 = "Select * from tb_contract where status = 1 ";
                             $res3 = mysqli_query($conn, $sql3);
@@ -49,7 +48,7 @@
                         ?>
                         <h5>Số hợp đồng</h5>
                         <h4><?php echo $count3;?></h4>
-                        <a href="indexContract.php">
+                        <a href="contract.php">
                             View all
                         </a>
                     </div>
@@ -57,16 +56,16 @@
             </div>
             <div class="card-single">
                 <div class="card-body">
-                    <span class="fas fa-user-tie"></span>
-                    <div>
-                        <h5>Duyệt hợp đồng</h5>
+                    <span class="fa-solid fa-file-signature"></span>
+                    <div style="margin-left: 1rem;">
+                        <h5>HĐ chờ duyệt</h5>
                         <?php
-                            $sql2 = "SELECT * FROM tb_contract where status = 2";
+                            $sql2 = "SELECT * FROM tb_contract where status = 2 or status = 5";
                             $res2 = mysqli_query($conn, $sql2);
                             $count2 = mysqli_num_rows($res2);
                         ?>
                         <h4><?php echo $count2;?></h4>
-                        <a href="index_checkContract.php">
+                        <a href="view_checkContract.php">
                             View all
                         </a>
                     </div>
@@ -81,21 +80,19 @@
                     <table>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Họ & tên</th>
                                     <th>Email</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Giới tính</th>
-                                    <th>Lương /ngày</th>
-                                    <th>Làm từ ngày</th>
+                                    <th>Phone</th>
+                                    <th>Gender</th>
                                     <th>Số hợp đồng</th>
+                                    <th>Số hợp đồng hủy</th>
                                     <th>Hình ảnh</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * from tb_user, tb_staff WHERE tb_user.id_user = tb_staff.id_staff AND levelUser = 2 AND status = 2";
+                                    $sql = "SELECT * from tb_user u, tb_staff s WHERE u.id_user = s.id_staff and u.status = 2 and u.levelUser = 2 Order by u.lastName";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -111,17 +108,14 @@
                                                 $email = $row['email'];
                                                 $phone = $row['phoneNumber'];
                                                 $gender = $row['gender'];
-                                                $daySalary = $row['daySalary'];
                                                 $dayStart = $row['dayStart'];
-                                                $numberContract = $row['numberContract'];
                                                 
                                 ?>
                                                 <tr>
-                                                    <td><?php echo $id_user;?></td>
                                                     <td><?php echo $firstName. " ".$lastName; ?></td>            
                                                     <td><?php echo $email; ?></td>      
                                                     <td><?php echo $phone; ?></td>      
-                                                    <td>
+                                                    <td style="text-align: center;">
                                                        <?php
                                                             if($gender == null){
                                                                 ?>
@@ -139,37 +133,12 @@
                                                                 <?php
                                                             }
                                                        ?>
-                                                    </td>                                                      
-                                                    <td><?php echo $daySalary;?> VND</td>    
-                                                                    
-                                                    <td>
-                                                        <?php
-                                                            if($dayStart== null)
-                                                            {
-                                                                 ?>
-                                                                <span>Không có dữ liệu</span>
-                                                                 <?php
-                                                                }  
-                                                                else{
-                                                                    ?>
-                                                                    <span> <?php echo $dayStart = date("d-m-Y", strtotime($dayStart)); ?> </span>
-                                                                    <?php
-                                                                }
-                                                        ?>
-                                                    </td> 
-                                                    <td>
-                                                        <?php
-                                                        if($numberContract == null || $numberContract == 0){
-                                                            ?>
-                                                            <span>Không có dữ liệu</span>
-                                                            <?php
-                                                        }
-                                                        else{
-                                                            ?>
-                                                            <span><?php echo $numberContract?></span>
-                                                            <?php
-                                                        }
-                                                        ?>
+                                                    </td>           
+                                                    <td style="text-align: center;">
+                                                        <span>0</span>
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <span>0</span>
                                                     </td>
                                                     <td class="td-team">
                                                         <div class="img-1 img_alone">

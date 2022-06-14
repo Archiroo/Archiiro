@@ -10,22 +10,20 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Họ & tên đệm</th>
-                                    <th>Tên</th>
+                                    <th>Họ & Tên</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Phone</th>
                                     <th>Số CCCD</th>
                                     <th>Ngày cấp</th>
-                                    <th>Được cấp bởi</th>
                                     <th>Mặt trước</th>                                   
                                     <th>Mặt sau</th>
-                                    <th>Status</th>
-                                    <th>Delete</th>
+                                    <th>Khóa / Mở</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * FROM tb_user, tb_customer where tb_user.id_user = tb_customer.id_customer and levelUser = 3 and tb_user.status != 3 and tb_customer.status != 3";
+                                    $sql = "SELECT * FROM tb_user u, tb_customer c where u.id_user = c.id_customer and levelUser = 3";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -34,9 +32,12 @@
                                         {
                                             while($row = mysqli_fetch_assoc($res))
                                             {
-                                                $id_user = $row['id_customer'];
+                                                $id_customer = $row['id_user'];
                                                 $firstName = $row['firstName'];
+                                                $address = $row['address'];
                                                 $lastName = $row['lastName'];
+                                                $gender = $row['gender'];
+                                                $phone = $row['phoneNumber'];
                                                 $cardNumber = $row['cardNumber'];
                                                 $dateRange = $row['dateRange'];
                                                 $isuseBy =  $row['isuseBy'];
@@ -46,51 +47,76 @@
                                                 
                                 ?>
                                                 <tr>
-                                                    <td><?php echo $id_user; ?></td>
-                                                    <td><?php echo $firstName; ?></td>            
-                                                    <td><?php echo $lastName; ?></td>                                                        
+                                                    <td><?php echo $firstName.' '.$lastName; ?></td>            
+                                                    <td><?php echo $address; ?></td>                                                     
+                                                    <td><?php echo $phone; ?></td>                                                     
                                                     <td><?php echo $cardNumber; ?></td>   
                                                     <td>
                                                         <?php
-                                                            if($dateRange== null)
+                                                            if($dateRange != null)
                                                             {
                                                                  ?>
-                                                                <span>Không có dữ liệu</span>
+                                                                <span><?php  echo date("d-m-Y", strtotime($dateRange));?></span>
                                                                  <?php
                                                                 }  
                                                                 else{
                                                                     ?>
-                                                                    <span> <?php echo $dateRange = date("d-m-Y", strtotime($dateRange));; ?> </span>
+                                                                    <span> Không có dữ liệu </span>
                                                                     <?php
                                                                 }
                                                         ?>
                                                     </td>    
-                                                    <td><?php echo $isuseBy; ?></td>   
-                                                    <td>
-                                                        <img src="../image/<?php echo $imgFront; ?>" alt="" width="100px">
-                                                    </td>
-                                                    <td>
-                                                        <img src="../image/<?php echo $imgBack; ?>" alt="" width="100px">
-                                                    </td>           
                                                     <td>
                                                         <?php
-                                                            if($status==2)
-                                                            {
+                                                            if($imgFront != null){
                                                                 ?>
-                                                                <span class="badge success">Success</span>
+                                                                    <img src="../image/<?php echo $imgFront; ?>" alt="" width="100px">
                                                                 <?php
                                                             }
-                                                            if($status == 1 || $status == null)
-                                                            {
+
+                                                            else{
                                                                 ?>
-                                                                <span class="badge warning">Processing</span>
+                                                                    <span>Không có ảnh</span>
                                                                 <?php
                                                             }
                                                         ?>
-                                                    </td>                                                                
+                                                        
+                                                    </td>
                                                     <td>
-                                                            <a href="delete_customer.php?id_user=<?php echo $id_user; ?>" class="delete-icon">
-                                                            <i class="fas fa-trash-alt"></i>
+                                                    <?php
+                                                            if($imgBack != null){
+                                                                ?>
+                                                                    <img src="../image/<?php echo $imgBack; ?>" alt="" width="100px">
+                                                                <?php
+                                                            }
+
+                                                            else{
+                                                                ?>
+                                                                    <span>Không có ảnh</span>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </td>           
+                                                                                            
+                                                    <td>
+                                                        <?php
+                                                            if($status == 1 || $status == 2)
+                                                            {
+                                                                ?>
+                                                                    <a href="lock_customer.php?id_customer=<?php echo $id_customer; ?>" class="delete-icon">
+                                                                    <i class="fa-solid fa-lock-open"></i>
+                                                                <?php
+                                                            }
+                                                            if($status ==3)
+                                                            {
+                                                                ?>
+                                                                    <a href="unlock_customer.php?id_customer=<?php echo $id_customer; ?>" class="delete-icon">
+                                                                    <i class="fa-solid fa-lock"></i>
+                                                                <?php
+                                                            }
+                                                        ?>
+
+                                                        
                                                         </a>
                                                     </td>
                                                 </tr>

@@ -2,24 +2,21 @@
     include('header.php');
 ?>
     <main>
-        <a href="add_home.php" class="btn btn-add"><i class="fas fa-user-plus"></i> Thêm mới căn hộ</a>
+        <a href="add_home.php" class="btn btn-add"><i class="fa-solid fa-house-circle-check"></i> Thêm mới nhà</a>
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>Thông tin căn hộ</h3>
+                    <h3>Quản lý thông tin nhà</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
                                     <th>Loại nhà</th>
                                     <th>Tên nhà</th>
-                                    <th>Giá</th>
+                                    <th>Giá bán</th>
+                                    <th>Sale</th>
                                     <th>Diện tích</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Phòng khách</th>
-                                    <th>Phòng ngủ</th>
-                                    <th>Phòng tắm</th>
-                                    <th>Cập nhật</th>
+                                    <th>Chi tiết</th>
                                     <th>Xóa bỏ</th>
                                 </tr>
                             </thead>
@@ -39,6 +36,7 @@
                                                 $name_typeHome = $row['name_typeHome'];
                                                 $name_home = $row['name_home'];
                                                 $price = $row['price'];
+                                                $priceSale = $row['priceSale'];
                                                 $area = $row['area_home'];
                                                 $address = $row['address_home'];
                                                 $numberRoom = $row['numberRoom'];
@@ -49,21 +47,12 @@
                                                 <tr>
                                                     <td><?php echo $name_typeHome; ?></td>
                                                     <td><?php echo $name_home; ?></td>            
-                                                    <td><?php echo $price; ?> VND</td>                                                        
-                                                    <td><?php echo $area; ?> m2</td>   
-                                                    <td><?php echo $address; ?></td>   
-                                                    <td class = "center">
-                                                        <?php echo $numberRoom; ?>
-                                                    </td>   
-                                                    <td class = "center">
-                                                        <?php echo $numberBedRoom; ?>
-                                                    </td>   
-                                                    <td class = "center">
-                                                        <?php echo $numberBathRoom; ?>
-                                                    </td>  
+                                                    <td><?php echo number_format($price, 0, '.', '.'); ?> VND</td>                                                        
+                                                    <td><?php echo $priceSale; ?> %</td>                                                        
+                                                    <td><?php echo $area; ?> m²</td>  
                                                     <td>
-                                                        <a href="update_home.php?id_home=<?php echo $id_home; ?>" class="update-icon">
-                                                            <i class="fas fa-edit"></i>
+                                                        <a href="view_home.php?id_home=<?php echo $id_home; ?>" class="update-icon">
+                                                            <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                     </td>
                                                     <td>
