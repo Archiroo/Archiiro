@@ -135,10 +135,10 @@
                                                        ?>
                                                     </td>           
                                                     <td style="text-align: center;">
-                                                        <span>0</span>
+                                                    <span>2</span>
                                                     </td>
                                                     <td style="text-align: center;">
-                                                        <span>0</span>
+                                                        <span>1</span>
                                                     </td>
                                                     <td class="td-team">
                                                         <div class="img-1 img_alone">
