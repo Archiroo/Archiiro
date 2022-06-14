@@ -1,5 +1,8 @@
 <?php 
+    session_start();
+    $iduser = $_GET['id_user'];
       include('../config/config.php');
+
 ?>
 <head>
     <title>Trang chủ</title>
@@ -61,7 +64,7 @@
                     </div>
                     <!-- information user -->
                     <?php
-                    $sql2 = "SELECT * FROM `tb_user` WHERE 1";
+                    $sql2 = "SELECT * FROM `tb_user` WHERE id_user = '$iduser'";
                     $res2 = mysqli_query($conn,$sql2);
                     $row2 = mysqli_fetch_assoc($res2);
                     $cc = $row2['status'];
@@ -74,9 +77,9 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
                         <div class="dropdown-menu rounded-0 m-0">
-                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
-                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=<?php$iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=<?php$iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                 <?php if($cc == 1 )
                                     {
@@ -185,7 +188,7 @@
                                                         ?>
                                                     </div>
                                                 <div class="mt-5 text-center">
-                                                    <a href="update_personal_information.php?id_user=1"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <a href="update_personal_information.php?id_user=<?php$iduser;?>"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                             Sửa thông tin
                                                         </button></a>
                                                     <!-- Modal -->
@@ -205,17 +208,17 @@
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
-                    <div class="col-lg-6 col-md-6">
-                        <h5 class="text-white mb-4">Liên lạc</h5>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
-                        <div style="margin-left:44%;" class="d-flex pt-6">
-                            <a class="btn btn-outline-light btn-social" href="https://twitter.com/QuauTn"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/quanqueo25"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
+                <div class="col-lg-6 col-md-6">
+                            <h5 style="margin-left:40%; margin-top:40px" class="text-white mb-4">Liên lạc</h5>
+                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
+                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
+                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
+                            <div style="margin-left:44%;" class="d-flex pt-6">
+                                <a class="btn btn-outline-light btn-social" href="https://twitter.com/QuauTn"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/quanqueo25"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.636976405065!2d105.82263251481679!3d21.00718423601005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac8109765ba5%3A0xb3be79f8f64a59f9!2zMTc1IFAuIFTDonkgU8ahbiwgVHJ1bmcgTGnhu4d0LCDEkOG7kW5nIMSQYSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1654858272464!5m2!1svi!2s" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

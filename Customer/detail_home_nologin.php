@@ -1,6 +1,4 @@
 <?php
- session_start();
- $iduser = $_SESSION['id_customerSession'];
 include('../config/config.php');
 ?>
 
@@ -80,7 +78,7 @@ include('../config/config.php');
     <!-- Navbar Start -->
     <div class="container-fluid nav-bar bg-transparent">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-            <a href="index_home.php" class="navbar-brand d-flex align-items-center text-center">
+            <a href="index.php" class="navbar-brand d-flex align-items-center text-center">
                 <div class="icon p-2 me-2">
                     <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                 </div>
@@ -91,51 +89,12 @@ include('../config/config.php');
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
-                    <a href="index_home.php" class="nav-item nav-link">Trang chủ</a>
+                    <a href="index.php" class="nav-item nav-link">Trang chủ</a>
                     <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
                     <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>
                 </div>
                <!-- information user -->
-               <?php
-                    $sql2 = "SELECT * FROM `tb_user` WHERE id_user = '$iduser'";
-                    $res2 = mysqli_query($conn,$sql2);
-                    $row2 = mysqli_fetch_assoc($res2);
-                    $cc = $row2['status'];
-                    
-
-                    ?>
-                    <div class="nav-item dropdown">
-                        <div style="display:flex;" class="ifuser">
-                            <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
-                        </div>                        
-                            <div class="dropdown-menu rounded-0 m-0">
-                            <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="history_contract.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
-                                <a href="change_password.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
-                                <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
-                                <?php if($cc == 1 )
-                                    {
-                                        ?>
-                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
-                                        <?php
-                                    }else if($cc == 2)
-                                    {
-                                        ?>
-                                        <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
-                                        <?php
-                                    }
-                                    else if($cc == 4)
-                                    {
-                                        ?>
-                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
-                                        <?php
-                                    }
-
-                                    ?>
-                               
-                            </div>
-                    </div>
+               <a href="../SignInUp/login.php" class="btn btn-primary px-3 d-none d-lg-flex" >Đăng nhập</a>
                 <!-- End information user -->
             </div>
         </nav>
@@ -164,26 +123,6 @@ include('../config/config.php');
 
 
     <!-- Property List Start -->
-    <form action="" method="POST"> 
-        <?php
-                     if (isset($_POST['add-contract'])) {
-                        $idhome = $_GET['id_home'];              
-                        $sql3 = "INSERT INTO `tb_contract`(`id_contract`, `id_home`, `id_customer`, `id_staff`,`status`) 
-                        VALUES (null,'$idhome',$iduser,null,2)";
-                        $res3 = mysqli_query($conn, $sql3); 
-                        $sql4 = "UPDATE `tb_home` SET `status`='2' WHERE id_home = '$idhome'";
-                        $res4 = mysqli_query($conn, $sql4);
-                    if ($res3 == true && $res4 == true) { 
-                       
-                            $_SESSION['status'] = "Gửi yêu cầu đặt cọc thành công";
-                            $_SESSION['status_code'] = "success";
-                        } else { 
-                            $_SESSION['status'] = "Gửi yêu cầu đặt cọc thất bại";
-                            $_SESSION['status_code'] = "error";
-
-                         }
-                        }
-        ?>    
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-0 gx-5 align-items-end">
@@ -200,10 +139,10 @@ include('../config/config.php');
             $res1 = mysqli_query($conn, $sql1);
             $row1 = mysqli_fetch_assoc($res1);
             $idtypehome = $row1['id_typeHome'];
-            $sql5 = "SELECT * FROM `tb_typehome` WHERE id_typeHome = '$idtypehome'";
-            $res5 = mysqli_query($conn, $sql5);
-            $row5 = mysqli_fetch_assoc($res5);
-            $nametypehome = $row5['name_typeHome'];
+            $sql2 = "SELECT * FROM `tb_typehome` WHERE id_typeHome = '$idtypehome'";
+            $res2 = mysqli_query($conn, $sql2);
+            $row2 = mysqli_fetch_assoc($res2);
+            $nametypehome = $row2['name_typeHome'];
             ?>
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
@@ -231,35 +170,13 @@ include('../config/config.php');
                                 </ul>
                             </div>
                             <!-- condition request -->
-                            <?php if($cc == 1 )
-                                    {
-                            ?>
-                                        <div style="margin-top:205px; padding-left: 20px;"><a class="btn btn-danger" href="active.php?id_user=1">Xác thực tài khoản</a></div>
-                                        <span class="dropdown-item" style="color: red; font-style: italic;">Lưu ý: Xác thực tài khoản để có thể yêu cầu đặt cọc</span>       
-                            <?php
-                                    }else if($cc == 2)
-                                    {
-                            ?>
-                                       <div style="margin-top:205px; padding-left: 20px;"><button name="add-contract" type="submit" class="btn btn-primary">Yêu cầu đặt cọc</button></div>
-                                      
-                            <?php
-                                    }
-                                    else if($cc == 4)
-                                    {
-                                        ?>
-                                        <div style="margin-top:205px; padding-left: 20px;" ><span  style= "color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span></div>
-                                        <span class="dropdown-item" style="color: red; font-style: italic;">Lưu ý: Xác thực tài khoản để có thể yêu cầu đặt cọc</span>       
-                                        <?php
-                                    }
-
-                            ?>
-                                                  
-
+    
+                                        <div style="margin-top:205px; padding-left: 20px;">  <a href="../SignInUp/login.php" class="btn btn-primary" >Đăng nhập</a></div>
+                                        <span class="dropdown-item" style="color: red; font-style: italic;">Lưu ý: Đăng nhập tài khoản để có thể yêu cầu đặt cọc</span>       
+                                                                            
                             <!-- condition request -->
                             
                         </div>
-
-
                         <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                             <h2>Mô tả</h2>
                             <p><?php echo $row1['description'] ?></p>
@@ -282,7 +199,7 @@ include('../config/config.php');
                                                                 <h5  class="fw-bold mb-1"><?= $row['name_home']?></h5>
                                                                 <h6 class="fw-bold mb-1"><?=$row['price']?> VNĐ</h6>
                                                                 </div>
-                                                                <a style="transform: translateY(3.3rem);" class="btn btn-success" href="./detail_home.php?id_home=<?= $row['id_home'] ?>">Xem nhà</a>
+                                                                <a style="transform: translateY(3.3rem);" class="btn btn-success" href="./detail_home_nologin.php?id_home=<?= $row['id_home'] ?>">Xem nhà</a>
                                                                
                                                             </div>
                                                         </div>
@@ -300,7 +217,6 @@ include('../config/config.php');
                     <!-- Hết phần hiển thị -->
                 </div>
             </div>
-             </form>
             <!-- Property List End -->
 
 
@@ -309,10 +225,10 @@ include('../config/config.php');
                 <div class="container py-5">
                     <div class="row g-5">
                         <div class="col-lg-6 col-md-6">
-                            <h5 style="margin-left:40%; margin-top:40px" class="text-white mb-4">Liên lạc</h5>
-                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
-                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
-                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
+                            <h5 class="text-white mb-4">Liên lạc</h5>
+                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
+                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
+                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
                             <div style="margin-left:44%;" class="d-flex pt-6">
                                 <a class="btn btn-outline-light btn-social" href="https://twitter.com/QuauTn"><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/quanqueo25"><i class="fab fa-facebook-f"></i></a>
@@ -361,34 +277,4 @@ include('../config/config.php');
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
-        <?php
-        if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-        {
-            ?>
-        <script> 
-           
-            Swal.fire({
-                title: 'Bạn có muốn đặt cọc căn hộ này không?',
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Đồng ý',
-                denyButtonText: `Không`,
-                }).then((result) => {
-                
-                if (result.isConfirmed) {
-                    Swal.fire({
-                    icon: "<?php echo $_SESSION['status_code'];?>",
-                    title: "<?php echo $_SESSION['status'];?>" ,
-                    footer: '<a class="btn btn-success" href="index_home.php">Xong</a>',
-                    showConfirmButton: false,
-                    });          
-                } else if (result.isDenied) {
-                    Swal.fire('Căn hộ không được đặt cọc', '', 'info')
-                }
-                });
-         
-        </script>
-        <?php 
-            unset($_SESSION['status']);
-         }
-    ?>
+       
