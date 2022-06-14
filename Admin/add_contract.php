@@ -1,47 +1,62 @@
 <?php
 include('header.php');
 ?>
-<main>
-        <form action="" method="POST" class="register">
-            <?php
+<section class="view" id="order">
+    <section class="recent" style="margin: 8rem 0 0 1rem;">
+        <div class="activity-grid">
+            <div class="activity-card">
+                <h3>Tạo hợp đồng</h3>
+            </div>
+        </div>
+    </section>
+    <form action="" method="POST" class="register">
+        <!-- INSERT -->
+        <?php
             if (isset($_POST['submit'])) {
-                $id_homee = $_POST['id_home'];
-                $id_stafff = $_POST['id_staff'];
-                $id_customerr = $_POST['id_customer'];
+                $id_home = $_POST['id_homee'];
+                $id_customer = $_POST['id_customerr'];
+                $note = $_POST['note'];
 
-                $sql3 = "INSERT INTO tb_contract(id_home, id_customer,id_staff, status) VALUES($id_homee, $id_customerr, $id_stafff, 1)";
+                $sql3 = "INSERT INTO tb_contract(id_home, id_customer,id_staff, requestCustomer, status) VALUES($id_home, $id_customer, $id_admin, '$note', 3)";
                 $res3 = mysqli_query($conn, $sql3);
-                if($res3 == true){
+
+                $sql4 = "Update tb_home SET status = 2 where id_home = $id_home";
+                $res4 = mysqli_query($conn, $sql4);
+                if($res3 == true && $res4 == true){
                     header("Location:contract.php");
                 }
                 else{
                     header("Location:add_contract.php");
                 }
-
             }
 
             ?>
-            <div class="form-group">
+
+        <div class="inputBox">
+            <div class="input">
                 <span>Tên căn hộ</span>
-                <select name="id_home" style="display:block;">
+                <select name="id_homee" style="display:block;" class="typeAccount">
                     <?php
-                    $sql = "SELECT * FROM tb_home WHERE status = 1";
+                    $sql = "SELECT * FROM tb_home where status = 1";
                     $res = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($res)) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            echo '<option value="' . $row['id_home'] . '">' . $row['name_home'] . '</option>';
+                            $id_home = $row['id_home'];
+                            $nameHome = $row['name_home'];
+                            echo '<option value="' . $row['id_home'] . '">' . $nameHome . '</option>';
                         }
                     }
                     ?>
-                </select>
+                </select> 
             </div>
-
-            <div class="form-group">
-                <span>Tên khách hàng</span>
-                <select name="id_customer" style="display:block;">
+            <div class="input">
+                <span>Họ & tên khách hàng</span>
+                <select name="id_customerr"class="typeAccount">
                     <?php
-                    $sql1 = "SELECT * FROM tb_user, tb_customer WHERE tb_user.id_user = tb_customer.id_customer and tb_user.levelUser = 3 and tb_customer.status = 1";
+                    $sql1 = "SELECT * FROM tb_user u, tb_customer c WHERE u.id_user = c.id_customer and u.levelUser = 3 and u.status = 1";
                     $res1 = mysqli_query($conn, $sql1);
+
+                    
                     if (mysqli_num_rows($res1)) {
                         while ($row1 = mysqli_fetch_assoc($res1)) {
                             $id_customer = $row1['id_customer'];
@@ -53,28 +68,19 @@ include('header.php');
                     ?>
                 </select>
             </div>
+        </div>
 
-            <div class="form-group">
-                <span>Tên nhân viên</span>
-                <select name="id_staff" style="display:block;">
-                    <?php
-                    $sql2 = "SELECT * FROM tb_user, tb_staff WHERE tb_user.id_user = tb_staff.id_staff and tb_user.levelUser = 2 and tb_user.status = 2";
-                    $res2 = mysqli_query($conn, $sql2);
-                    if (mysqli_num_rows($res2)) {
-                        while ($row2 = mysqli_fetch_assoc($res2)) {
-                            $id_staff = $row2['id_staff'];
-                            $firstName2 = $row2['firstName'];
-                            $lastName2 = $row2['lastName'];
-                            echo '<option value="' . $id_staff . '">' . $firstName2 . " " . $lastName2 . '</option>';
-                        }
-                    }
-                    ?>
-                </select>
+        <div class="inputBox">
+            <div class="input" style="margin-top: 1rem;">
+                <span>Ghi chú</span>
+                <textarea cols="30" name="note" rows="5"></textarea>
             </div>
+        </div>
+        <input style="padding: 0.9rem 2rem;" type="submit" name="submit" value="Tạo hợp đồng" class="btn">
+        <a href="contract.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
+    </form>
 
-            <input type="submit" name="submit" value="Add user" class="btn btn-add btn-add-connect">
-            <a href="user.php" class="btn btn-add btn-cancel">Cancel</a>
-        </form>
+</section>
 <?php
-    include('footer.php');
+include('footer.php');
 ?>
