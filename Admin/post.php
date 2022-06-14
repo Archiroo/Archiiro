@@ -2,26 +2,25 @@
     include('header.php');
 ?>
     <main>
-        <a href="add_post.php" class="btn btn-add"><i class="fas fa-user-plus"></i> Thêm bài viết</a>
+        <a href="add_post.php" class="btn btn-add"><i class="fa-solid fa-file-circle-plus"></i> Thêm bài viết</a>
         <div>
             <!-- <h2 style="font-weight: 400; color:green; margin-top: 2rem;">Thêm thành công!</h2> -->
         </div>
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>User management</h3>
+                    <h3>Quản lý bài viết</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
                                     <th>Tiêu đề</th>
                                     <th>Người viết</th>
-                                    <th>Ngày thêm</th>
-                                    <th>Cập nhật cuối</th>
+                                    <th>Ngày tạo</th>
                                     <th>Trạng thái</th>
                                     <th>Duyệt bài</th>
-                                    <th>Cập nhật</th>
-                                    <th>Xóa</th>
+                                    <th>Chi tiết</th>
+                                    <th>Xóa bài </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,7 +40,6 @@
                                                 $title = $row['postTitle'];
                                                 $content = $row['postContent'];
                                                 $date1 = $row['dateCreate'];
-                                                $date2 = $row['lastUpdate'];
                                                 $status = $row['status'];
                                                 
                                 ?>
@@ -61,8 +59,7 @@
                                                             echo $firstName1. " " .$lastName1;
                                                        ?>
                                                     </td>            
-                                                    <td><?php echo $date1 = date("d-m-Y", strtotime($date1));; ?></td>                                                        
-                                                    <td><?php echo $date2 = date("d-m-Y", strtotime($date2));; ?></td>                                                        
+                                                    <td><?php echo $date1 = date("d-m-Y", strtotime($date1)); ?></td>                                                                                                              
                                                          
                                                     <td>
                                                         <?php
@@ -86,8 +83,8 @@
                                                         </a>
                                                     </td>                                                          
                                                     <td>
-                                                        <a href="update_post.php?id_post=<?php echo $id_post; ?>" class="update-icon">
-                                                            <i class="fas fa-edit"></i>
+                                                        <a href="view_post.php?id_post=<?php echo $id_post; ?>" class="update-icon">
+                                                            <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                     </td>
                                                     <td>

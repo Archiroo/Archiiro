@@ -27,7 +27,7 @@
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * FROM tb_contract where status != 4";
+                                    $sql = "SELECT * FROM tb_contract where status != 5";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -111,7 +111,13 @@
                                                             if($status == 3)
                                                             {
                                                                 ?>
-                                                                <span class="badge warning">KH xác nhận</span>
+                                                                <span class="badge warning">KHXN Thêm</span>
+                                                                <?php
+                                                            }
+                                                            if($status == 4)
+                                                            {
+                                                                ?>
+                                                                <span class="badge warning">KHXN Hủy</span>
                                                                 <?php
                                                             }
                                                         ?>
