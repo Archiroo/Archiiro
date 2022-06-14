@@ -22,10 +22,10 @@ loginBtn.onclick = () => {
                     location.href = "../Staff/index.php";
                 }
                 if(data == "customer"){  
-                    location.href = "../Customer/index.php";
+                    location.href = "../Customer/index_home.php";
                 }
                 if(data == "success"){  
-                    location.href = "../Customer/index.php";
+                    location.href = "../Customer/index_home.php";
                 }
                 
                 else{

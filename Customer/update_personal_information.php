@@ -1,5 +1,8 @@
 <?php 
+    session_start();
+    $iduser = $_SESSION['id_customerSession'];
       include('../config/config.php');
+  
 ?>
 <head>
     <title>Trang chủ</title>
@@ -63,7 +66,7 @@
                 
                    <!-- information user -->
                    <?php
-                    $sql2 = "SELECT * FROM `tb_user` WHERE 1";
+                    $sql2 = "SELECT * FROM `tb_user` WHERE id_user = '$iduser'";
                     $res2 = mysqli_query($conn,$sql2);
                     $row2 = mysqli_fetch_assoc($res2);
                     $cc = $row2['status'];
@@ -75,9 +78,9 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
                         <div class="dropdown-menu rounded-0 m-0">
-                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
-                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="personal_information.php?id_user=<?php$iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=<?php$iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=<?php$iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                 <?php if($cc == 1 )
                                     {

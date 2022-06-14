@@ -1,5 +1,8 @@
 <?php 
+    session_start();
+    $iduser = $_SESSION['id_customerSession'];
       include('../config/config.php');
+    
 ?>
 <head>
     <title>Trang chủ</title>
@@ -61,7 +64,7 @@
                     </div>
                     <!-- information user -->
                     <?php
-                    $sql2 = "SELECT * FROM `tb_user` WHERE 1";
+                    $sql2 = "SELECT * FROM `tb_user` WHERE id_user = '$iduser'";
                     $res2 = mysqli_query($conn,$sql2);
                     $row2 = mysqli_fetch_assoc($res2);
                     $cc = $row2['status'];
@@ -74,9 +77,9 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
-                                <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="history_contract.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
+                                <a href="change_password.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
 
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                <?php if($cc == 1 )
@@ -112,7 +115,7 @@
         <div class="container-fluid header bg-white p-0">
             <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
                 <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">Property List</h1> 
+                    <h1 class="display-5 animated fadeIn mb-4">Trang chủ</h1> 
                 </div>
                 <div class="col-md-6 animated fadeIn">
                     <img class="img-fluid" src="img/header.jpg" alt="">
@@ -166,7 +169,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                        <button type="button" class="btn btn-dark border-0 w-100 py-3 search_house">Search</button>
+                        <button type="button" class="btn btn-dark border-0 w-100 py-3 search_house">Tìm kiếm</button>
                         </div>
                     </div>
                 </div>
@@ -179,7 +182,7 @@
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Các dạng căn hộ</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                    <p>Tập trung vào chất lượng công trình bằng cả trái tim và tạo ra sự vững tin cho khách hàng bằng hành động.</p>
                 </div>
                 <div class="row g-4">
                     <?php
@@ -270,7 +273,7 @@
            <div class="container">
                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                    <h1 class="mb-3">Bài viết</h1>
-                   <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                   <p>Tập trung vào chất lượng công trình bằng cả trái tim và tạo ra sự vững tin cho khách hàng bằng hành động.</p>
                </div>
                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                    <?php
@@ -312,7 +315,7 @@
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
-                        <div style="margin-left:44%;" class="d-flex pt-6">
+                        <div style="margin-left:38%;" class="d-flex pt-6">
                             <a class="btn btn-outline-light btn-social" href="https://twitter.com/QuauTn"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/quanqueo25"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-youtube"></i></a>
