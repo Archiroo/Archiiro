@@ -2,15 +2,14 @@
     include('header.php');
 ?>
     <main>
-        <a href="add_contract.php" class="btn btn-add"><i class="fa-solid fa-file-contract"></i> Tạo hợp đồng</a>
-        <a style="margin-left: 3rem;" href="view_checkContract.php" class="btn btn-add"><i class="fa-solid fa-file-signature"></i> Hợp đồng chờ duyệt</a>
+    <a href="contract.php" class="btn btn-add"><i class="fa-solid fa-file-contract"></i> Danh sách hợp đồng</a>
         <div>
             <!-- <h2 style="font-weight: 400; color:green; margin-top: 2rem;">Thêm thành công!</h2> -->
         </div>
         <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                    <h3>Quản lý hợp đồng</h3>
+                    <h3>Quản lý hợp đồng chờ duyệt</h3>
                     <div class="table-responsive">
                         <table>
                             <thead>
@@ -21,14 +20,14 @@
                                     <th>Ngày tạo</th>
                                     <th>Cập nhật lúc</th>
                                     <th>Trạng thái</th>
-                                    <th>Chi tiết</th>
+                                    <th>Duyệt</th>
                                     <th>Hủy bỏ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- CODE PHP -->
                                 <?php
-                                    $sql = "SELECT * FROM tb_contract where status = 1 OR status = 3 OR status = 4";
+                                    $sql = "SELECT * FROM tb_contract where status = 2 or status = 5";
                                     $res = mysqli_query($conn, $sql);
                                     if($res == TRUE)
                                     {
@@ -97,39 +96,27 @@
                                                     <td> <?php echo $lastDate = date("d-m-Y", strtotime($lastDate)); ?></td>
                                                     <td>
                                                         <?php
-                                                            if($status==1)
-                                                            {
-                                                                ?>
-                                                                <span class="badge success">Thành công</span>
-                                                                <?php
-                                                            }
                                                             if($status == 2)
                                                             {
                                                                 ?>
-                                                                <span class="badge warning">NV xác nhận</span>
+                                                                <span class="badge warning">NV duyệt</span>
                                                                 <?php
                                                             }
-                                                            if($status == 3)
+                                                            if($status == 5)
                                                             {
                                                                 ?>
-                                                                <span class="badge warning">KHXN Thêm</span>
-                                                                <?php
-                                                            }
-                                                            if($status == 4)
-                                                            {
-                                                                ?>
-                                                                <span class="badge warning">KHXN Hủy</span>
+                                                                <span class="badge warning">Xác nhận hủy</span>
                                                                 <?php
                                                             }
                                                         ?>
                                                     </td>                                                                
                                                     <td>
-                                                        <a href="view_contract.php?id_contract=<?php echo $id_contract; ?>" class="update-icon">
-                                                            <i class="fa-solid fa-eye"></i>
+                                                        <a href="check_contract.php?id_contract=<?php echo $id_contract; ?>" class="update-icon">
+                                                            <i class="fa-solid fa-check"></i>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                            <a href="delete_contract.php?id_contract=<?php echo $id_contract; ?>" class="delete-icon">
+                                                            <a href="unckeck_contract.php?id_contract=<?php echo $id_contract; ?>" class="delete-icon">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </a>
                                                     </td>
