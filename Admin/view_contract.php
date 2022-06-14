@@ -94,7 +94,7 @@ include('header.php');
         </div>
 
         <input style="padding: 0.9rem 2rem;" type="submit" name="submit" value="Cập nhật" class="btn">
-        <a href="account.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
+        <a href="contract.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
     </form>
 
 </section>

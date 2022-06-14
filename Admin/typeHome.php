@@ -12,8 +12,8 @@
                             <thead>
                                 <tr>
                                     <th>Loại nhà</th>
-                                    <th>Tổng số căn</th>
-                                    <th>Đã bán được</th>
+                                    <th>Số căn</th>
+                                    <th>Bán được</th>
                                     <th>Cập nhật</th>
                                     <th>Xóa bỏ</th>
                                 </tr>
@@ -36,8 +36,12 @@
                                 ?>
                                                 <tr>
                                                     <td><?php echo $name_typeHome; ?></td>   
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td>
+                                                        2
+                                                    </td>
+                                                    <td>
+                                                        1
+                                                    </td>
                                                     <td>
                                                         <a href="view_typeHome.php?id_typeHome=<?php echo $id_typeHome; ?>" class="delete-icon">
                                                             <i class="fas fa-edit"></i>

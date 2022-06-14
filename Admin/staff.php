@@ -83,8 +83,8 @@
                                                                 }
                                                         ?>
                                                     </td> 
-                                                    <td>
-                                                        
+                                                    <td style="text-align: center;">
+                                                        <span>2</span>
                                                     </td>
                                                     <td class="td-team">
                                                         <div class="img-1 img_alone">
