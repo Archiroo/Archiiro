@@ -21,7 +21,6 @@
                                     <th>Cập nhật lúc</th>
                                     <th>Trạng thái</th>
                                     <th>Duyệt</th>
-                                    <th>Hủy bỏ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -113,11 +112,6 @@
                                                     <td>
                                                         <a href="check_contract.php?id_contract=<?php echo $id_contract; ?>" class="update-icon">
                                                             <i class="fa-solid fa-check"></i>
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                            <a href="unckeck_contract.php?id_contract=<?php echo $id_contract; ?>" class="delete-icon">
-                                                            <i class="fas fa-trash-alt"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
