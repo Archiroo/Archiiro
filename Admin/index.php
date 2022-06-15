@@ -101,7 +101,7 @@
                                         {
                                             while($row = mysqli_fetch_assoc($res))
                                             {
-                                                $id_user = $row['id_user'];
+                                                $id_staff = $row['id_user'];
                                                 $firstName = $row['firstName'];
                                                 $lastName = $row['lastName'];
                                                 $image = $row['image'];
@@ -135,10 +135,36 @@
                                                        ?>
                                                     </td>           
                                                     <td style="text-align: center;">
-                                                    <span>2</span>
+                                                        <span>
+                                                            <?php
+                                                                $sql4 = "Select COUNT(id_contract) As numberContract from tb_contract WHERE id_staff = $id_staff AND status = 1";
+                                                                $res4 = mysqli_query($conn, $sql4);
+                                                                $count4 = mysqli_num_rows($res4);
+                                                                if($count4 == 1){
+                                                                    $row4 = mysqli_fetch_assoc($res4);
+                                                                    $numberContract = $row4['numberContract'];
+                                                                }
+
+                                                                echo $numberContract;
+                                                            ?>
+                                                            
+                                                        </span>
                                                     </td>
                                                     <td style="text-align: center;">
-                                                        <span>1</span>
+                                                        <span>
+                                                            <?php
+                                                                $sql5 = "Select COUNT(id_contract) As numberContract from tb_contract WHERE id_staff = $id_staff AND status = 6";
+                                                                $res5 = mysqli_query($conn, $sql5);
+                                                                $count5 = mysqli_num_rows($res5);
+                                                                if($count5 == 1){
+                                                                    $row5 = mysqli_fetch_assoc($res5);
+                                                                    $numberContract1 = $row5['numberContract'];
+                                                                }
+
+                                                                echo $numberContract1;
+                                                            ?>
+                                                            
+                                                        </span>
                                                     </td>
                                                     <td class="td-team">
                                                         <div class="img-1 img_alone">
