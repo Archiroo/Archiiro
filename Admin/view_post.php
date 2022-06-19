@@ -15,6 +15,7 @@ include('header.php');
             $row = mysqli_fetch_assoc($res);
             $post_title = $row['postTitle'];
             $post_content = $row['postContent'];
+            $image = $row['img_post'];
         }
             
     ?>
@@ -30,8 +31,22 @@ include('header.php');
             if (isset($_POST['submit'])) {
                 $title = $_POST['title'];
                 $content = $_POST['content'];
-
-                $sql1 = "Update tb_post Set postTitle = '$title', postContent = '$content', idWriter = $id_admin where id_post = $id_post";
+                if (isset($_FILES['img_post']['name'])) {
+                    $image_name = $_FILES['img_post']['name'];
+                    if ($image_name != "") {
+                        $source_path = $_FILES['img_post']['tmp_name'];
+    
+                        $dess_path = "../image/image_database/" . $image_name;
+    
+                        $upload = move_uploaded_file($source_path, $dess_path);
+                        if ($upload == FALSE) {
+                            die();
+                        }
+                    }
+                } else {
+                    $image_name = "typeHome_default.jpg";
+                }
+                $sql1 = "Update tb_post Set postTitle = '$title', postContent = '$content', img_post = '$image_name', idWriter = $id_admin where id_post = $id_post";
                 $res1 = mysqli_query($conn, $sql1);
                 if ($res1 == TRUE) {
                     header("Location:post.php");
@@ -54,6 +69,13 @@ include('header.php');
             <div class="input" style="margin-top: 1rem;">
                 <span>Nội dung bài viết</span>
                 <textarea cols="30" name="content" rows="5"><?php echo $post_content;?></textarea>
+            </div>
+        </div>
+
+        <div class="inputBox">
+            <div class="inputImage">
+                <span>Hình ảnh</span>
+                <input type="file" name="img_post" value="<?php echo $image; ?>">
             </div>
         </div>
         <input style="padding: 0.9rem 2rem;" type="submit" name="submit" value="Cập nhật" class="btn">
