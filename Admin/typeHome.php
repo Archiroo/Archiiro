@@ -15,6 +15,7 @@
                                     <th>Đang giao bán</th>
                                     <th>Đang đặt cọc</th>
                                     <th>Đã bán được</th>
+                                    <th>Hình ảnh</th>
                                     <th>Cập nhật</th>
                                     <th>Xóa bỏ</th>
                                 </tr>
@@ -33,6 +34,7 @@
                                             {
                                                 $id_typeHome = $row['id_typeHome'];
                                                 $name_typeHome = $row['name_typeHome'];
+                                                $image = $row['img_typeHome'];
                                                 
                                 ?>
                                                 <tr>
@@ -81,7 +83,22 @@
                                                             ?>
                                                         </span>
                                                     </td>
-
+                                                    
+                                                    <td>
+                                                        <div class="img-1 img_alone">
+                                                            <?php 
+                                                                if($image != null){
+                                                                    ?>
+                                                                        <img style = "width: 50px; margin-left: 20px;" src="../image/<?php echo $image?>" alt="">    
+                                                                    <?php
+                                                                }
+                                                                else{
+                                                                    echo "Không có ảnh";
+                                                                }
+                                                            ?>
+                                                            
+                                                        </div>
+                                                    </td>
                                                     
                                                     <td>
                                                         <a href="view_typeHome.php?id_typeHome=<?php echo $id_typeHome; ?>" class="delete-icon">
