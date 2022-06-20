@@ -65,7 +65,7 @@ include('header.php');
             </div>
         </div>
         <input style="padding: 0.9rem 2rem;" type="submit" name="submit" value="Thêm nhân viên" class="btn">
-        <a href="staff.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
+        <a href="account.php" class="btn btn-add btn-cancel">Hủy bỏ</a>
     </form>
 
 </section>

@@ -18,7 +18,7 @@
                                     <th>Giới tính</th>
                                     <th>Mức lương</th>
                                     <th>Làm từ ngày</th>
-                                    <th>Ngày sinh</th>
+                                    <th>Số hợp đồng</th>
                                     <th>Hình ảnh</th>
                                     <th>Xem chi tiết</th>
                                     <th>Xóa nv</th>
@@ -42,7 +42,6 @@
                                                 $gender = $row['gender'];
                                                 $daySalary = $row['daySalary'];
                                                 $dayStart = $row['dayStart'];
-                                                $birthday = $row['birthday'];
                                                 $image = $row['image'];
                                                 
                                 ?>
@@ -52,17 +51,17 @@
                                                        <?php
                                                             if($gender == null){
                                                                 ?>
-                                                                <span >Không có dữ liệu</span>
+                                                                <span>Không có dữ liệu</span>
                                                                 <?php
                                                             }
                                                             if($gender == 1){
                                                                 ?>
-                                                                <span style="margin-left: 1.5rem;">Nam</span>
+                                                                <span>Nam</span>
                                                                 <?php
                                                             }
                                                             if($gender == 2){
                                                                 ?>
-                                                                <span style="margin-left: 1.5rem;">Nữ</span>
+                                                                <span>Nữ</span>
                                                                 <?php
                                                             }
                                                        ?>
@@ -79,25 +78,13 @@
                                                                 }  
                                                                 else{
                                                                     ?>
-                                                                    <span style="margin-left: 1.5rem;"> <?php echo $dayStart = date("d-m-Y", strtotime($dayStart)); ?> </span>
+                                                                    <span> <?php echo $dayStart = date("d-m-Y", strtotime($dayStart)); ?> </span>
                                                                     <?php
                                                                 }
                                                         ?>
                                                     </td> 
-                                                    <td style="text-align: center;">
-                                                        <?php
-                                                            if($birthday== null)
-                                                            {
-                                                                ?>
-                                                                <span>Không có dữ liệu</span>
-                                                                <?php
-                                                                }  
-                                                                else{
-                                                                    ?>
-                                                                    <span style="margin-left: 1.5rem;"> <?php echo $birthday = date("d-m-Y", strtotime($birthday)); ?> </span>
-                                                                    <?php
-                                                                }
-                                                        ?>
+                                                    <td>
+                                                        
                                                     </td>
                                                     <td class="td-team">
                                                         <div class="img-1 img_alone">
@@ -116,7 +103,7 @@
                                                     </td>   
                                                                                                 
                                                     <td>
-                                                        <a style="margin-left: 3rem;" href="view_staff.php?id_staff=<?php echo $id_staff; ?>" class="update-icon">
+                                                        <a href="view_staff.php?id_staff=<?php echo $id_staff; ?>" class="update-icon">
                                                             <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                     </td>

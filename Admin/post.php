@@ -19,7 +19,6 @@
                                     <th>Ngày tạo</th>
                                     <th>Trạng thái</th>
                                     <th>Duyệt bài</th>
-                                    <th>Hình ảnh</th>
                                     <th>Chi tiết</th>
                                     <th>Xóa bài </th>
                                 </tr>
@@ -42,7 +41,6 @@
                                                 $content = $row['postContent'];
                                                 $date1 = $row['dateCreate'];
                                                 $status = $row['status'];
-                                                $image = $row['img_post'];
                                                 
                                 ?>
                                                 <tr>
@@ -79,27 +77,11 @@
                                                             }
                                                         ?>
                                                     </td>     
-                                                    
                                                     <td>
                                                         <a href="check_post.php?id_post=<?php echo $id_post; ?>" class="update-icon">
                                                              <i class="fa-solid fa-check"></i>
                                                         </a>
-                                                    </td>   
-                                                    <td>
-                                                        <div class="img-1 img_alone">
-                                                            <?php 
-                                                                if($image != null){
-                                                                    ?>
-                                                                        <img style = "width: 70px; height: 70px;" src="../image/<?php echo $image?>" alt="">    
-                                                                    <?php
-                                                                }
-                                                                else{
-                                                                    echo "Không có ảnh";
-                                                                }
-                                                            ?>
-                                                            
-                                                        </div>
-                                                    </td>                                                       
+                                                    </td>                                                          
                                                     <td>
                                                         <a href="view_post.php?id_post=<?php echo $id_post; ?>" class="update-icon">
                                                             <i class="fa-solid fa-eye"></i>

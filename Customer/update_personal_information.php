@@ -2,7 +2,6 @@
     session_start();
     $iduser = $_SESSION['id_customerSession'];
       include('../config/config.php');
-  
 ?>
 <head>
     <title>Trang chủ</title>
@@ -81,6 +80,7 @@
                                 <a href="personal_information.php?id_user=<?php$iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
                                 <a href="history_contract.php?id_user=<?php$iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
                                 <a href="change_password.php?id_user=<?php$iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="index.php" class="dropdown-item">Đăng xuất</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                 <?php if($cc == 1 )
                                     {
@@ -132,7 +132,7 @@
                                 `gender`='$gender',
                                 `address`='$address',
                                 `birthday`='$birthday'                          
-                                WHERE `id_user`= 1 ";
+                                WHERE `id_user`= '$iduser' ";
 
             $res1 = mysqli_query($conn, $sql1);
             if ($res1 == true) { 
@@ -160,7 +160,7 @@
 
                 $sql_img = "UPDATE `tb_user` SET 
                                     `image`='$image'
-                                    WHERE `id_user`= 1 ";
+                                    WHERE `id_user`= $iduser ";
                 $rs_img = mysqli_query($conn, $sql_img);
             
             }
@@ -324,11 +324,10 @@
         {
             ?>
         <script> 
-            // window.location.assign('homeindex.php'), 
             Swal.fire({
             icon: 'success',
             title: "<?php echo $_SESSION['status'];?>" ,
-            footer: '<a class="btn btn-success" href="personal_information.php?id_user=1">Xong</a>',
+            footer: '<a class="btn btn-success" href="personal_information.php?id_user=<?php echo $iduser ?>">Xong</a>',
             showConfirmButton: false,
             });     
                 

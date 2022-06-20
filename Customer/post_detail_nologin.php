@@ -83,7 +83,7 @@
                 while ($row = mysqli_fetch_assoc($qr)) {
             ?>
                     <article>
-                        <img style="margin-top:50px;" src="../img/<?= $row['img_post'] ?>" alt="" class="img-fluid mb30">
+                        <img style="margin-top:50px;border-radius:5%;" src="../img/<?= $row['img_post'] ?>" alt="" class="img-fluid mb30">
                         <div class="post-content">
                             <h1 style="font-size: 50px; color:#50c1c7"><?= $row['postTitle'] ?></h1>
                             <!-- <ul class="post-meta list-inline">

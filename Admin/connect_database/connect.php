@@ -3,7 +3,7 @@
     define('LOCALHOST', 'localhost');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');
-    define('DB_NAME', 'db_archiiro');
+    define('DB_NAME', 'db_archiiro1');
 
     $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
     if($conn)

@@ -18,7 +18,7 @@ if (isset($_POST['action'] )) {
                             <a href="detail_home.php?id_home=<?= $row_s['id_home'] ?>"><img style="height:230px;" class="img-fluid" src="../img/<?php echo $row_s['image'] ?>" alt=""></a>
                         </div>
                         <div class="p-2">
-                            <a style="margin-top:30px; padding-bottom:10px;" class=" d-flex align-items-center  h5 mb-2" href="informationhomeindex.php?id_home=<?= $row_s['id_home'] ?>"><?php echo $row_s['name_home'] ?></a>
+                            <a style="margin-top:30px; padding-bottom:10px;" class=" d-flex align-items-center  h5 mb-2" href="detail_home.php?id_home=<?= $row_s['id_home'] ?>"><?php echo $row_s['name_home'] ?></a>
                             <h6 class="d-flex align-items-center text-primary mb-3"><span><?= $row_s['price'] ?> VNĐ</h5>
                                     <p class="d-flex align-items-center"><i class="fa fa-map-marker-alt text-primary me-2"></i><?php echo $row_s['address_home'] ?></p>
                         </div>

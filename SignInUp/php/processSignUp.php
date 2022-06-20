@@ -25,19 +25,19 @@
                         if (mysqli_num_rows($sql3) > 0) {
                             $row = mysqli_fetch_assoc($sql3);
                             $_SESSION['id_user'] = $row['id_user'];
-                            echo "Đăng ký thành công";
+                            echo "success";
                         }
                     } else {
                         echo "Something went wrong!";
                     }
                 } else {
-                    echo "Mật khẩu không trùng nhau!";
+                    echo "Password not match!";
                 }
             }
         } else {
-            echo "$email - Không đúng định dạng email";
+            echo "$email - This is not a valid email!";
         }
     } else {
-        echo "Phải điền đầy đủ thông tin!";
+        echo "All input field are required!";
     }
 ?>
