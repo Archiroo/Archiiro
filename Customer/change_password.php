@@ -80,6 +80,8 @@
                                 <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
                                 <a href="history_contract.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
                                 <a href="change_password.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="index.php" class="dropdown-item">Đăng xuất</a>
+
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                 <?php if($cc == 1 )
                                     {

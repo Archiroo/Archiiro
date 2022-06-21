@@ -10,29 +10,29 @@ include('../config/config.php');
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+   <!-- Favicon -->
+   <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Icon Font Stylesheet -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<!-- Libraries Stylesheet -->
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Customized Bootstrap Stylesheet -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/lightbox.min.css">
-    <script type="text/javascript" src="./js/lightbox-plus-jquery.min.js"></script>
+<!-- Template Stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./css/lightbox.min.css">
+<script type="text/javascript" src="./js/lightbox-plus-jquery.min.js"></script>
     <style>
         #gallery {
             margin-top: 10px;
@@ -113,6 +113,7 @@ include('../config/config.php');
                             <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
                                 <a href="history_contract.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
                                 <a href="change_password.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="index.php" class="dropdown-item">Đăng xuất</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                 <?php if($cc == 1 )
                                     {
@@ -165,25 +166,6 @@ include('../config/config.php');
 
     <!-- Property List Start -->
     <form action="" method="POST"> 
-        <?php
-                     if (isset($_POST['add-contract'])) {
-                        $idhome = $_GET['id_home'];              
-                        $sql3 = "INSERT INTO `tb_contract`(`id_contract`, `id_home`, `id_customer`, `id_staff`,`status`) 
-                        VALUES (null,'$idhome',$iduser,null,2)";
-                        $res3 = mysqli_query($conn, $sql3); 
-                        $sql4 = "UPDATE `tb_home` SET `status`='2' WHERE id_home = '$idhome'";
-                        $res4 = mysqli_query($conn, $sql4);
-                    if ($res3 == true && $res4 == true) { 
-                       
-                            $_SESSION['status'] = "Gửi yêu cầu đặt cọc thành công";
-                            $_SESSION['status_code'] = "success";
-                        } else { 
-                            $_SESSION['status'] = "Gửi yêu cầu đặt cọc thất bại";
-                            $_SESSION['status_code'] = "error";
-
-                         }
-                        }
-        ?>    
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-0 gx-5 align-items-end">
@@ -239,9 +221,10 @@ include('../config/config.php');
                             <?php
                                     }else if($cc == 2)
                                     {
-                            ?>
-                                       <div style="margin-top:205px; padding-left: 20px;"><button name="add-contract" type="submit" class="btn btn-primary">Yêu cầu đặt cọc</button></div>
-                                      
+                            ?> 
+                           <div style="margin-top:205px; padding-left: 20px;"><button name="submit" type="button" id="add-contract" class="btn btn-primary add-contract">Yêu cầu đặt cọc</button></div>                                                                        
+                            
+                            <div class="insert"></div>
                             <?php
                                     }
                                     else if($cc == 4)
@@ -252,11 +235,14 @@ include('../config/config.php');
                                         <?php
                                     }
 
-                            ?>
-                                                  
-
-                            <!-- condition request -->
-                            
+                            ?>                                               
+                            <!-- end condition request -->
+                            <!-- gán dữ liệu -->
+                            <div class="input-group mb-3">      
+                                <input  name="id_home" value="<?php echo $idhome ?>" type="hidden" class="form-control id_home">
+                                <input  name="id_customer" value="<?php echo $iduser ?>" type="hidden" class="form-control id_customer">
+                            </div>
+                            <!-- end gán dữ liệu -->           
                         </div>
 
 
@@ -348,12 +334,13 @@ include('../config/config.php');
 
 
             <!-- Back to Top -->
-            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <a href="tel:+84397433097" class="btn btn-lg btn-primary btn-lg-square back-to-top single"><i class="fa-solid fa-phone-flip"></i></a>
         </div>
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="lib/wow/wow.min.js"></script>
         <script src="lib/easing/easing.min.js"></script>
         <script src="lib/waypoints/waypoints.min.js"></script>
@@ -361,34 +348,44 @@ include('../config/config.php');
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
-        <?php
-        if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-        {
-            ?>
-        <script> 
-           
-            Swal.fire({
-                title: 'Bạn có muốn đặt cọc căn hộ này không?',
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Đồng ý',
-                denyButtonText: `Không`,
-                }).then((result) => {
-                
-                if (result.isConfirmed) {
-                    Swal.fire({
-                    icon: "<?php echo $_SESSION['status_code'];?>",
-                    title: "<?php echo $_SESSION['status'];?>" ,
-                    footer: '<a class="btn btn-success" href="index_home.php">Xong</a>',
-                    showConfirmButton: false,
-                    });          
-                } else if (result.isDenied) {
-                    Swal.fire('Căn hộ không được đặt cọc', '', 'info')
-                }
+<script>
+    $(document).ready(function() {
+        action = "add"
+        $(".add-contract").on("click", function() {
+            id_home   = $(".id_home").val()
+            id_customer = $(".id_customer").val()
+            swal({
+                    title: "Bạn có chắc chắn muốn gửi yêu cầu đặt cọc không?",
+                    icon: "info",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+
+                        $.ajax({
+                            url: "http://localhost/Archiiro/Customer/contract.php",
+                            method: "post",
+                            data: {
+                                id_home: id_home,
+                                id_customer: id_customer,
+                                action: action
+                            },
+                            success: function(dt) {
+                                swal("Gửi yêu cầu đặt cọc thành công!", {
+                                    icon: "success",                              
+                                    footer:  '<a href="index_home.php">Quay trở lại trang chủ</a>'
+                                });
+                                $(".insert").html(dt)
+                            }
+                        })
+                    } else {
+                        swal("Hủy thao tác!");
+                    }
                 });
-         
-        </script>
-        <?php 
-            unset($_SESSION['status']);
-         }
-    ?>
+        })
+
+     
+    })
+</script>      

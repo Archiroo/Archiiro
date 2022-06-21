@@ -141,7 +141,7 @@
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Các dạng căn hộ</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                    <p>Tập trung vào chất lượng công trình bằng cả trái tim và tạo ra sự vững tin cho khách hàng bằng hành động.</p>
                 </div>
                 <div class="row g-4">
                     <?php
@@ -232,7 +232,7 @@
            <div class="container">
                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                    <h1 class="mb-3">Bài viết</h1>
-                   <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                   <p>Tập trung vào chất lượng công trình bằng cả trái tim và tạo ra sự vững tin cho khách hàng bằng hành động.</p>
                </div>
                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                    <?php
@@ -274,7 +274,7 @@
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
-                        <div style="margin-left:44%;" class="d-flex pt-6">
+                        <div style="margin-left:38%;" class="d-flex pt-6">
                             <a class="btn btn-outline-light btn-social" href="https://twitter.com/QuauTn"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/quanqueo25"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-youtube"></i></a>
@@ -285,30 +285,12 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.636976405065!2d105.82263251481679!3d21.00718423601005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac8109765ba5%3A0xb3be79f8f64a59f9!2zMTc1IFAuIFTDonkgU8ahbiwgVHJ1bmcgTGnhu4d0LCDEkOG7kW5nIMSQYSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1654858272464!5m2!1svi!2s" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
         <!-- Footer End -->
 
         <!-- Back to Top -->
-        <a href="tel:+84346785893" class="btn btn-lg btn-primary btn-lg-square back-to-top single"><i class="fa-solid fa-phone-flip"></i></a>
+        <a href="tel:+84397433097" class="btn btn-lg btn-primary btn-lg-square back-to-top single"><i class="fa-solid fa-phone-flip"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->

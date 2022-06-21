@@ -1,4 +1,6 @@
 <?php
+ session_start();
+ $iduser = $_SESSION['id_customerSession'];
   include('../config/config.php');
 ?>
 <!DOCTYPE html>
@@ -63,7 +65,7 @@
                     </div>
                       <!-- information user -->
                       <?php
-                    $sql2 = "SELECT * FROM `tb_user` WHERE 1";
+                    $sql2 = "SELECT * FROM `tb_user` WHERE id_user = '$iduser'";
                     $res2 = mysqli_query($conn,$sql2);
                     $row2 = mysqli_fetch_assoc($res2);
                     $cc = $row2['status'];
@@ -79,7 +81,7 @@
                                 <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
                                 <a href="history_contract.php?id_user=1" class="dropdown-item">Lịch sử đặt cọc</a>
                                 <a href="change_password.php?id_user=1" class="dropdown-item">Đổi mật khẩu</a>
-
+                                <a href="index.php" class="dropdown-item">Đăng xuất</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                <?php if($cc == 1 )
                                     {
@@ -122,7 +124,7 @@
                 while ($row = mysqli_fetch_assoc($qr)) {
             ?>
                     <article>
-                        <img style="margin-top:50px;" src="../img/<?= $row['img_post'] ?>" alt="" class="img-fluid mb30">
+                        <img style="margin-top:50px; border-radius:5%;" src="../img/<?= $row['img_post'] ?>" alt="" class="img-fluid mb30">
                         <div class="post-content">
                             <h1 style="font-size: 50px; color:#50c1c7"><?= $row['postTitle'] ?></h1>
                             <!-- <ul class="post-meta list-inline">
@@ -136,6 +138,17 @@
                                     <i class="fa fa-tags"></i> <a href="#">Bootstrap4</a>
                                 </li>
                             </ul> -->
+                            <h6>Người viết:
+                                <?php 
+                                    $iduser = $row['idWriter'];
+                                    $sql1 = "SELECT * FROM `tb_user` WHERE id_user = '$iduser'";
+                                    $res1 = mysqli_query($conn, $sql1);
+                                    $row1 = mysqli_fetch_array($res1);
+                                    echo $row1['firstName'];
+                                    echo " ";
+                                    echo $row1['lastName'];
+                                ?>
+                            </h6>
                             <p><?= $row['postContent'] ?></p>
                             <!-- <p class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p>
                             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p> -->

@@ -31,6 +31,8 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/lightbox.min.css">
+    <script type="text/javascript" src="./js/lightbox-plus-jquery.min.js"></script>
 </head>
 
 
@@ -80,6 +82,7 @@
                                 <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
                                 <a href="history_contract.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
                                 <a href="change_password.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="index.php" class="dropdown-item">Đăng xuất</a>
 
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                <?php if($cc == 1 )
@@ -186,9 +189,10 @@
                 </div>
                 <div class="row g-4">
                     <?php
-                    $sql = "Select tb_typehome.name_typeHome, Count(tb_home.id_home) AS number_Home From tb_home, tb_typeHome
+                    $sql = "Select tb_typehome.typeHome_nameHome, tb_typehome.name_typeHome, Count(tb_home.id_home) AS number_Home From tb_home, tb_typeHome
                     Where tb_home.id_typeHome  = tb_typeHome.id_typeHome  Group By tb_typeHome.id_typeHome ";
                     $query = mysqli_query($conn, $sql);
+                                        
                     if ($query) {
                         while ($row = mysqli_fetch_assoc($query)) {
                     ?>
@@ -196,7 +200,8 @@
                                 <a class="cat-item d-block bg-light text-center rounded p-3" href="">
                                     <div class="rounded p-4">
                                         <div class="icon mb-3">
-                                            <img class="img-fluid" src="../img/icon-luxury.png" alt="Icon">
+                                            <img class="img-fluid" src="./img/<?php echo $row['typeHome_nameHome']?>" alt="Icon">
+                                           
                                         </div>
                                         <h6><?= $row['name_typeHome'] ?></h6>
                                         <span><?= $row['number_Home'] ?> căn hộ</span>
@@ -349,7 +354,7 @@
         <!-- Footer End -->
 
         <!-- Back to Top -->
-        <a href="tel:+84346785893" class="btn btn-lg btn-primary btn-lg-square back-to-top single"><i class="fa-solid fa-phone-flip"></i></a>
+        <a href="tel:+84397433097" class="btn btn-lg btn-primary btn-lg-square back-to-top single"><i class="fa-solid fa-phone-flip"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->

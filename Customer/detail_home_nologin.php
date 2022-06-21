@@ -225,10 +225,10 @@ include('../config/config.php');
                 <div class="container py-5">
                     <div class="row g-5">
                         <div class="col-lg-6 col-md-6">
-                            <h5 class="text-white mb-4">Liên lạc</h5>
-                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
-                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
-                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
+                            <h5 style="margin-left:40%; margin-top:40px" class="text-white mb-4">Liên lạc</h5>
+                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
+                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
+                            <p style="margin-left:40%" class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
                             <div style="margin-left:44%;" class="d-flex pt-6">
                                 <a class="btn btn-outline-light btn-social" href="https://twitter.com/QuauTn"><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/quanqueo25"><i class="fab fa-facebook-f"></i></a>
@@ -264,7 +264,7 @@ include('../config/config.php');
 
 
             <!-- Back to Top -->
-            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <a href="tel:+84397433097" class="btn btn-lg btn-primary btn-lg-square back-to-top single"><i class="fa-solid fa-phone-flip"></i></a>
         </div>
 
         <!-- JavaScript Libraries -->

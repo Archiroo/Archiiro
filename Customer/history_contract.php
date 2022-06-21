@@ -79,6 +79,7 @@
                                 <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
                                 <a href="history_contract.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
                                 <a href="change_password.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
+                                <a href="index.php" class="dropdown-item">Đăng xuất</a>
                                 <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
                                 <?php if($cc == 1 )
                                     {
@@ -115,30 +116,7 @@
         <!-- Contact -->
         <?php
             $sql1 = "SELECT * FROM `tb_contract` WHERE  id_customer = '$iduser' ";
-            $res1 = mysqli_query($conn, $sql1);
-           
-        ?>
-        <?php
-            $sql4 = "SELECT * FROM `tb_contract` WHERE id_customer = '$iduser' ";
-            $res5 = mysqli_query($conn, $sql1);
-            $row5 = mysqli_fetch_array($res5);
-            $idhome = $row5['id_home'];
-            $idstaff = $row5['id_staff'];
-            $statuscontract = $row5['status'];
-        ?>
-        <?php
-            $sql3 = "SELECT * FROM `tb_home` WHERE id_home = '$idhome'";
-            $res3 = mysqli_query($conn, $sql3);
-            $row3 = mysqli_fetch_array($res3);
-            $namehome = $row3['name_home'];
-            $image = $row3['image'];
-        ?>
-          <?php 
-            $sql5 = "SELECT * FROM `tb_user` WHERE 1";
-            $res5 = mysqli_query($conn, $sql5);
-            $row5 = mysqli_fetch_array($res5);
-            $fristname = $row5['firstName'];
-            $lastname = $row5['lastName'];
+            $res1 = mysqli_query($conn, $sql1);      
         ?>
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
@@ -154,12 +132,13 @@
                 </div>
             </div>
         </div>
+        <form action="" method="POST">
         <table class="table">
             <thead>
                 <tr>
                 <th scope="col">Mã giao dịch</th>
-                <th scope="col">Hình ảnh</th>
                 <th scope="col">Tên nhà</th>
+                <th scope="col">Hình ảnh</th>
                 <th scope="col">Nhân viên phụ trách</th>
                 <th scope="col">Xác nhận</th>
                 <th scope="col">Hủy</th>
@@ -169,45 +148,108 @@
             <?php
                 while ($row1 =mysqli_fetch_array($res1)) { ?>                   
                     <tr>
-                        <td><?php echo $row1['id_contract'] ?></td>
-                        <td><img class="img-fluid" alt="Ảnh nhà" style="width:auto; height:70px" src="../img/<?php echo $image?>"></td>                                      
-                        <td><?php echo $namehome ?></td>
-                        <td><?php echo $fristname?> <?php echo $lastname?></td>     
-                        <?php if($statuscontract == 3)
+                        <td><?php $idcontract = $row1['id_contract']; echo $idcontract ?></td>                                   
+                        <td>
+                            <!-- lấy thông tin nhà -->
+                            <?php  $idhome = $row1['id_home']; 
+                             $sql3 = "SELECT * FROM `tb_home` WHERE id_home = '$idhome'";
+                             $res3 = mysqli_query($conn, $sql3);
+                             $row3 = mysqli_fetch_array($res3);
+                             $namehome = $row3['name_home'];
+                             $image = $row3['image'];
+                             echo $namehome;
+                            ?>
+                            <!-- end lấy thông tin nhà -->
+                        </td>
+                        <td><img class="img-fluid" alt="Ảnh nhà" style="width:auto; height:70px" src="../img/<?php echo $image?>"></td>     
+                        <?php if($row1['id_staff'] == null)
                                     {
                                         ?>
-                                       <td><a href=""><button type="button" class="btn btn-warning">Xác nhận</button></a></td>
+                                            <td><span style="color: green; font-style: italic;">Đang chờ nhân viên phụ trách</span></td>
                                         <?php
-                                    }else if($statuscontract == 2)
+                                    }else
+                                    {
+                                        ?>
+                                         <td><span style="font-weight: bold;">
+                                            <!-- lấy thông tin nhân viên phụ trách -->
+                                            <?php 
+                                                $idstaff = $row1['id_staff'];
+                                                $sql5 = "SELECT * FROM `tb_user` WHERE id_user = '$idstaff'";
+                                                $res5 = mysqli_query($conn, $sql5);
+                                                $row5 = mysqli_fetch_array($res5);
+                                                $fristname = $row5['firstName'];
+                                                $lastname = $row5['lastName'];
+                                                echo $fristname;
+                                                echo " ";
+                                                echo $lastname;
+                                            ?></span></td>
+                                            <!-- end lấy thông tin nhân viên phụ trách -->
+                                        <?php
+                                    }
+                        ?>   
+                        <?php if($row1['status'] == 3)
+                                    {
+                                        ?>
+                                       <td><a href="confirm_contract.php?id_contract=<?php echo $row1['id_contract']; ?>"><button name="xacnhan" type="button" class="btn btn-warning">Xác nhận</button></a></td>
+                                        <?php
+                                    }else if($row1['status'] == 2)
                                     {
                                         ?>
                                          <td><span style="color: green; font-style: italic;">Chờ phản hồi từ công ty</span></td>
                                         <?php
                                     }
-                                    else if($statuscontract == 4)
+                                    else if($row1['status'] == 4)
                                     {
                                         ?>
-                                         <td><span style="color: #FADB0D; font-style: italic;">Đang giải quyết</span></td>
+                                         <td><span style="color: #FADB0D; font-style: italic;">Đang xử lý</span></td>
                                         <?php
                                     }
-                                    else if($statuscontract == 6)
+                                    else if($row1['status'] == 5)
+                                    {
+                                        ?>
+                                         <td><span style="color: #FADB0D; font-style: italic;">Đang xử lý</span></td>
+                                        <?php
+                                    }
+                                    else if($row1['status'] == 6)
                                     {
                                         ?>
                                          <td><span style="color: red; font-style: italic;">Đã hủy</span></td>
                                         <?php
                                     }
+                                    else if($row1['status'] == 1)
+                                    {
+                                        ?>
+                                         <td><span style="color: green; font-style: italic;">Thành công</span></td>
+                                        <?php
+                                    }
+                                    else 
+                                    {
+                                        ?>
+                                         <td><span style="color: green; font-style: italic;">.......</span></td>
+                                        <?php
+                                    }
 
                         ?>
-                        
-                        <td><a href=""><button type="button" class="btn btn-danger text-white me-2">Hủy</button></a></td>
-
+                         <?php if($row1['status'] == 4 || $row1['status'] == 3)
+                                    {
+                                        ?>
+                                      <td><a href="cancel_contract.php?id_contract=<?php echo $row1['id_contract']; ?>"><button name="huy" type="button" class="btn btn-danger text-white me-2">Hủy</button></a></td>                   
+                                        <?php
+                                    }else
+                                    {
+                                        ?>
+                                         <td><span style="color: green; font-style: italic;">Khóa</span></td>
+                                        <?php
+                                    }
+                        ?>                    
                     </tr>
-            <?php
-                
+            <?php             
             }
             ?>
             </tbody>
     </table>
+
+</form>
         <!-- End Contact -->
 
        
@@ -256,7 +298,6 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
