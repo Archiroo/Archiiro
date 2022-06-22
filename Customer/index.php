@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                        <button type="button" class="btn btn-dark border-0 w-100 py-3 search_house">Search</button>
+                        <button type="button" class="btn btn-dark border-0 w-100 py-3 search_house">Tìm kiếm</button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,6 @@
         </div>
         <!-- Search End -->
       
-        <!-- Category Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -145,17 +144,19 @@
                 </div>
                 <div class="row g-4">
                     <?php
-                    $sql = "Select tb_typehome.name_typeHome, Count(tb_home.id_home) AS number_Home From tb_home, tb_typeHome
-                    Where tb_home.id_typeHome  = tb_typeHome.id_typeHome  Group By tb_typeHome.id_typeHome ";
+                    $sql = "Select tb_typehome.id_typeHome, tb_typehome.typeHome_nameHome, tb_typehome.name_typeHome, Count(tb_home.id_home) AS number_Home From tb_home, tb_typeHome Where tb_home.id_typeHome = tb_typeHome.id_typeHome and tb_home.status = 1 
+                    Group By tb_typeHome.id_typeHome; ";
                     $query = mysqli_query($conn, $sql);
                     if ($query) {
                         while ($row = mysqli_fetch_assoc($query)) {
                     ?>
-                            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-                                    <div class="rounded p-4">
+                            <div class="col-lg-3 col-sm-6 wow fadeInUp list_house" data-wow-delay="0.1s" >
+                                 <!-- thẻ a -->
+                                <a href ="index_typeHome_nologin.php?id_typeHome=<?php echo $row['id_typeHome']?>" class="cat-item d-block bg-light text-center rounded p-3" >  
+                                   
+                                    <div class="rounded p-4 ">
                                         <div class="icon mb-3">
-                                            <img class="img-fluid" src="../img/icon-luxury.png" alt="Icon">
+                                            <img class="img-fluid" src="../img/<?php echo $row['typeHome_nameHome']?>" alt="Icon">
                                         </div>
                                         <h6><?= $row['name_typeHome'] ?></h6>
                                         <span><?= $row['number_Home'] ?> căn hộ</span>
@@ -190,7 +191,7 @@
                     $offset = ($current_page - 1) * $item_per_page;
                     $sql1 = "SELECT * FROM tb_home WHERE status = 1 ORDER BY 'id_home' ASC  LIMIT " . $item_per_page . " OFFSET " . $offset;
                     $res1 = mysqli_query($conn,$sql1);               
-                    $sqlsp = mysqli_query($conn,"SELECT * FROM `tb_home`");
+                    $sqlsp = mysqli_query($conn,"SELECT * FROM `tb_home` WHERE status = 1");
                     $totalsp = mysqli_num_rows($sqlsp);                  
                     $totalpage = ceil($totalsp / $item_per_page);
                     ?>
@@ -201,7 +202,8 @@
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <a href="detail_home_nologin.php?id_home=<?=$row['id_home']?>"><img style="height:230px;" class="img-fluid" src="../img/<?php echo $row['image'] ?>" alt=""></a>
+                                    <a href="detail_home.php?id_home=<?=$row['id_home']?>"><img style="height:230px; width:90%; object-fit:cover; justify-content: cover; border-radius: 2px;" class="" src="../img/<?php echo $row['image'] ?>" alt=""></a>
+
                                     </div>
                                     <div class="p-2">
                                         <a style="margin-top:30px; padding-bottom:10px;" class=" d-flex align-items-center  h5 mb-2" href="detail_home_nologin.php?id_home=<?=$row['id_home']?>"><?php echo $row['name_home']?></a>
@@ -221,6 +223,8 @@
                         include "page.php";
                         ?>                
             </div>
+            <br>
+            <br>
             <div class="tab-content search_house_page">
 
             </div>
@@ -228,6 +232,8 @@
         <!-- Property List End -->
 
         <!-- Post -->
+        <br>
+        <br>
         <div class="container-xxl py-5">
            <div class="container">
                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -247,11 +253,11 @@
                                    <a  href="./post_detail_nologin.php?id_post=<?=$row['id_post']?>">Read more</a>
 
                                  
-                                   <div class="d-flex align-items-center">
+                                   <div class="d-flex "  >
                                        <img class="img-fluid flex-shrink-0 rounded" src="../img/<?= $row['img_post'] ?>" style="width: 45px; height: 45px;">
-                                       <div class="ps-3">
-                                           <h6 class="fw-bold mb-1"><?= $row['postTitle'] ?></h6>
-                                           <small>Profession</small>
+                                       <div class="ps-3" >
+                                       <h5 style="display: flex;align-items:flex-start;" class="fw-bold mb-1"><?= $row['postTitle'] ?></h5>
+                                           <small style="display: flex;align-items:flex-start;">Profession</small>
                                        </div>
                                    </div>
                                </div>
@@ -274,7 +280,7 @@
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>175 Tây Sơn, Đống Đa, Hà Nội</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0346785893</p>
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>aqdz01@gmail.com</p>
-                        <div style="margin-left:38%;" class="d-flex pt-6">
+                        <div style="margin-left:44%;" class="d-flex pt-6">
                             <a class="btn btn-outline-light btn-social" href="https://twitter.com/QuauTn"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/quanqueo25"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=byJEgtVJxk0&t=12s"><i class="fab fa-youtube"></i></a>
@@ -285,7 +291,25 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.636976405065!2d105.82263251481679!3d21.00718423601005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac8109765ba5%3A0xb3be79f8f64a59f9!2zMTc1IFAuIFTDonkgU8ahbiwgVHJ1bmcgTGnhu4d0LCDEkOG7kW5nIMSQYSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1654858272464!5m2!1svi!2s" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
-            
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
+							
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Footer End -->
 
@@ -312,14 +336,29 @@
                     area_house = $("#area_home").val()
                     action = "search"
                     search(type_house, area_house, action)
-                    $("search_house").on("submit", function() {
+                    $(".search_house").on("submit", function() {
                         return false
                     })
                     $('html, body').animate({
                         scrollTop: $(".search_house_page").offset().top
                     }, 1000);
                 })
-
+                $(".list_house").on("click",function(){
+                    method = "list_house"
+                    $.ajax({
+                        url: "http://localhost/Archiiro/Customer/search_house.php",
+                        method: "post",
+                        data :{
+                            method: method,
+                        },success:function(dt)
+                        {
+                            $(".search_house_page").html(dt)
+                        }
+                    })
+                    $('html, body').animate({
+                        scrollTop: $(".search_house_page").offset().top
+                    }, 1000);
+                })
                 function search(type_house, area_house, action) {
                     $.ajax({
                         url: "http://localhost/Archiiro/Customer/search_house.php",

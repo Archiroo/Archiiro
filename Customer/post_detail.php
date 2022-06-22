@@ -74,8 +74,8 @@
                     ?>
                     <div class="nav-item dropdown">
                         <div style="display:flex;" class="ifuser">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                             <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
                         </div>                        
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="personal_information.php?id_user=1" class="dropdown-item">Thông tin cá nhân</a>
@@ -124,20 +124,9 @@
                 while ($row = mysqli_fetch_assoc($qr)) {
             ?>
                     <article>
-                        <img style="margin-top:50px; border-radius:5%;" src="../img/<?= $row['img_post'] ?>" alt="" class="img-fluid mb30">
+                        
                         <div class="post-content">
                             <h1 style="font-size: 50px; color:#50c1c7"><?= $row['postTitle'] ?></h1>
-                            <!-- <ul class="post-meta list-inline">
-                                <li class="list-inline-item">
-                                    <i class="fa fa-user-circle-o"></i> <a href="#">John Doe</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <i class="fa fa-calendar-o"></i> <a href="#">29 June 2017</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <i class="fa fa-tags"></i> <a href="#">Bootstrap4</a>
-                                </li>
-                            </ul> -->
                             <h6>Người viết:
                                 <?php 
                                     $iduser = $row['idWriter'];
@@ -149,7 +138,19 @@
                                     echo $row1['lastName'];
                                 ?>
                             </h6>
-                            <p><?= $row['postContent'] ?></p>
+                            <!-- <ul class="post-meta list-inline">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-user-circle-o"></i> <a href="#">John Doe</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-calendar-o"></i> <a href="#">29 June 2017</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-tags"></i> <a href="#">Bootstrap4</a>
+                                </li>
+                            </ul> -->
+                            <img style="margin-top:50px; border-radius:5%; width:700px;" src="../img/<?= $row['img_post'] ?>" alt="" class="img-fluid mb30">
+                            
                             <!-- <p class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p>
                             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p> -->
                             <!-- <ul class="list-inline share-buttons">
@@ -176,13 +177,16 @@
                             <hr class="mb40">
                         </div>
                     </article>
+                    </div>
+                </div>
+                    <h5 style="margin-top: -50px;">Nội dung:</h5>
+                    <p><?= $row['postContent'] ?></p>
             <?php
                 }
             }
             ?>
 
-        </div>
-    </div>
+   
    <?php
    include("./footer.php");
    ?>

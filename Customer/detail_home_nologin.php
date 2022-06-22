@@ -185,7 +185,7 @@ include('../config/config.php');
                             <h4>Căn hộ liên quan</h4></br>
                             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                                 <?php
-                                $sql = "SELECT * FROM `tb_home` WHERE  id_typeHome = '$idtypehome'";
+                                $sql = "SELECT * FROM `tb_home` WHERE status = 1 and id_typeHome = '$idtypehome'";
                                 $qr = mysqli_query($conn, $sql);
                                 if ($qr) {
                                     while ($row = mysqli_fetch_assoc($qr)) {

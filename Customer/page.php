@@ -46,7 +46,7 @@
       border-radius: 50%;
       }
       .current-page{
-          background: #F8B195;
+          background: #3cccac;
           color: #FFF;
       }
     </style>
