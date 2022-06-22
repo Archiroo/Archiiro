@@ -106,8 +106,8 @@ include('../config/config.php');
                     ?>
                     <div class="nav-item dropdown">
                         <div style="display:flex;" class="ifuser">
-                            <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a>
+                            <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">
                         </div>                        
                             <div class="dropdown-menu rounded-0 m-0">
                             <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
@@ -254,7 +254,7 @@ include('../config/config.php');
                             <h4>Căn hộ liên quan</h4></br>
                             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                                 <?php
-                                $sql = "SELECT * FROM `tb_home` WHERE  id_typeHome = '$idtypehome'";
+                                $sql = "SELECT * FROM `tb_home` WHERE status = 1 and id_typeHome = '$idtypehome'";
                                 $qr = mysqli_query($conn, $sql);
                                 if ($qr) {
                                     while ($row = mysqli_fetch_assoc($qr)) {

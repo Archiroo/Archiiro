@@ -1,5 +1,5 @@
 <?php 
-    $conn = mysqli_connect("localhost", "root", "", "db_archiiro1");
+    $conn = mysqli_connect("localhost", "root", "", "db_archiiro");
     if($conn){
         
     }

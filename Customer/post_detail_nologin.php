@@ -83,9 +83,22 @@
                 while ($row = mysqli_fetch_assoc($qr)) {
             ?>
                     <article>
-                        <img style="margin-top:50px;border-radius:5%;" src="../img/<?= $row['img_post'] ?>" alt="" class="img-fluid mb30">
+                       <br>
+                       <br>
+                       <br>
                         <div class="post-content">
                             <h1 style="font-size: 50px; color:#50c1c7"><?= $row['postTitle'] ?></h1>
+                            <h6>Người viết:
+                                <?php 
+                                    $iduser = $row['idWriter'];
+                                    $sql1 = "SELECT * FROM `tb_user` WHERE id_user = '$iduser'";
+                                    $res1 = mysqli_query($conn, $sql1);
+                                    $row1 = mysqli_fetch_array($res1);
+                                    echo $row1['firstName'];
+                                    echo " ";
+                                    echo $row1['lastName'];
+                                ?>
+                            </h6>
                             <!-- <ul class="post-meta list-inline">
                                 <li class="list-inline-item">
                                     <i class="fa fa-user-circle-o"></i> <a href="#">John Doe</a>
@@ -97,7 +110,8 @@
                                     <i class="fa fa-tags"></i> <a href="#">Bootstrap4</a>
                                 </li>
                             </ul> -->
-                            <p><?= $row['postContent'] ?></p>
+                            <img style="margin-top:50px;border-radius:5%; width:700px;" src="../img/<?= $row['img_post'] ?>" alt="" class="img-fluid mb30">
+                            
                             <!-- <p class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p>
                             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p> -->
                             <!-- <ul class="list-inline share-buttons">
@@ -124,13 +138,17 @@
                             <hr class="mb40">
                         </div>
                     </article>
+                    </div>
+                 </div>
+                 <h5 style="margin-top: -50px;">Nội dung:</h5>
+                    <p><?= $row['postContent'] ?></p>
             <?php
                 }
             }
             ?>
 
-        </div>
-    </div>
+   
+    
    <?php
    include("./footer.php");
    ?>

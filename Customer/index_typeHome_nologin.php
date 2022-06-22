@@ -1,6 +1,5 @@
 <?php 
-    session_start();
-    $iduser = $_SESSION['id_customerSession'];
+    $idtypehome = $_GET['id_typeHome'];
       include('../config/config.php');
     
 ?>
@@ -64,46 +63,7 @@
                         <a href="https://www.facebook.com/daihocthuyloi1959" class="nav-item nav-link">Chúng tôi</a>
                         <a href="tel:+84346785893" class="nav-item nav-link">Liên hệ</a>
                     </div>
-                    <!-- information user -->
-                    <?php
-                    $sql2 = "SELECT * FROM `tb_user` WHERE id_user = '$iduser'";
-                    $res2 = mysqli_query($conn,$sql2);
-                    $row2 = mysqli_fetch_assoc($res2);
-                    $cc = $row2['status'];
-                    ?>
-                    <div class="nav-item dropdown">  
-                        <div style="display:flex;" class="ifuser">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $row2['firstName']?> <?php echo $row2['lastName']?></a> 
-                                <img style="width:40px; height:40px; border-radius:50%;" class="img-fluid" src="../img/<?php echo $row2['image'] ?>" alt="">                      
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="personal_information.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Thông tin cá nhân</a>
-                                <a href="history_contract.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Lịch sử đặt cọc</a>
-                                <a href="change_password.php?id_user=<?php echo $iduser;?>" class="dropdown-item">Đổi mật khẩu</a>
-                                <a href="index.php" class="dropdown-item">Đăng xuất</a>
-                                <div style=" margin-left:15px; width:130px; height:0.2px; background-color:black;" class="lane"></div>
-                               <?php if($cc == 1 )
-                                    {
-                                        ?>
-                                        <a href="active.php?id_user=1" class="dropdown-item" style="color: red;" href="active.php"> Xác thực tài khoản</a>
-                                        <?php
-                                    }else if($cc == 2)
-                                    {
-                                        ?>
-                                        <span class="dropdown-item" style="color: green; font-style: italic;"> Đã xác thực</span>
-                                        <?php
-                                    }
-                                    else if($cc == 4)
-                                    {
-                                        ?>
-                                        <span class="dropdown-item" style="color: #FADB0D; font-style: italic;"> Đang chờ xác thực</span>
-                                        <?php
-                                    }
-
-                                    ?>
-                            </div>
-                        </div>     
-                    </div>
-                    <!-- End information user -->
+                    <a href="../SignInUp/login.php" class="btn btn-primary px-3 d-none d-lg-flex" >Đăng nhập</a>
                 </div>
             </nav>
         </div>
@@ -225,15 +185,22 @@
                         </div>
                     </div>
                 </div>
+                <!-- Hiển thị tên dạng căn hộ-->
+                <?php
+                    $sql_type1 = "select * from tb_typehome where id_typeHome = $idtypehome";
+                    $qr_type1 = mysqli_query($conn, $sql_type1);
+                    $row_type1 = mysqli_fetch_assoc($qr_type1);
+                ?>
+                <h4><?php echo $row_type1['name_typeHome']?></h4>
+                <!-- end hiển thị tên dạng căn hộ-->
                 <div class="tab-content">
-               
-                    <?php
+                    <?php                 
                     $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
                     $current_page = isset($_GET['page'])?$_GET['page']:1;
                     $offset = ($current_page - 1) * $item_per_page;
-                    $sql1 = "SELECT * FROM tb_home WHERE status = 1 ORDER BY 'id_home' ASC  LIMIT " . $item_per_page . " OFFSET " . $offset;
+                    $sql1 = "SELECT * FROM tb_home WHERE status = 1 and id_typeHome = '$idtypehome' ORDER BY 'id_home' ASC  LIMIT " . $item_per_page . " OFFSET " . $offset;
                     $res1 = mysqli_query($conn,$sql1);               
-                    $sqlsp = mysqli_query($conn,"SELECT * FROM `tb_home` WHERE status = 1");
+                    $sqlsp = mysqli_query($conn,"SELECT * FROM `tb_home` WHERE status = 1 and id_typeHome = '$idtypehome'");
                     $totalsp = mysqli_num_rows($sqlsp);                  
                     $totalpage = ceil($totalsp / $item_per_page);
                     ?>

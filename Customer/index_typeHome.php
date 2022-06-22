@@ -1,6 +1,7 @@
 <?php 
     session_start();
     $iduser = $_SESSION['id_customerSession'];
+    $idtypehome = $_GET['id_typeHome'];
       include('../config/config.php');
     
 ?>
@@ -225,15 +226,25 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                    $sql_type1 = "select * from tb_typehome where id_typeHome = $idtypehome";
+                    $qr_type1 = mysqli_query($conn, $sql_type1);
+                    $row_type1 = mysqli_fetch_assoc($qr_type1);
+                ?>
+                <br>
+                <h4><?php echo $row_type1['name_typeHome']?></h4>
+                <br>
+                <br>
                 <div class="tab-content">
                
                     <?php
+                   
                     $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
                     $current_page = isset($_GET['page'])?$_GET['page']:1;
                     $offset = ($current_page - 1) * $item_per_page;
-                    $sql1 = "SELECT * FROM tb_home WHERE status = 1 ORDER BY 'id_home' ASC  LIMIT " . $item_per_page . " OFFSET " . $offset;
+                    $sql1 = "SELECT * FROM tb_home WHERE status = 1 and id_typeHome = '$idtypehome' ORDER BY 'id_home' ASC  LIMIT " . $item_per_page . " OFFSET " . $offset;
                     $res1 = mysqli_query($conn,$sql1);               
-                    $sqlsp = mysqli_query($conn,"SELECT * FROM `tb_home` WHERE status = 1");
+                    $sqlsp = mysqli_query($conn,"SELECT * FROM `tb_home` WHERE status = 1 and id_typeHome = '$idtypehome'");
                     $totalsp = mysqli_num_rows($sqlsp);                  
                     $totalpage = ceil($totalsp / $item_per_page);
                     ?>
