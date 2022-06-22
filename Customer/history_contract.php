@@ -165,7 +165,7 @@
                         <?php if($row1['id_staff'] == null)
                                     {
                                         ?>
-                                            <td><span style="color: green; font-style: italic;">Đang chờ nhân viên phụ trách</span></td>
+                                            <td><span style="color: #FADB0D; font-style: italic;">Chờ nhân viên phụ trách</span></td>
                                         <?php
                                     }else
                                     {
@@ -195,7 +195,7 @@
                                     }else if($row1['status'] == 2)
                                     {
                                         ?>
-                                         <td><span style="color: green; font-style: italic;">Chờ phản hồi từ công ty</span></td>
+                                         <td><span style="color: #FADB0D; font-style: italic;">Chờ phản hồi từ công ty</span></td>
                                         <?php
                                     }
                                     else if($row1['status'] == 4)
@@ -225,7 +225,7 @@
                                     else 
                                     {
                                         ?>
-                                         <td><span style="color: green; font-style: italic;">.......</span></td>
+                                         <td><span style="color: #FADB0D; font-style: italic;">.......</span></td>
                                         <?php
                                     }
 
@@ -238,7 +238,7 @@
                                     }else
                                     {
                                         ?>
-                                         <td><span style="color: green; font-style: italic;">Khóa</span></td>
+                                         <td><span style="color: blue; font-style: italic;">Khóa</span></td>
                                         <?php
                                     }
                         ?>                    
